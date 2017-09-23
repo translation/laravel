@@ -1,0 +1,34 @@
+
+-
+    request:
+        method: POST
+        url: 'https://translation.io/api/projects/13f5dbf135334c20aa4fed952f5a81f9/sync'
+        headers:
+            Host: translation.io
+            Expect: null
+            Accept-Encoding: null
+            User-Agent: 'GuzzleHttp/6.2.1 curl/7.47.0 PHP/7.1.9-1+ubuntu16.04.1+deb.sury.org+1'
+            Content-Type: application/x-www-form-urlencoded
+            Accept: null
+        body: 'timestamp=1506615677&gem_version=2.0&source_language=en&yaml_pot_data=msgid+%22%22%0Amsgstr+%22%22%0A%0Amsgctxt+%22auth.password%22%0Amsgid+%22Password+changed%22%0Amsgstr+%22%22%0A%0Amsgctxt+%22auth.email%22%0Amsgid+%22Email+changed%22%0Amsgstr+%22%22%0A%0Amsgctxt+%22auth.fields.first_name%22%0Amsgid+%22First+name+changed%22%0Amsgstr+%22%22%0A%0Amsgctxt+%22auth.fields.last_name%22%0Amsgid+%22Last+name+changed%22%0Amsgstr+%22%22%0A&target_languages[]=lv&target_languages[]=ru'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Content-Type: 'application/json; charset=utf-8'
+            Transfer-Encoding: chunked
+            Connection: keep-alive
+            Status: '200 OK'
+            Cache-Control: 'max-age=0, private, must-revalidate'
+            X-XSS-Protection: '1; mode=block'
+            X-Request-Id: 7e92b01c-d1fc-47ad-808b-a8584f22b10a
+            ETag: 'W/"4a01c32c73c1bc79aaac9458ba5fe46b"'
+            X-Frame-Options: SAMEORIGIN
+            X-Runtime: '0.096771'
+            X-Content-Type-Options: nosniff
+            Date: 'Thu, 28 Sep 2017 16:21:17 GMT'
+            X-Powered-By: 'Phusion Passenger 5.0.24'
+            Server: 'nginx/1.8.1 + Phusion Passenger 5.0.24'
+        body: '{"project_name":"two","project_url":"http://translation.io/armandsar/two","yaml_po_data_lv":"msgid \"\"\nmsgstr \"\"\n\nmsgctxt \"auth.password\"\nmsgid \"Password changed\"\nmsgstr \"Parole\"\n\nmsgctxt \"auth.email\"\nmsgid \"Email changed\"\nmsgstr \"Epasts\"\n\nmsgctxt \"auth.fields.first_name\"\nmsgid \"First name changed\"\nmsgstr \"Vārds\"\n\nmsgctxt \"auth.fields.last_name\"\nmsgid \"Last name changed\"\nmsgstr \"Uzvārds\"\n","yaml_po_data_ru":"msgid \"\"\nmsgstr \"\"\n\nmsgctxt \"auth.password\"\nmsgid \"Password changed\"\nmsgstr \"Пароль\"\n\nmsgctxt \"auth.email\"\nmsgid \"Email changed\"\nmsgstr \"Почта\"\n\nmsgctxt \"auth.fields.first_name\"\nmsgid \"First name changed\"\nmsgstr \"Имя\"\n\nmsgctxt \"auth.fields.last_name\"\nmsgid \"Last name changed\"\nmsgstr \"Фамилия\"\n"}'

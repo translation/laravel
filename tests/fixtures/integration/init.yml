@@ -1,0 +1,34 @@
+
+-
+    request:
+        method: POST
+        url: 'https://translation.io/api/projects/13f5dbf135334c20aa4fed952f5a81f9/init'
+        headers:
+            Host: translation.io
+            Expect: null
+            Accept-Encoding: null
+            User-Agent: 'GuzzleHttp/6.2.1 curl/7.47.0 PHP/7.1.9-1+ubuntu16.04.1+deb.sury.org+1'
+            Content-Type: application/x-www-form-urlencoded
+            Accept: null
+        body: 'gem_version=2.0&source_language=en&yaml_po_data_lv=msgid+%22%22%0Amsgstr+%22%22%0A%0Amsgctxt+%22auth.password%22%0Amsgid+%22Password%22%0Amsgstr+%22Parole%22%0A%0Amsgctxt+%22auth.email%22%0Amsgid+%22Email%22%0Amsgstr+%22%22%0A%0Amsgctxt+%22auth.fields.first_name%22%0Amsgid+%22First+name%22%0Amsgstr+%22%22%0A%0Amsgctxt+%22auth.fields.last_name%22%0Amsgid+%22Last+name%22%0Amsgstr+%22%22%0A&yaml_po_data_ru=msgid+%22%22%0Amsgstr+%22%22%0A%0Amsgctxt+%22auth.password%22%0Amsgid+%22Password%22%0Amsgstr+%22%D0%9F%D0%B0%D1%80%D0%BE%D0%BB%D1%8C%22%0A%0Amsgctxt+%22auth.email%22%0Amsgid+%22Email%22%0Amsgstr+%22%22%0A%0Amsgctxt+%22auth.fields.first_name%22%0Amsgid+%22First+name%22%0Amsgstr+%22%22%0A%0Amsgctxt+%22auth.fields.last_name%22%0Amsgid+%22Last+name%22%0Amsgstr+%22%22%0A&target_languages[]=lv&target_languages[]=ru'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Content-Type: 'application/json; charset=utf-8'
+            Transfer-Encoding: chunked
+            Connection: keep-alive
+            Status: '200 OK'
+            Cache-Control: 'max-age=0, private, must-revalidate'
+            X-XSS-Protection: '1; mode=block'
+            X-Request-Id: 48028383-8d05-464a-bfce-af219197386b
+            ETag: 'W/"573d20e801d64864f3d97affac261a2c"'
+            X-Frame-Options: SAMEORIGIN
+            X-Runtime: '0.358015'
+            X-Content-Type-Options: nosniff
+            Date: 'Thu, 28 Sep 2017 16:15:09 GMT'
+            X-Powered-By: 'Phusion Passenger 5.0.24'
+            Server: 'nginx/1.8.1 + Phusion Passenger 5.0.24'
+        body: '{"project_name":"two","project_url":"http://translation.io/armandsar/two","yaml_po_data_lv":"msgid \"\"\nmsgstr \"\"\n\nmsgctxt \"auth.password\"\nmsgid \"Password\"\nmsgstr \"Parole\"\n\nmsgctxt \"auth.email\"\nmsgid \"Email\"\nmsgstr \"\"\n\nmsgctxt \"auth.fields.first_name\"\nmsgid \"First name\"\nmsgstr \"\"\n\nmsgctxt \"auth.fields.last_name\"\nmsgid \"Last name\"\nmsgstr \"\"\n","yaml_po_data_ru":"msgid \"\"\nmsgstr \"\"\n\nmsgctxt \"auth.password\"\nmsgid \"Password\"\nmsgstr \"Пароль\"\n\nmsgctxt \"auth.email\"\nmsgid \"Email\"\nmsgstr \"\"\n\nmsgctxt \"auth.fields.first_name\"\nmsgid \"First name\"\nmsgstr \"\"\n\nmsgctxt \"auth.fields.last_name\"\nmsgid \"Last name\"\nmsgstr \"\"\n"}'
