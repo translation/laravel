@@ -19,7 +19,4 @@
             <directory suffix=".php">src/</directory>
         </whitelist>
     </filter>
-    <logging>
-        <log type="coverage-html" target="build/coverage" charset="UTF-8" yui="true" highlight="true"/>
-    </logging>
 </phpunit>
