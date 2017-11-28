@@ -59,11 +59,6 @@ class TargetPOGenerator
         })->all();
     }
 
-    private function diffKeys($arr1, $arr2)
-    {
-        return collect(array_diff_key($arr1, $arr2));
-    }
-
     private function poData($entries)
     {
         $translations = new Translations();
