@@ -46,7 +46,7 @@ class TargetPOGenerator
                 return $this->sourceEntryKeys->contains($key);
             })));
 
-            $this->diffKeys($this->sourceEntryKeys->all(), $valid->keys()->all())
+            $this->sourceEntryKeys->diff($valid->keys()->all())
                 ->each(function ($key) use (&$valid) {
                     $valid->put($key, "");
                 });
