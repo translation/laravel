@@ -15,6 +15,10 @@ class Sync
     private $config;
 
     /**
+     * @var SourcePOGenerator
+     */
+    private $poGenerator;
+    /**
      * @var POExtractor
      */
     private $poExtractor;

@@ -18,7 +18,7 @@ class Sync extends Command
      */
     private $syncService;
     /**
-     * @var SyncService
+     * @var SourceEditSyncService
      */
     private $sourceEditSyncService;
 
