@@ -23,6 +23,14 @@ class Init
 
     public function call()
     {
+        $client = new Client(['base_uri' => $this->url()]);
+        $body = $this->createBody();
+
+        $responseData = $this->makeRequest($client, $body);
+    }
+
+    private function createBody()
+    {
         $formData = [
             'from' => 'laravel-translationio',
             'gem_version' => '2.0',
@@ -34,14 +42,17 @@ class Init
             $formData['yaml_po_data_' . $locale] = $poData[$locale];
         }
 
-        $client = new Client(['base_uri' => $this->url()]);
-
         $body = http_build_query($formData);
 
         foreach ($this->targetLocales() as $locale) {
             $body = $body . "&target_languages[]=$locale";
         }
 
+        return $body;
+    }
+
+    private function makeRequest($client, $body)
+    {
         $client->request('POST', '', [
             'headers' => [
                 'Content-Type' => 'application/x-www-form-urlencoded'
@@ -49,7 +60,6 @@ class Init
             'body' => $body
         ]);
     }
-
 
     private function targetLocales()
     {
