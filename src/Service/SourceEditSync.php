@@ -113,23 +113,33 @@ class SourceEditSync
         if ($this->filesystem->exists($metadataFilePath)) {
             $metadataContent = $this->filesystem->get($metadataFilePath);
 
-            if (strpos($metadataContent, '>>>>') !== false || strpos($metadataContent, '<<<<') !== false) {
-                exit("[Error] " . $metadataFilePath . " file is corrupted and seems to have unresolved versioning conflicts. Please resolve them and try again.");
-            }
-            else {
-                $json = json_decode($metadataContent, true);
-
-                if ($json) {
-                    return $json['timestamp'];
-                }
-                else {
-                    return 0;
-                }
-            }
+            return $this->timestampFromMetadataContent($metadataContent);
         }
         else {
             return 0;
         }
+    }
+
+    private function timestampFromMetadataContent($metadataContent)
+    {
+        $this->throwErrorIfConflictInMetadata($metadataContent);
+
+        $json = json_decode($metadataContent, true);
+
+        if (is_null($json)) {
+            return 0;
+        }
+        else {
+            return $json['timestamp'];
+        }
+    }
+
+    private function throwErrorIfConflictInMetadata($metadataContent)
+    {
+      if (strpos($metadataContent, '>>>>') !== false || strpos($metadataContent, '<<<<') !== false) {
+          $metadataFilePath = $this->metadataFilePath();
+          exit("[Error] " . $metadataFilePath . " file is corrupted and seems to have unresolved versioning conflicts. Please resolve them and try again.");
+      }
     }
 
     private function updateMetadataTimestamp()
