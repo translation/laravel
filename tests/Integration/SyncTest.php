@@ -47,6 +47,18 @@ class SyncTest extends TestCase
                     'last_name' => 'Фамилия'
                 ]
             ], $authRu);
+
+        $authEn = $this->filesystem->getRequire($this->localePath('en') . DIRECTORY_SEPARATOR . 'auth.php');
+
+        $this->assertEquals(
+            [
+                'password' => 'Password modified',        // was modified by source_edits
+                'email' => 'Email changed',               // was not modified by source_edits because old_text didn't match
+                'fields' => [
+                    'first_name' => 'First name changed',
+                    'last_name' => 'Surname changed',     // was modified by source_edits
+                ]
+            ], $authEn);
     }
 
 }

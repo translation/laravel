@@ -42,17 +42,29 @@ class Sync
 
     public function call()
     {
+      $client = new Client(['base_uri' => $this->url()]);
+      $body = $this->createBody();
+
+      $responseData = $this->makeRequest($client, $body);
+
+      foreach ($this->targetLocales() as $locale) {
+          $this->translationSaver->call(
+              $locale,
+              $this->poExtractor->call($responseData['yaml_po_data_' . $locale])
+          );
+      }
+    }
+
+    private function createBody()
+    {
         $locale = $this->sourceLocale();
 
         $formData = [
-            'timestamp' => Carbon::now()->timestamp,
+            'from' => 'laravel-translationio',
             'gem_version' => '2.0',
-            'source_language' => $locale
+            'source_language' => $locale,
+            'yaml_pot_data' => $this->poGenerator->call($locale)
         ];
-
-        $formData['yaml_pot_data'] = $this->poGenerator->call($locale);
-
-        $client = new Client(['base_uri' => $this->url()]);
 
         $body = http_build_query($formData);
 
@@ -60,6 +72,11 @@ class Sync
             $body = $body . "&target_languages[]=$locale";
         }
 
+        return $body;
+    }
+
+    private function makeRequest($client, $body)
+    {
         $response = $client->request('POST', '', [
             'headers' => [
                 'Content-Type' => 'application/x-www-form-urlencoded'
@@ -67,15 +84,12 @@ class Sync
             'body' => $body
         ]);
 
-        $responseData = json_decode($response->getBody()->getContents(), true);
+        return json_decode($response->getBody()->getContents(), true);
+    }
 
-        foreach ($this->targetLocales() as $locale) {
-            $this->translationSaver->call(
-                $locale,
-                $this->poExtractor->call($responseData['yaml_po_data_' . $locale])
-            );
-        }
-
+    private function sourceLocale()
+    {
+        return $this->config['source_locale'];
     }
 
     private function targetLocales()
@@ -86,10 +100,5 @@ class Sync
     private function url()
     {
         return 'https://translation.io/api/projects/' . $this->config['key'] . '/sync';
-    }
-
-    private function sourceLocale()
-    {
-        return $this->config['source_locale'];
     }
 }
