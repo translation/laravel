@@ -8,6 +8,7 @@ use GuzzleHttp\Client;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Filesystem\Filesystem;
 
+class SourceEditSyncException extends \Exception {};
 
 class SourceEditSync
 {
@@ -136,9 +137,9 @@ class SourceEditSync
 
     private function throwErrorIfConflictInMetadata($metadataContent)
     {
-      if (strpos($metadataContent, '>>>>') !== false || strpos($metadataContent, '<<<<') !== false) {
+      if (str_contains($metadataContent, ['>>>>', '<<<<'])) {
           $metadataFilePath = $this->metadataFilePath();
-          exit("[Error] " . $metadataFilePath . " file is corrupted and seems to have unresolved versioning conflicts. Please resolve them and try again.");
+          throw new SourceEditException($metadataFilePath . " file is corrupted and seems to have unresolved versioning conflicts. Please resolve them and try again.");
       }
     }
 

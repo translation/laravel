@@ -3,20 +3,8 @@
 
 namespace Armandsar\LaravelTranslationio;
 
-use Illuminate\Contracts\Foundation\Application;
-
 class PrettyVarExport
 {
-    /**
-     * @var Application
-     */
-    private $application;
-
-    public function __construct(Application $application)
-    {
-        $this->application = $application;
-    }
-
     // code from https://gist.github.com/lithrel/a224edb1ed2975992c73
     public function call($var, array $opts = [])
     {

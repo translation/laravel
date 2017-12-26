@@ -65,4 +65,4 @@
             Date: 'Thu, 28 Sep 2017 16:21:17 GMT'
             X-Powered-By: 'Phusion Passenger 5.0.24'
             Server: 'nginx/1.8.1 + Phusion Passenger 5.0.24'
-        body: '{"source_edits": []}'
+        body: '{"source_edits": [{"key": "auth.password","old_text": "Password changed","new_text": "Password modified"},{"key": "auth.fields.last_name","old_text": "Last name changed","new_text": "Surname changed"},{"key": "auth.email","old_text": "wrong source","new_text": "Email was modified"}]}'
