@@ -45,7 +45,7 @@ class SourceSaver
         if ($this->filesystem->exists($groupFile)) {
             $translations = $this->filesystem->getRequire($groupFile);
 
-            $this->replaceValueInTranslations($translations, $sourceEdit);
+            $translations = $this->applySourceEditInTranslations($translations, $sourceEdit);
 
             $fileContent = <<<'EOT'
 <?php
@@ -89,7 +89,7 @@ EOT;
         return $keyParts;
     }
 
-    private function replaceValueInTranslations(&$translations, $sourceEdit)
+    private function applySourceEditInTranslations($translations, $sourceEdit)
     {
         $keys = $this->keys($sourceEdit['key']);
         $oldText = $sourceEdit['old_text'];
@@ -105,5 +105,7 @@ EOT;
         if ($current[$keys[count($keys) - 1]] == $oldText) {
             $current[$keys[count($keys) - 1]] = $newText;
         }
+
+        return $translations;
     }
 }
