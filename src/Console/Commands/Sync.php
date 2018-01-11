@@ -4,8 +4,8 @@
 namespace Armandsar\LaravelTranslationio\Console\Commands;
 
 use Illuminate\Console\Command;
-use Armandsar\LaravelTranslationio\Service\Sync as SyncService;
 use Armandsar\LaravelTranslationio\Service\SourceEditSync as SourceEditSyncService;
+use Armandsar\LaravelTranslationio\Service\Sync as SyncService;
 
 class Sync extends Command
 {
@@ -23,20 +23,20 @@ class Sync extends Command
     private $sourceEditSyncService;
 
     public function __construct(
-      SyncService $syncService,
-      SourceEditSyncService $sourceEditSyncService
+        SourceEditSyncService $sourceEditSyncService,
+        SyncService $syncService
     )
     {
-        $this->syncService = $syncService;
         $this->sourceEditSyncService = $sourceEditSyncService;
+        $this->syncService = $syncService;
         parent::__construct();
     }
 
     public function handle()
     {
         $this->info('Sync started');
-        $this->syncService->call();
         $this->sourceEditSyncService->call();
+        $this->syncService->call();
         $this->info('Sync finished');
     }
 }
