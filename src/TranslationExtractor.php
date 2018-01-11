@@ -48,6 +48,8 @@ class TranslationExtractor
             false
         );
 
+        sort($files);
+
         $translations = collect($files)->map(function (SplFileInfo $file) use ($locale) {
             $group = $file->getBasename('.' . $file->getExtension());
             $relativePath = $file->getRelativePath();
