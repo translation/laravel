@@ -3,8 +3,10 @@
 namespace Armandsar\LaravelTranslationio\Service;
 
 use Armandsar\LaravelTranslationio\POExtractor;
+use Armandsar\LaravelTranslationio\TargetGettextPOGenerator;
 use Armandsar\LaravelTranslationio\SourcePOGenerator;
 use Armandsar\LaravelTranslationio\TranslationSaver;
+use Armandsar\LaravelTranslationio\GettextTranslationSaver;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Contracts\Foundation\Application;
@@ -18,41 +20,66 @@ class Sync
      * @var SourcePOGenerator
      */
     private $poGenerator;
+
+    /**
+     * @var TargetGettextPOGenerator
+     */
+    private $gettextPoGenerator;
+
     /**
      * @var POExtractor
      */
     private $poExtractor;
+
     /**
      * @var TranslationSaver
      */
     private $translationSaver;
 
+    /**
+     * @var GettextTranslationSaver
+     */
+    private $gettextTranslationSaver;
+
     public function __construct(
         Application $application,
         SourcePOGenerator $poGenerator,
+        TargetGettextPOGenerator $gettextPoGenerator,
         POExtractor $poExtractor,
-        TranslationSaver $translationSaver
+        TranslationSaver $translationSaver,
+        GettextTranslationSaver $gettextTranslationSaver
     )
     {
         $this->config = $application['config']['translationio'];
         $this->poGenerator = $poGenerator;
+        $this->gettextPoGenerator = $gettextPoGenerator;
         $this->poExtractor = $poExtractor;
         $this->translationSaver = $translationSaver;
+        $this->gettextTranslationSaver = $gettextTranslationSaver;
     }
 
     public function call()
     {
-      $client = new Client(['base_uri' => $this->url()]);
-      $body = $this->createBody();
+        $client = new Client(['base_uri' => $this->url()]);
+        $body = $this->createBody();
 
-      $responseData = $this->makeRequest($client, $body);
+        $responseData = $this->makeRequest($client, $body);
 
-      foreach ($this->targetLocales() as $locale) {
-          $this->translationSaver->call(
-              $locale,
-              $this->poExtractor->call($responseData['yaml_po_data_' . $locale])
-          );
-      }
+        # Save new key/values sent from backend
+        foreach ($this->targetLocales() as $locale) {
+            $this->translationSaver->call(
+                $locale,
+                $this->poExtractor->call($responseData['yaml_po_data_' . $locale])
+            );
+        }
+
+        # Save new po files created and sent from backend
+        foreach ($this->targetLocales() as $locale) {
+            $this->gettextTranslationSaver->call(
+                $locale,
+                $responseData['po_data_' . $locale]
+            );
+        }
     }
 
     private function createBody()
@@ -62,9 +89,15 @@ class Sync
         $formData = [
             'from' => 'laravel-translationio',
             'gem_version' => '2.0',
-            'source_language' => $locale,
-            'yaml_pot_data' => $this->poGenerator->call($locale)
+            'source_language' => $locale
         ];
+
+        // keys from PHP translation files
+        $formData['yaml_pot_data'] = $this->poGenerator->call($locale);
+
+        // sources from Gettext
+        $gettextPoData = $this->gettextPoGenerator->call($locale, []);
+        $formData['pot_data'] = $gettextPoData['pot_data'];
 
         $body = http_build_query($formData);
 

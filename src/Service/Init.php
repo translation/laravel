@@ -3,6 +3,8 @@
 namespace Armandsar\LaravelTranslationio\Service;
 
 use Armandsar\LaravelTranslationio\TargetPOGenerator;
+use Armandsar\LaravelTranslationio\TargetGettextPOGenerator;
+use Armandsar\LaravelTranslationio\GettextTranslationSaver;
 use GuzzleHttp\Client;
 use Illuminate\Contracts\Foundation\Application;
 
@@ -15,9 +17,26 @@ class Init
      */
     private $poGenerator;
 
-    public function __construct(Application $application, TargetPOGenerator $poGenerator)
+    /**
+     * @var TargetGettextPOGenerator
+     */
+    private $gettextPoGenerator;
+
+    /**
+     * @var GettextTranslationSaver
+     */
+    private $gettextTranslationSaver;
+
+    public function __construct(
+      Application $application,
+      TargetPOGenerator $poGenerator,
+      TargetGettextPOGenerator $gettextPoGenerator,
+      GettextTranslationSaver $gettextTranslationSaver
+    )
     {
         $this->poGenerator = $poGenerator;
+        $this->gettextPoGenerator = $gettextPoGenerator;
+        $this->gettextTranslationSaver = $gettextTranslationSaver;
         $this->config = $application['config']['translationio'];
     }
 
@@ -27,6 +46,14 @@ class Init
         $body = $this->createBody();
 
         $responseData = $this->makeRequest($client, $body);
+
+        # Save new po files created from backend
+        foreach ($this->targetLocales() as $locale) {
+            $this->gettextTranslationSaver->call(
+                $locale,
+                $responseData['po_data_' . $locale]
+            );
+        }
     }
 
     private function createBody()
@@ -37,9 +64,17 @@ class Init
             'source_language' => $this->sourceLocale(),
         ];
 
+        // key/values from PHP translation files
         $poData = $this->poGenerator->call($this->sourceLocale(), $this->targetLocales());
         foreach ($this->targetLocales() as $locale) {
             $formData['yaml_po_data_' . $locale] = $poData[$locale];
+        }
+
+        // source/translation from Gettext
+        $gettextPoData = $this->gettextPoGenerator->call($this->sourceLocale(), $this->targetLocales());
+        $formData['pot_data'] = $gettextPoData['pot_data'];
+        foreach ($this->targetLocales() as $locale) {
+            $formData['po_data_' . $locale] = $gettextPoData[$locale];
         }
 
         $body = http_build_query($formData);
@@ -53,12 +88,14 @@ class Init
 
     private function makeRequest($client, $body)
     {
-        $client->request('POST', '', [
+        $response = $client->request('POST', '', [
             'headers' => [
                 'Content-Type' => 'application/x-www-form-urlencoded'
             ],
             'body' => $body
         ]);
+
+        return json_decode($response->getBody()->getContents(), true);
     }
 
     private function targetLocales()
