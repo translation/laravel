@@ -21,9 +21,15 @@ class TestCase extends OrchestraTestCase
         $this->cleanLanguages();
     }
 
-    protected function addTranslationFixture($locale, $group, $translations)
+    protected function addTranslationFixture($locale, $directories, $group, $translations)
     {
-        $dir = $this->localePath($locale);
+        $localeDir = $this->localePath($locale);
+
+        $dir = join(DIRECTORY_SEPARATOR, array_merge([$localeDir], $directories));
+
+        if ( ! $this->filesystem->exists($dir)) {
+            $this->filesystem->makeDirectory($dir, 0777, true);
+        }
 
         $fileContent = <<<'EOT'
 <?php
@@ -32,16 +38,12 @@ EOT;
 
         $fileContent = str_replace('{{translations}}', var_export($translations, true), $fileContent);
 
-        if ( ! $this->filesystem->exists($dir)) {
-            $this->filesystem->makeDirectory($dir);
-        }
-
         $this->filesystem->put($dir . DIRECTORY_SEPARATOR . $group . '.php', $fileContent);
     }
 
     protected function localePath($locale)
     {
-        return app()['path.lang'] . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR;
+        return app()['path.lang'] . DIRECTORY_SEPARATOR . $locale;
     }
 
     protected function cassette($file)

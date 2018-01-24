@@ -44,22 +44,45 @@ class TranslationExtractor
         }
 
         $files = iterator_to_array(
-            Finder::create()->files()->ignoreDotFiles(true)->in($path)->depth(0),
+            Finder::create()->files()->ignoreDotFiles(true)->in($path),
             false
         );
 
-        return collect($files)->map(function (SplFileInfo $file) use ($locale) {
+        sort($files);
+
+        $translations = collect($files)->map(function (SplFileInfo $file) use ($locale) {
             $group = $file->getBasename('.' . $file->getExtension());
+            $relativePath = $file->getRelativePath();
+
             $data = array_dot([
-                $group => $this->translator->getLoader()->load($locale, $group)
+                $group => $this->translator->getLoader()->load($locale, $relativePath . DIRECTORY_SEPARATOR . $group)
             ]);
 
-            $data = collect($data);
+            $data = $this->addSubfolderToKeys($relativePath, $data);
 
-            return $data->filter();
+            return collect($data)->filter();
         })->collapse()->toArray();
+
+        return $translations;
     }
 
+    // if subfolder translation file, add $relativePath/ in front of each key
+    // (https://laravel.io/forum/02-23-2015-localization-load-files-from-subdirectories-at-resourceslanglocale)
+    private function addSubfolderToKeys($relativePath, $data)
+    {
+      if ($relativePath != '') {
+          $newData = [];
+
+          foreach ($data as $key => $value) {
+              $newData[$relativePath . '/' . $key] = $value;
+          }
+
+          return $newData;
+      }
+      else {
+          return $data;
+      }
+    }
 
     private function localePath($locale)
     {

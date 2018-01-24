@@ -55,8 +55,16 @@ class TranslationSaver
     {
         $dir = $this->localePath($locale);
 
+        // Adapt $group and $dir if key contains subfolders:
+        // https://laravel.io/forum/02-23-2015-localization-load-files-from-subdirectories-at-resourceslanglocale)
+        if (str_contains($group, '/')) {
+            $subFolders = explode('/', $group);
+            $group = array_pop($subFolders);
+            $dir = join(DIRECTORY_SEPARATOR, array_merge([$dir], $subFolders));
+        }
+
         if ( ! $this->filesystem->exists($dir)) {
-            $this->filesystem->makeDirectory($dir);
+            $this->filesystem->makeDirectory($dir, 0777, true);
         }
 
         $fileContent = <<<'EOT'

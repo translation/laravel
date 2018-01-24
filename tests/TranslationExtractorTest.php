@@ -8,7 +8,7 @@ class TranslationExtractorTest extends TestCase
 {
     public function testItReturnsSimpleArray()
     {
-        $this->addTranslationFixture('en', 'file', [
+        $this->addTranslationFixture('en', [], 'file', [
             'a' => 'A',
             'b' => 'B',
         ]);
@@ -28,7 +28,7 @@ class TranslationExtractorTest extends TestCase
 
     public function testItDoesNotReturnEmptyNestedTranslations()
     {
-        $this->addTranslationFixture('en', 'file', [
+        $this->addTranslationFixture('en', [], 'file', [
             'a' => [
                 'b' => []
             ],
@@ -40,7 +40,7 @@ class TranslationExtractorTest extends TestCase
 
     public function testItReturnsNestedTranslations()
     {
-        $this->addTranslationFixture('en', 'file', [
+        $this->addTranslationFixture('en', [], 'file', [
             'a' => 'A',
             'b' => [
                 'c' => [
@@ -59,12 +59,12 @@ class TranslationExtractorTest extends TestCase
 
     public function testItReturnsTranslationsFromMultipleFiles()
     {
-        $this->addTranslationFixture('en', 'file', [
+        $this->addTranslationFixture('en', [], 'file', [
             'a' => 'A',
             'b' => 'B',
         ]);
 
-        $this->addTranslationFixture('en', 'file2', [
+        $this->addTranslationFixture('en', [], 'file2', [
             'a' => 'A',
             'b' => 'B',
             'c' => 'C',

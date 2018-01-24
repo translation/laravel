@@ -139,7 +139,7 @@ class SourceEditSync
     {
       if (str_contains($metadataContent, ['>>>>', '<<<<'])) {
           $metadataFilePath = $this->metadataFilePath();
-          throw new SourceEditException($metadataFilePath . " file is corrupted and seems to have unresolved versioning conflicts. Please resolve them and try again.");
+          throw new SourceEditSyncException($metadataFilePath . " file is corrupted and seems to have unresolved versioning conflicts. Please resolve them and try again.");
       }
     }
 

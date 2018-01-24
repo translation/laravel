@@ -35,11 +35,22 @@ class SourceSaver
 
     public function call($sourceEdit, $sourceLocale)
     {
+        $key = $sourceEdit['key'];
+
         $dir = $this->localePath($sourceLocale);
+
+        // Adapt $group and $dir if the key contains subfolders:
+        // https://laravel.io/forum/02-23-2015-localization-load-files-from-subdirectories-at-resourceslanglocale)
+        if (str_contains($key, '/')) {
+            $subFolders = explode('/', $key);
+            array_pop($subFolders);
+            $dir = join(DIRECTORY_SEPARATOR, array_merge([$dir], $subFolders));
+        }
 
         $this->makeDirectoryIfNotExisting($dir);
 
         $group = $this->group($sourceEdit['key']);
+
         $groupFile = $dir . DIRECTORY_SEPARATOR . $group . '.php';
 
         if ($this->filesystem->exists($groupFile)) {
@@ -79,7 +90,15 @@ EOT;
 
     private function group($key)
     {
-        return explode('.', $key)[0];
+        $foldersAndGroup = explode('.', $key)[0];
+
+        if (str_contains($foldersAndGroup, '/')) {
+            $parts = explode('/', $foldersAndGroup);
+            return array_pop($parts);
+        }
+        else {
+            return $foldersAndGroup;
+        }
     }
 
     private function keys($key)
