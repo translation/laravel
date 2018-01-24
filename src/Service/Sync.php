@@ -3,7 +3,7 @@
 namespace Armandsar\LaravelTranslationio\Service;
 
 use Armandsar\LaravelTranslationio\POExtractor;
-use Armandsar\LaravelTranslationio\TargetGettextPOGenerator;
+use Armandsar\LaravelTranslationio\GettextPOGenerator;
 use Armandsar\LaravelTranslationio\SourcePOGenerator;
 use Armandsar\LaravelTranslationio\TranslationSaver;
 use Armandsar\LaravelTranslationio\GettextTranslationSaver;
@@ -22,7 +22,7 @@ class Sync
     private $poGenerator;
 
     /**
-     * @var TargetGettextPOGenerator
+     * @var GettextPOGenerator
      */
     private $gettextPoGenerator;
 
@@ -44,7 +44,7 @@ class Sync
     public function __construct(
         Application $application,
         SourcePOGenerator $poGenerator,
-        TargetGettextPOGenerator $gettextPoGenerator,
+        GettextPOGenerator $gettextPoGenerator,
         POExtractor $poExtractor,
         TranslationSaver $translationSaver,
         GettextTranslationSaver $gettextTranslationSaver

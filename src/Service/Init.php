@@ -3,7 +3,7 @@
 namespace Armandsar\LaravelTranslationio\Service;
 
 use Armandsar\LaravelTranslationio\TargetPOGenerator;
-use Armandsar\LaravelTranslationio\TargetGettextPOGenerator;
+use Armandsar\LaravelTranslationio\GettextPOGenerator;
 use Armandsar\LaravelTranslationio\GettextTranslationSaver;
 use GuzzleHttp\Client;
 use Illuminate\Contracts\Foundation\Application;
@@ -18,7 +18,7 @@ class Init
     private $poGenerator;
 
     /**
-     * @var TargetGettextPOGenerator
+     * @var GettextPOGenerator
      */
     private $gettextPoGenerator;
 
@@ -30,7 +30,7 @@ class Init
     public function __construct(
       Application $application,
       TargetPOGenerator $poGenerator,
-      TargetGettextPOGenerator $gettextPoGenerator,
+      GettextPOGenerator $gettextPoGenerator,
       GettextTranslationSaver $gettextTranslationSaver
     )
     {

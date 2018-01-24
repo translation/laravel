@@ -9,10 +9,9 @@ use Illuminate\Filesystem\Filesystem;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use Gettext\Extractors;
-use Gettext\Generators;
 use Gettext\Translations;
 
-class TargetGettextPOGenerator
+class GettextPOGenerator
 {
     /**
      * @var Application
@@ -45,7 +44,8 @@ class TargetGettextPOGenerator
         Extractors\PhpCode::$options['functions'] = [
             'gettext' => 'gettext',
             '_' => 'gettext',
-            '_i' => 'gettext',
+            'i_' => 'gettext',
+            'i__' => 'gettext',
 
             'ngettext' => 'ngettext',
             'n_' => 'ngettext',
@@ -68,7 +68,7 @@ class TargetGettextPOGenerator
         $directories = $this->config['gettext_parse_paths'];
 
         foreach ($directories as $dir) {
-            $dir = base_path($dir);
+            //$dir = base_path($dir);
 
             if (!is_dir($dir)) {
                 throw new Exception(__('Folder %s not exists. Gettext scan aborted.', $dir));
