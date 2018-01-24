@@ -31,14 +31,7 @@
             Date: 'Thu, 28 Sep 2017 16:21:17 GMT'
             X-Powered-By: 'Phusion Passenger 5.0.24'
             Server: 'nginx/1.8.1 + Phusion Passenger 5.0.24'
-        body: '{
-                 "source_edits": [
-                   {"key": "subfolder/auth.password","old_text": "Password changed","new_text": "Password modified"},
-                   {"key": "subfolder/auth.fields.last_name","old_text": "Last name changed","new_text": "Surname changed"},
-                   {"key": "subfolder/auth.email","old_text": "wrong source","new_text": "Email was modified"},
-                   {"key": "subfolder/subsubfolder/test.keytest","old_text": "This is a test","new_text": "This is a good test"}
-                 ]
-               }'
+        body: '{"source_edits": [{"key": "subfolder/auth.password","old_text": "Password changed","new_text": "Password modified"},{"key": "subfolder/auth.fields.last_name","old_text": "Last name changed","new_text": "Surname changed"},{"key": "subfolder/auth.email","old_text": "wrong source","new_text": "Email was modified"},{"key": "subfolder/subsubfolder/test.keytest","old_text": "This is a test","new_text": "This is a good test"}]}'
 
 -
     request:
@@ -72,21 +65,4 @@
             Date: 'Thu, 28 Sep 2017 16:21:17 GMT'
             X-Powered-By: 'Phusion Passenger 5.0.24'
             Server: 'nginx/1.8.1 + Phusion Passenger 5.0.24'
-        body: '{
-                 "project_name":"two",
-                 "project_url":"http://translation.io/armandsar/two",
-                 "yaml_po_data_lv":"
-                    msgid \"\"\nmsgstr \"\"\n\n
-                    msgctxt \"subfolder/auth.password\"\nmsgid \"Password changed\"\nmsgstr \"Parole\"\n\n
-                    msgctxt \"subfolder/auth.email\"\nmsgid \"Email changed\"\nmsgstr \"Epasts\"\n\n
-                    msgctxt \"subfolder/auth.fields.first_name\"\nmsgid \"First name changed\"\nmsgstr \"Vārds\"\n\n
-                    msgctxt \"subfolder/auth.fields.last_name\"\nmsgid \"Last name changed\"\nmsgstr \"Uzvārds\"\n\n
-                    msgctxt \"subfolder/subsubfolder/test.keytest\"\nmsgid \"This is a test\"\nmsgstr \"Šis ir tests\"\n",
-                 "yaml_po_data_ru":"
-                    msgid \"\"\nmsgstr \"\"\n\n
-                    msgctxt \"subfolder/auth.password\"\nmsgid \"Password changed\"\nmsgstr \"Пароль\"\n\n
-                    msgctxt \"subfolder/auth.email\"\nmsgid \"Email changed\"\nmsgstr \"Почта\"\n\n
-                    msgctxt \"subfolder/auth.fields.first_name\"\nmsgid \"First name changed\"\nmsgstr \"Имя\"\n\n
-                    msgctxt \"subfolder/auth.fields.last_name\"\nmsgid \"Last name changed\"\nmsgstr \"Фамилия\"\n\n
-                    msgctxt \"subfolder/subsubfolder/test.keytest\"\nmsgid \"This is a test\"\nmsgstr \"Это тест\"\n"
-               }'
+        body: '{"project_name":"two","project_url":"http://translation.io/armandsar/two","yaml_po_data_lv":"msgid \"\"\nmsgstr \"\"\n\nmsgctxt \"subfolder/auth.password\"\nmsgid \"Password changed\"\nmsgstr \"Parole\"\n\nmsgctxt \"subfolder/auth.email\"\nmsgid \"Email changed\"\nmsgstr \"Epasts\"\n\nmsgctxt \"subfolder/auth.fields.first_name\"\nmsgid \"First name changed\"\nmsgstr \"Vārds\"\n\nmsgctxt \"subfolder/auth.fields.last_name\"\nmsgid \"Last name changed\"\nmsgstr \"Uzvārds\"\n\nmsgctxt \"subfolder/subsubfolder/test.keytest\"\nmsgid \"This is a test\"\nmsgstr \"Šis ir tests\"\n","yaml_po_data_ru":"msgid \"\"\nmsgstr \"\"\n\nmsgctxt \"subfolder/auth.password\"\nmsgid \"Password changed\"\nmsgstr \"Пароль\"\n\nmsgctxt \"subfolder/auth.email\"\nmsgid \"Email changed\"\nmsgstr \"Почта\"\n\nmsgctxt \"subfolder/auth.fields.first_name\"\nmsgid \"First name changed\"\nmsgstr \"Имя\"\n\nmsgctxt \"subfolder/auth.fields.last_name\"\nmsgid \"Last name changed\"\nmsgstr \"Фамилия\"\n\nmsgctxt \"subfolder/subsubfolder/test.keytest\"\nmsgid \"This is a test\"\nmsgstr \"Это тест\"\n"}'

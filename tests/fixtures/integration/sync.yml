@@ -31,9 +31,7 @@
             Date: 'Thu, 28 Sep 2017 16:21:17 GMT'
             X-Powered-By: 'Phusion Passenger 5.0.24'
             Server: 'nginx/1.8.1 + Phusion Passenger 5.0.24'
-        body: '{
-                 "source_edits": []
-               }'
+        body: '{"source_edits": []}'
 
 -
     request:
@@ -67,19 +65,4 @@
             Date: 'Thu, 28 Sep 2017 16:21:17 GMT'
             X-Powered-By: 'Phusion Passenger 5.0.24'
             Server: 'nginx/1.8.1 + Phusion Passenger 5.0.24'
-        body: '{
-                 "project_name":"two",
-                 "project_url":"http://translation.io/armandsar/two",
-                 "yaml_po_data_lv":"
-                    msgid \"\"\nmsgstr \"\"\n\n
-                    msgctxt \"auth.password\"\nmsgid \"Password changed\"\nmsgstr \"Parole\"\n\n
-                    msgctxt \"auth.email\"\nmsgid \"Email changed\"\nmsgstr \"Epasts\"\n\n
-                    msgctxt \"auth.fields.first_name\"\nmsgid \"First name changed\"\nmsgstr \"Vārds\"\n\n
-                    msgctxt \"auth.fields.last_name\"\nmsgid \"Last name changed\"\nmsgstr \"Uzvārds\"\n",
-                 "yaml_po_data_ru":"
-                    msgid \"\"\nmsgstr \"\"\n\n
-                    msgctxt \"auth.password\"\nmsgid \"Password changed\"\nmsgstr \"Пароль\"\n\n
-                    msgctxt \"auth.email\"\nmsgid \"Email changed\"\nmsgstr \"Почта\"\n\n
-                    msgctxt \"auth.fields.first_name\"\nmsgid \"First name changed\"\nmsgstr \"Имя\"\n\n
-                    msgctxt \"auth.fields.last_name\"\nmsgid \"Last name changed\"\nmsgstr \"Фамилия\"\n"
-               }'
+        body: '{"project_name":"two","project_url":"http://translation.io/armandsar/two","yaml_po_data_lv":"msgid \"\"\nmsgstr \"\"\n\nmsgctxt \"auth.password\"\nmsgid \"Password changed\"\nmsgstr \"Parole\"\n\nmsgctxt \"auth.email\"\nmsgid \"Email changed\"\nmsgstr \"Epasts\"\n\nmsgctxt \"auth.fields.first_name\"\nmsgid \"First name changed\"\nmsgstr \"Vārds\"\n\nmsgctxt \"auth.fields.last_name\"\nmsgid \"Last name changed\"\nmsgstr \"Uzvārds\"\n","yaml_po_data_ru":"msgid \"\"\nmsgstr \"\"\n\nmsgctxt \"auth.password\"\nmsgid \"Password changed\"\nmsgstr \"Пароль\"\n\nmsgctxt \"auth.email\"\nmsgid \"Email changed\"\nmsgstr \"Почта\"\n\nmsgctxt \"auth.fields.first_name\"\nmsgid \"First name changed\"\nmsgstr \"Имя\"\n\nmsgctxt \"auth.fields.last_name\"\nmsgid \"Last name changed\"\nmsgstr \"Фамилия\"\n"}'
