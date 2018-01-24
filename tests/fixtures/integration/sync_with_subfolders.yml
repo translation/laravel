@@ -31,9 +31,7 @@
             Date: 'Thu, 28 Sep 2017 16:21:17 GMT'
             X-Powered-By: 'Phusion Passenger 5.0.24'
             Server: 'nginx/1.8.1 + Phusion Passenger 5.0.24'
-        body: '{
-                 "source_edits": []
-               }'
+        body: '{"source_edits": []}'
 
 -
     request:
