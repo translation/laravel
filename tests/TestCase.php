@@ -56,10 +56,15 @@ EOT;
         return [ServiceProvider::class];
     }
 
+    protected function outputOfPhpFile($file) {
+        ob_start();
+        require $file;
+        return ob_get_clean();
+    }
+
     private function cleanLanguages()
     {
         $this->filesystem->deleteDirectory(app()['path.lang']);
         $this->filesystem->makeDirectory(app()['path.lang']);
     }
-
 }

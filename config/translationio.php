@@ -9,10 +9,8 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Directories to scan for Gettext
+    | Directories to scan for Gettext strings
     |--------------------------------------------------------------------------
-    |
-    | Set directories to scan to find gettext strings (starting with __)
     |
     */
     'gettext_parse_paths' => ['app', 'resources'],
@@ -22,7 +20,7 @@ return [
     | Where the Gettext translations are stored
     |--------------------------------------------------------------------------
     |
-    | Full path is $storage/xx_XX/LC_MESSAGES/$domain.XX
+    | Full path is $gettext_locales_path/xx_XX/LC_MESSAGES/app.XX
     |
     */
     'gettext_locales_path' => 'resources/lang/gettext'

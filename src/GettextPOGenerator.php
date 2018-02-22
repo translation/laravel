@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Armandsar\LaravelTranslationio;
 
 
@@ -41,37 +40,14 @@ class GettextPOGenerator
     // https://github.com/eusonlito/laravel-Gettext/blob/170c284c9feb8cb6073149791bed02889d820b90/src/Eusonlito/LaravelGettext/Gettext.php#L73
     private function scan($targets)
     {
-        Extractors\PhpCode::$options['functions'] = [
-            'gettext' => 'gettext',
-            '_' => 'gettext',
-            'i_' => 'gettext',
-            'i__' => 'gettext',
-
-            'ngettext' => 'ngettext',
-            'n_' => 'ngettext',
-            'n__' => 'ngettext',
-
-            'pgettext' => 'pgettext',
-            'p_' => 'pgettext',
-            'p__' => 'pgettext',
-
-            'npgettext' => 'npgettext',
-            'np_' => 'npgettext',
-            'np__' => 'npgettext',
-
-            'noop' => 'noop',
-            'noop_' => 'noop',
-            'noop__' => 'noop',
-        ];
+        $this->gettextFunctionsToExtract();
 
         $translations = new Translations();
-        $directories = $this->config['gettext_parse_paths'];
+        $directories = $this->gettextParsePaths();
 
         foreach ($directories as $dir) {
-            //$dir = base_path($dir);
-
             if (!is_dir($dir)) {
-                throw new Exception(__('Folder %s not exists. Gettext scan aborted.', $dir));
+                throw new \Exception('Folder "' . $dir . '" doest not exists. Gettext scan aborted.');
             }
 
             foreach ($this->scanDir($dir) as $file) {
@@ -83,6 +59,7 @@ class GettextPOGenerator
             }
         }
 
+        # Create Temporary path (create po files to load them in memory)
         $tmpDir = $this->tmpPath();
         $tmpFile = $tmpDir . DIRECTORY_SEPARATOR . 'app.po';
 
@@ -90,15 +67,18 @@ class GettextPOGenerator
             $this->filesystem->makeDirectory($tmpDir, 0777, true);
         }
 
-        $potDir = $this->gettextPath();
+        # Create pot file (will be kept in app structure)
+        $potDir = $this->gettextLocalesPath();
         $potFile = $potDir . DIRECTORY_SEPARATOR . 'app.pot';
 
-        $translations->setHeader('Project-Id-Version', 'Name of application');
-        $translations->setHeader('Report-Msgid-Bugs-To', 'contact@translation.io');
-        $translations->setHeader("Plural-Forms", "nplurals=INTEGER; plural=EXPRESSION;");
+        if ( ! $this->filesystem->exists($potDir)) {
+            $this->filesystem->makeDirectory($potDir, 0777, true);
+        }
 
-        // Gérer ici le cas où des PO sont déjà existants
-        // + laisser pot data dans le répertoire
+        # po(t) headers
+        $this->setPoHeaders($translations);
+
+        # If we want to load existing PO files on first init, do it here.
 
         // if File.exist?(po_path)
         //   GetText::Tools::MsgMerge.run(po_path, @pot_path, '-o', po_path, '--no-fuzzy-matching', '--no-obsolete-entries')
@@ -123,6 +103,32 @@ class GettextPOGenerator
         $this->filesystem->delete($tmpFile);
 
         return $poLocales;
+    }
+
+    private function gettextFunctionsToExtract()
+    {
+        Extractors\PhpCode::$options['functions'] = [
+            'noop' => 'noop',
+            'noop_' => 'noop',
+            'noop__' => 'noop',
+
+            'gettext' => 'gettext',
+            '_' => 'gettext',
+            'i_' => 'gettext',
+            'i__' => 'gettext',
+
+            'ngettext' => 'ngettext',
+            'n_' => 'ngettext',
+            'n__' => 'ngettext',
+
+            'pgettext' => 'pgettext',
+            'p_' => 'pgettext',
+            'p__' => 'pgettext',
+
+            'npgettext' => 'npgettext',
+            'np_' => 'npgettext',
+            'np__' => 'npgettext',
+        ];
     }
 
     private function scanDir($dir)
@@ -152,8 +158,30 @@ class GettextPOGenerator
         return $this->application['path.storage'];
     }
 
-    private function gettextPath()
+    private function gettextLocalesPath()
     {
         return base_path($this->config['gettext_locales_path']);
+    }
+
+    private function gettextParsePaths()
+    {
+        if ($this->application->environment('testing')) {
+            return ['tests/fixtures/gettext'];
+        }
+        else {
+            return $this->config['gettext_parse_paths'];
+        }
+    }
+
+    private function setPoHeaders($translations) {
+      $translations->setHeader('Project-Id-Version', 'Name of application');
+      $translations->setHeader('Report-Msgid-Bugs-To', 'contact@translation.io');
+      $translations->setHeader("Plural-Forms", "nplurals=INTEGER; plural=EXPRESSION;");
+
+      // only for testing (for VCR)
+      if ($this->application->environment('testing')) {
+        $translations->setHeader('POT-Creation-Date', '2018-01-01T12:00:00+00:00');
+        $translations->setHeader("PO-Revision-Date",  "2018-01-02T12:00:00+00:00");
+      }
     }
 }
