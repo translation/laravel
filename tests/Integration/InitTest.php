@@ -35,7 +35,7 @@ class InitTest extends TestCase
         ]);
 
         $this->cassette('integration/init.yml');
-        $this->artisan('translations:init');
+        $this->artisan('translation:init');
 
         $expectedEnglishOutput = <<<EOT
 Hello noop

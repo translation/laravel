@@ -40,7 +40,7 @@ class Init
         $this->config = $application['config']['translationio'];
     }
 
-    public function call()
+    public function call($command)
     {
         $client = new Client(['base_uri' => $this->url()]);
         $body = $this->createBody();
@@ -54,6 +54,8 @@ class Init
                 $responseData['po_data_' . $locale]
             );
         }
+
+        $this->displayInfoProjectUrl($responseData, $command);
     }
 
     private function createBody()
@@ -98,6 +100,18 @@ class Init
         return json_decode($response->getBody()->getContents(), true);
     }
 
+    private function displayInfoProjectUrl($responseData, $command) {
+        $command->line("");
+        $command->line("----------");
+        $command->info("Use this URL to translate: {$responseData['project_url']}");
+        $command->line("----------");
+    }
+
+    private function sourceLocale()
+    {
+        return $this->config['source_locale'];
+    }
+
     private function targetLocales()
     {
         return $this->config['target_locales'];
@@ -107,10 +121,5 @@ class Init
     {
 //        return 'https://requestb.in/11l8hjp1';
         return 'https://translation.io/api/projects/' . $this->config['key'] . '/init';
-    }
-
-    private function sourceLocale()
-    {
-        return $this->config['source_locale'];
     }
 }

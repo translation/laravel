@@ -1,8 +1,11 @@
 <?php
+
 namespace Armandsar\LaravelTranslationio;
 
 use Armandsar\LaravelTranslationio\Console\Commands\Init;
 use Armandsar\LaravelTranslationio\Console\Commands\Sync;
+use Armandsar\LaravelTranslationio\Console\Commands\SyncAndPurge;
+use Armandsar\LaravelTranslationio\Console\Commands\SyncAndShowPurgeable;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 use Illuminate\Foundation\AliasLoader;
 
@@ -56,7 +59,10 @@ class ServiceProvider extends LaravelServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                Init::class, Sync::class
+                Init::class,
+                Sync::class,
+                SyncAndPurge::class,
+                SyncAndShowPurgeable::class
             ]);
         }
     }

@@ -2,7 +2,6 @@
 
 namespace Armandsar\LaravelTranslationio;
 
-
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Filesystem\Filesystem;
 use RecursiveDirectoryIterator;

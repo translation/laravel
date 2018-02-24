@@ -6,11 +6,11 @@ use Illuminate\Console\Command;
 use Armandsar\LaravelTranslationio\Service\SourceEditSync as SourceEditSyncService;
 use Armandsar\LaravelTranslationio\Service\Sync as SyncService;
 
-class Sync extends Command
+class SyncAndShowPurgeable extends Command
 {
-    protected $signature = 'translation:sync';
+    protected $signature = 'translation:sync_and_show_purgeable';
 
-    protected $description = 'Send new translatable keys/strings and get new translations from Translation.io';
+    protected $description = 'Sync translations and found out the unused keys/string from Translation.io, using the current branch as reference.';
 
     /**
      * @var SyncService
@@ -33,11 +33,11 @@ class Sync extends Command
 
     public function handle()
     {
-        $this->info('Sync started');
+        $this->info('SyncAndShowPurgeable started');
         $this->sourceEditSyncService->call();
         $this->syncService->call($this, [
             'purge' => false,
-            'show_purgeable' => false
+            'show_purgeable' => true
         ]);
     }
 }

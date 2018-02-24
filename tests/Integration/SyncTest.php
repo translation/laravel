@@ -24,7 +24,7 @@ class SyncTest extends TestCase
         ]);
 
         $this->cassette('integration/sync.yml');
-        $this->artisan('translations:sync');
+        $this->artisan('translation:sync');
 
         $authLv = $this->filesystem->getRequire($this->localePath('lv') . DIRECTORY_SEPARATOR . 'auth.php');
         $authRu = $this->filesystem->getRequire($this->localePath('ru') . DIRECTORY_SEPARATOR . 'auth.php');
@@ -130,7 +130,7 @@ EOT;
         ]);
 
         $this->cassette('integration/sync_with_source_edits.yml');
-        $this->artisan('translations:sync');
+        $this->artisan('translation:sync');
 
         $authLv = $this->filesystem->getRequire($this->localePath('lv') . DIRECTORY_SEPARATOR . 'auth.php');
         $authRu = $this->filesystem->getRequire($this->localePath('ru') . DIRECTORY_SEPARATOR . 'auth.php');
@@ -189,7 +189,7 @@ EOT;
         ]);
 
         $this->cassette('integration/sync_with_subfolders.yml');
-        $this->artisan('translations:sync');
+        $this->artisan('translation:sync');
 
         $authLv = $this->filesystem->getRequire($this->localePath('lv') . DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'auth.php');
         $authRu = $this->filesystem->getRequire($this->localePath('ru') . DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'auth.php');
@@ -248,7 +248,7 @@ EOT;
         ]);
 
         $this->cassette('integration/sync_with_subfolders_and_source_edits.yml');
-        $this->artisan('translations:sync');
+        $this->artisan('translation:sync');
 
         $authLv = $this->filesystem->getRequire($this->localePath('lv') . DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'auth.php');
         $authRu = $this->filesystem->getRequire($this->localePath('ru') . DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'auth.php');

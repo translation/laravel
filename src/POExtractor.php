@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Armandsar\LaravelTranslationio;
-
 
 use Gettext\Translations;
 

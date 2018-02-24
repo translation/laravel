@@ -14,7 +14,7 @@ Via Composer
 $ composer require armandsar/laravel-translationio --dev
 ```
 
-If you are on lower Laravel version that 5.5 
+If you are on lower Laravel version that 5.5
 (or choose not to use package auto discovery) add this to service providers:
 
 ```php
@@ -29,20 +29,20 @@ $ php artisan vendor:publish
 
 ## Configure
 
-Set api key, source and targets locales in published config file 
+Set api key, source and targets locales in published config file
 
 ## Usage
 
-Initialize your project with translation.io and push existing translations run 
+Initialize your project with translation.io and push existing translations run
 
 ``` bash
-$ php artisan translations:init
+$ php artisan translation:init
 ```
 
-Update translations 
+Update translations
 
 ``` bash
-$ php artisan translations:sync
+$ php artisan translation:sync
 ```
 
 ## Testing

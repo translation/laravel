@@ -1,4 +1,5 @@
 <?php
+
 namespace Armandsar\LaravelTranslationio;
 
 use Illuminate\Support\Facades\App;

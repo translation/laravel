@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Armandsar\LaravelTranslationio;
 
 use Illuminate\Contracts\Foundation\Application;
