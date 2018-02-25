@@ -3,7 +3,9 @@
 namespace Armandsar\LaravelTranslationio\Tests;
 
 use Armandsar\LaravelTranslationio\ServiceProvider;
+use Illuminate\Container\Container;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Facade;
 use VCR\VCR;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
@@ -19,6 +21,10 @@ class TestCase extends OrchestraTestCase
         parent::setUp();
         $this->filesystem = app(Filesystem::class);
         $this->cleanLanguages();
+
+        $app = new Container();
+        $app->singleton('app', 'Illuminate\Container\Container');
+        Facade::setFacadeApplication($app);
     }
 
     protected function addTranslationFixture($locale, $directories, $group, $translations)

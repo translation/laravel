@@ -10,9 +10,9 @@ class TranslationIO
     private $locale;
     private $config = array();
 
-    public function __construct(array $config)
+    public function __construct($config = null)
     {
-        $this->config = $config;
+        $this->config = $config ?? config('translationio');
     }
 
     public function setLocale($locale)

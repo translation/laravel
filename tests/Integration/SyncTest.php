@@ -2,8 +2,8 @@
 
 namespace Armandsar\LaravelTranslationio\Tests\Integration;
 
+use Armandsar\LaravelTranslationio\Facade;
 use Armandsar\LaravelTranslationio\Tests\TestCase;
-use Armandsar\LaravelTranslationio\TranslationIO;
 use Carbon\Carbon;
 
 class SyncTest extends TestCase
@@ -50,8 +50,7 @@ class SyncTest extends TestCase
             ], $authRu);
 
         // Check that it's been translated to lv (response includes all translated sentences)
-        $t = new TranslationIO(config('translationio'));
-        $t->setLocale('lv');
+        Facade::setLocale('lv');
 
         $expectedLvOutput = <<<EOT
 Sveiki noop
@@ -82,7 +81,7 @@ EOT;
         );
 
         // ru is not translated yet!
-        $t->setLocale('ru');
+        Facade::setLocale('ru');
 
         $expectedEnglishOutput = <<<EOT
 Hello noop

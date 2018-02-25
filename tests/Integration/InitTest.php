@@ -2,6 +2,7 @@
 
 namespace Armandsar\LaravelTranslationio\Tests\Integration;
 
+use Armandsar\LaravelTranslationio\Facade;
 use Armandsar\LaravelTranslationio\TranslationIO;
 use Armandsar\LaravelTranslationio\Tests\TestCase;
 
@@ -66,8 +67,7 @@ EOT;
         );
 
         // Check that they are not translated yet
-        $t = new TranslationIO(config('translationio'));
-        $t->setLocale('lv');
+        Facade::setLocale('lv');
 
         $this->assertEquals(
           $this->outputOfPhpFile('./tests/fixtures/gettext/example.php'),
