@@ -76,8 +76,8 @@ Sveiki plural 1 np__ complex interpolation plural
 EOT;
 
         $this->assertEquals(
-          $this->outputOfPhpFile('./tests/fixtures/gettext/example.php'),
-          $expectedLvOutput
+          $expectedLvOutput,
+          $this->outputOfPhpFile('./tests/fixtures/gettext/example.php')
         );
 
         // ru is not translated yet!
@@ -107,8 +107,8 @@ Hello plural np__ complex interpolation plural
 EOT;
 
         $this->assertEquals(
-          $this->outputOfPhpFile('./tests/fixtures/gettext/example.php'),
-          $expectedEnglishOutput
+          $expectedEnglishOutput,
+          $this->outputOfPhpFile('./tests/fixtures/gettext/example.php')
         );
     }
 
