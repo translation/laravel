@@ -1,5 +1,11 @@
 language: php
 
+addons:
+  apt:
+    packages:
+      - language-pack-lv
+      - language-pack-ru
+
 php:
   - 7.0
   - 7.1
