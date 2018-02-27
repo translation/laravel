@@ -50,7 +50,7 @@ class SyncTest extends TestCase
             ], $authRu);
 
         // Check that it's been translated to lv (response includes all translated sentences)
-        Facade::setLocale('lv');
+        Facade::setLocale('lv_LV');
 
         $expectedLvOutput = <<<EOT
 Sveiki noop
