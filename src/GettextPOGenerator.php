@@ -29,7 +29,7 @@ class GettextPOGenerator
         $this->config = $application['config']['translationio'];
     }
 
-    public function call($source, $targets)
+    public function call($targets)
     {
         $po_data = $this->scan($targets);
 
@@ -61,18 +61,12 @@ class GettextPOGenerator
         # Create Temporary path (create po files to load them in memory)
         $tmpDir = $this->tmpPath();
         $tmpFile = $tmpDir . DIRECTORY_SEPARATOR . 'app.po';
-
-        if ( ! $this->filesystem->exists($tmpDir)) {
-            $this->filesystem->makeDirectory($tmpDir, 0777, true);
-        }
+        $this->filesystem->makeDirectory($tmpDir, 0777, true, true);
 
         # Create pot file (will be kept in app structure)
         $potDir = $this->gettextLocalesPath();
         $potFile = $potDir . DIRECTORY_SEPARATOR . 'app.pot';
-
-        if ( ! $this->filesystem->exists($potDir)) {
-            $this->filesystem->makeDirectory($potDir, 0777, true);
-        }
+        $this->filesystem->makeDirectory($potDir, 0777, true, true);
 
         # po(t) headers
         $this->setPoHeaders($translations);

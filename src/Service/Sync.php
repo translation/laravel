@@ -106,7 +106,7 @@ class Sync
         $formData['yaml_pot_data'] = $this->poGenerator->call($locale);
 
         // sources from Gettext
-        $gettextPoData = $this->gettextPoGenerator->call($locale, []);
+        $gettextPoData = $this->gettextPoGenerator->call([]);
         $formData['pot_data'] = $gettextPoData['pot_data'];
 
         $body = http_build_query($formData);
@@ -133,7 +133,7 @@ class Sync
     private function displayUnusedSegments($responseData, $command, $showPurgeable, $purge) {
         $unusedSegments = collect($responseData['unused_segments']);
 
-        $yamlUnusedSegments    = $unusedSegments->filter(function ($unusedSegment) {
+        $yamlUnusedSegments = $unusedSegments->filter(function ($unusedSegment) {
             return $unusedSegment['kind'] == 'yaml';
         });
 

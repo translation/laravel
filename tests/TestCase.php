@@ -33,9 +33,7 @@ class TestCase extends OrchestraTestCase
 
         $dir = join(DIRECTORY_SEPARATOR, array_merge([$localeDir], $directories));
 
-        if ( ! $this->filesystem->exists($dir)) {
-            $this->filesystem->makeDirectory($dir, 0777, true);
-        }
+        $this->filesystem->makeDirectory($dir, 0777, true, true);
 
         $fileContent = <<<'EOT'
 <?php

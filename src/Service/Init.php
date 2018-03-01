@@ -73,7 +73,7 @@ class Init
         }
 
         // source/translation from Gettext
-        $gettextPoData = $this->gettextPoGenerator->call($this->sourceLocale(), $this->targetLocales());
+        $gettextPoData = $this->gettextPoGenerator->call($this->targetLocales());
         $formData['pot_data'] = $gettextPoData['pot_data'];
         foreach ($this->targetLocales() as $locale) {
             $formData['po_data_' . $locale] = $gettextPoData[$locale];

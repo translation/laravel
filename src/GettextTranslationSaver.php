@@ -34,13 +34,8 @@ class GettextTranslationSaver
         $poFile = $localeDir . DIRECTORY_SEPARATOR . 'app.po';
         $moFile = $lcMessagesDir . DIRECTORY_SEPARATOR . 'app.mo';
 
-        if ( ! $this->filesystem->exists($localeDir)) {
-            $this->filesystem->makeDirectory($localeDir, 0777, true);
-        }
-
-        if ( ! $this->filesystem->exists($lcMessagesDir)) {
-            $this->filesystem->makeDirectory($lcMessagesDir, 0777, true);
-        }
+        $this->filesystem->makeDirectory($localeDir, 0777, true, true);
+        $this->filesystem->makeDirectory($lcMessagesDir, 0777, true, true);
 
         // Save to po file
         $this->filesystem->put($poFile, $poContent);

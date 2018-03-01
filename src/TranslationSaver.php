@@ -62,9 +62,7 @@ class TranslationSaver
             $dir = join(DIRECTORY_SEPARATOR, array_merge([$dir], $subFolders));
         }
 
-        if ( ! $this->filesystem->exists($dir)) {
-            $this->filesystem->makeDirectory($dir, 0777, true);
-        }
+        $this->filesystem->makeDirectory($dir, 0777, true, true);
 
         $fileContent = <<<'EOT'
 <?php

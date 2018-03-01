@@ -46,7 +46,7 @@ class SourceSaver
             $dir = join(DIRECTORY_SEPARATOR, array_merge([$dir], $subFolders));
         }
 
-        $this->makeDirectoryIfNotExisting($dir);
+        $this->filesystem->makeDirectory($directory, 0777, true, true);
 
         $group = $this->group($sourceEdit['key']);
 
@@ -78,13 +78,6 @@ EOT;
     private function path()
     {
         return $this->application['path.lang'];
-    }
-
-    private function makeDirectoryIfNotExisting($directory)
-    {
-        if ( ! $this->filesystem->exists($directory)) {
-            $this->filesystem->makeDirectory($directory);
-        }
     }
 
     private function group($key)
