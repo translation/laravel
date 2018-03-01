@@ -26,7 +26,7 @@ class ServiceProvider extends LaravelServiceProvider
      */
     public function register()
     {
-        $this->improveGettextFunctions();
+
     }
 
     /**
@@ -65,13 +65,5 @@ class ServiceProvider extends LaravelServiceProvider
                 SyncAndShowPurgeable::class
             ]);
         }
-    }
-
-    /**
-     * Include the gettext functions
-     */
-    public static function improveGettextFunctions()
-    {
-        include_once __DIR__.'/translator_functions.php';
     }
 }

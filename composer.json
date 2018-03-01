@@ -38,7 +38,10 @@
   "autoload": {
     "psr-4": {
       "Armandsar\\LaravelTranslationio\\": "src/"
-    }
+    },
+    "files": [
+      "src/Helpers/translator_functions.php"
+    ]
   },
   "autoload-dev": {
     "psr-4": {
