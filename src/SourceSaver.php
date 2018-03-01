@@ -46,7 +46,7 @@ class SourceSaver
             $dir = join(DIRECTORY_SEPARATOR, array_merge([$dir], $subFolders));
         }
 
-        $this->filesystem->makeDirectory($directory, 0777, true, true);
+        $this->filesystem->makeDirectory($dir, 0777, true, true);
 
         $group = $this->group($sourceEdit['key']);
 
