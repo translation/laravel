@@ -20,7 +20,8 @@ return [
     | Where the Gettext translations are stored
     |--------------------------------------------------------------------------
     |
-    | Full path is $gettext_locales_path/xx_XX/LC_MESSAGES/app.XX
+    \ PO file is here: $gettext_locales_path/xx_XX/app.po
+    | MO file is here: $gettext_locales_path/xx_XX/LC_MESSAGES/app.mo
     |
     */
     'gettext_locales_path' => 'resources/lang/gettext'

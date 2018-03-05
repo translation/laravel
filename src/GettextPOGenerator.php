@@ -101,26 +101,11 @@ class GettextPOGenerator
     private function gettextFunctionsToExtract()
     {
         Extractors\PhpCode::$options['functions'] = [
-            'noop' => 'noop',
-            'noop_' => 'noop',
             'noop__' => 'noop',
-
-            'gettext' => 'gettext',
-            '_' => 'gettext',
-            'i_' => 'gettext',
-            'i__' => 'gettext',
-
-            'ngettext' => 'ngettext',
-            'n_' => 'ngettext',
-            'n__' => 'ngettext',
-
-            'pgettext' => 'pgettext',
-            'p_' => 'pgettext',
-            'p__' => 'pgettext',
-
-            'npgettext' => 'npgettext',
-            'np_' => 'npgettext',
-            'np__' => 'npgettext',
+            't__'    => 'gettext',
+            'n__'    => 'ngettext',
+            'p__'    => 'pgettext',
+            'np__'   => 'npgettext'
         ];
     }
 
@@ -167,7 +152,7 @@ class GettextPOGenerator
     }
 
     private function setPoHeaders($translations) {
-      $translations->setHeader('Project-Id-Version', 'Name of application');
+      $translations->setHeader('Project-Id-Version', config('app.name'));
       $translations->setHeader('Report-Msgid-Bugs-To', 'contact@translation.io');
       $translations->setHeader("Plural-Forms", "nplurals=INTEGER; plural=EXPRESSION;");
 

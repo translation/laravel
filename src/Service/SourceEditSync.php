@@ -60,8 +60,8 @@ class SourceEditSync
         $locale = $this->sourceLocale();
 
         $formData = [
-            'from' => 'laravel-translationio',
-            'gem_version' => '2.0',
+            'client' => 'laravel',
+            'version' => '1.0',
             'timestamp' => $this->metadataTimestamp(),
             'source_language' => $locale
         ];

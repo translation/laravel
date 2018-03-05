@@ -10,8 +10,14 @@ class InitTest extends TestCase
 {
     public function testItWorks()
     {
-        app()['config']->set('translationio.target_locales', ['lv', 'ru']);
-        app()['config']->set('translationio.key', 'a355468ad9ea4b1a9c793f352dd0c654');
+        app()['config']->set('translationio.target_locales', ['fr-BE', 'lv', 'ru']);
+        app()['config']->set('translationio.key', 'b641be726cfc42a3a0e2daa7f6fdda5c');
+
+        $this->addTranslationFixture('fr-BE', [], 'auth', [
+            'fields' => [
+                'first_name' => 'Prénom'
+            ]
+        ]);
 
         $this->addTranslationFixture('lv', [], 'auth', [
             'password' => 'Parole'
@@ -39,39 +45,47 @@ class InitTest extends TestCase
         $this->artisan('translation:init');
 
         $expectedEnglishOutput = <<<EOT
-Hello noop
-Hello noop_
-Hello noop__
-Hello gettext
-Hello _
-Hello i_ interpolation
-Hello i__ interpolation
-Hello i__ complex interpolation
-Hello plural ngettext
-Hello singular n_
+Hello noop__ 1
+Hello noop__ 2
+Hello noop__ 3
+Hello t__
+Hello t__ interpolation
+Hello t__ complex interpolation
+Hello plural n__
 Hello plural n__ interpolation
 Hello plural n__ complex interpolation plural
-Hello pgettext
-Hello p_
+Hello singular n__
+Hello singular n__ interpolation
+Hello singular n__ complex interpolation singular
+Hello plural n__
+Hello plural n__ interpolation
+Hello plural n__ complex interpolation plural
 Hello p__
+Hello p__ interpolation
 Hello p__ complex interpolation
-Hello npgettext singular
-Hello singular np_
 Hello plural np__
+Hello plural np__ interpolation
 Hello plural np__ complex interpolation plural
+Hello singular np__
+Hello singular np__ interpolation
+Hello singular np__ complex interpolation singular
+Hello plural np__
+Hello plural np__ interpolation
+Hello plural np__ complex interpolation plural
+
 EOT;
 
         $this->assertEquals(
-          $this->outputOfPhpFile('./tests/fixtures/gettext/example.php'),
-          $expectedEnglishOutput
+            $this->outputOfPhpFile('./tests/fixtures/gettext/example.php'),
+            $expectedEnglishOutput
         );
 
         // Check that they are not translated yet
         Facade::setLocale('lv');
 
         $this->assertEquals(
-          $this->outputOfPhpFile('./tests/fixtures/gettext/example.php'),
-          $expectedEnglishOutput
+            $this->outputOfPhpFile('./tests/fixtures/gettext/example.php'),
+            $expectedEnglishOutput
         );
     }
 }

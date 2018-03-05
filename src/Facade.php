@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Armandsar\LaravelTranslationio;
-
 
 class Facade extends \Illuminate\Support\Facades\Facade
 {
