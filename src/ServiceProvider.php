@@ -1,8 +1,13 @@
-<?php namespace Armandsar\LaravelTranslationio;
+<?php
+
+namespace Armandsar\LaravelTranslationio;
 
 use Armandsar\LaravelTranslationio\Console\Commands\Init;
 use Armandsar\LaravelTranslationio\Console\Commands\Sync;
+use Armandsar\LaravelTranslationio\Console\Commands\SyncAndPurge;
+use Armandsar\LaravelTranslationio\Console\Commands\SyncAndShowPurgeable;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
+use Illuminate\Foundation\AliasLoader;
 
 class ServiceProvider extends LaravelServiceProvider
 {
@@ -15,7 +20,17 @@ class ServiceProvider extends LaravelServiceProvider
     protected $defer = false;
 
     /**
-     * Bootstrap the application events.
+     * Register the service provider (for bindings).
+     *
+     * @return void
+     */
+    public function register()
+    {
+
+    }
+
+    /**
+     * Bootstrap the application events (executed after all services are booted).
      *
      * @return void
      */
@@ -23,15 +38,12 @@ class ServiceProvider extends LaravelServiceProvider
     {
         $this->config();
         $this->configureCommands();
-    }
 
-    /**
-     * Register the service provider.
-     *
-     * @return void
-     */
-    public function register()
-    {
+        $config = config('translationio');
+
+        $translationIO = new TranslationIO($config);
+
+        $translationIO->setLocale($config['source_locale']);
     }
 
     private function config()
@@ -47,7 +59,10 @@ class ServiceProvider extends LaravelServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                Init::class, Sync::class
+                Init::class,
+                Sync::class,
+                SyncAndPurge::class,
+                SyncAndShowPurgeable::class
             ]);
         }
     }

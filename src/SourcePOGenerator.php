@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Armandsar\LaravelTranslationio;
 
 use Gettext\Generators\Po;

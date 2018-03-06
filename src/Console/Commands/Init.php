@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Armandsar\LaravelTranslationio\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -8,9 +7,9 @@ use Armandsar\LaravelTranslationio\Service\Init as InitService;
 
 class Init extends Command
 {
-    protected $signature = 'translations:init';
+    protected $signature = 'translation:init';
 
-    protected $description = 'Initialize translation.io';
+    protected $description = 'Initialize Translation.io with existing keys.';
 
     /**
      * @var InitService
@@ -26,7 +25,6 @@ class Init extends Command
     public function handle()
     {
         $this->info('Init started');
-        $this->service->call();
-        $this->info('Init finished');
+        $this->service->call($this);
     }
 }
