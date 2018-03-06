@@ -119,7 +119,6 @@ class Init
 
     private function url()
     {
-//        return 'https://requestb.in/11l8hjp1';
         return 'https://translation.io/api/projects/' . $this->config['key'] . '/init';
     }
 }

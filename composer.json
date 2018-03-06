@@ -4,7 +4,8 @@
   "keywords": [
     "laravel",
     "translations",
-    "translation.io"
+    "translation.io",
+    "gettext"
   ],
   "homepage": "https://github.com/armandsar/laravel-translationio",
   "license": "MIT",

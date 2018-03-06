@@ -45,9 +45,26 @@ EOT;
         $this->filesystem->put($dir . DIRECTORY_SEPARATOR . $group . '.php', $fileContent);
     }
 
+    protected function addTranslationPOFixture($locale, $content) {
+      $poPath = $this->gettextPoPath($locale);
+      $poDir = $this->gettextPoDir($locale);
+
+      $this->filesystem->makeDirectory($poDir, 0777, true, true);
+      $this->filesystem->put($poPath, $content);
+    }
+
     protected function localePath($locale)
     {
         return app()['path.lang'] . DIRECTORY_SEPARATOR . $locale;
+    }
+
+    protected function gettextPoDir($locale) {
+        return app()['path.lang'] . DIRECTORY_SEPARATOR . 'gettext' . DIRECTORY_SEPARATOR . $locale;
+    }
+
+
+    protected function gettextPoPath($locale) {
+        return $this->gettextPoDir($locale) . DIRECTORY_SEPARATOR . 'app.po';
     }
 
     protected function cassette($file)

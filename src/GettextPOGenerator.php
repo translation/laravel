@@ -8,6 +8,7 @@ use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use Gettext\Extractors;
 use Gettext\Translations;
+use Gettext\Merge;
 
 class GettextPOGenerator
 {
@@ -71,15 +72,6 @@ class GettextPOGenerator
         # po(t) headers
         $this->setPoHeaders($translations);
 
-        # If we want to load existing PO files on first init, do it here.
-
-        // if File.exist?(po_path)
-        //   GetText::Tools::MsgMerge.run(po_path, @pot_path, '-o', po_path, '--no-fuzzy-matching', '--no-obsolete-entries')
-        // else
-        //   FileUtils.mkdir_p(File.dirname(po_path))
-        //   GetText::Tools::MsgInit.run('-i', @pot_path, '-o', po_path, '-l', target_locale, '--no-translator')
-        // end
-
         # create pot data
         $translations->toPoFile($potFile);
         $poLocales = [
@@ -88,7 +80,11 @@ class GettextPOGenerator
 
         # create po data for each language
         foreach ($targets as $target) {
+            $translations = clone $translations;
             $translations->setLanguage($target);
+
+            $translations = $this->mergeWithExistingTargetPoFile($translations, $target);
+
             $translations->toPoFile($tmpFile);
             $poLocales[$target] = $this->filesystem->get($tmpFile);
         }
@@ -161,5 +157,22 @@ class GettextPOGenerator
         $translations->setHeader('POT-Creation-Date', '2018-01-01T12:00:00+00:00');
         $translations->setHeader("PO-Revision-Date",  "2018-01-02T12:00:00+00:00");
       }
+    }
+
+    private function mergeWithExistingTargetPoFile($translations, $target) {
+        $gettextPath = $this->gettextLocalesPath();
+        $poPath      = $gettextPath . DIRECTORY_SEPARATOR . $target . DIRECTORY_SEPARATOR . 'app.po';
+
+        if ($this->filesystem->exists($poPath)) {
+            $existingTargetTranslations = Translations::fromPoFile($poPath);
+
+            $translations->mergeWith(
+                $existingTargetTranslations,
+                Merge::ADD || Merge::HEADERS_ADD || Merge::COMMENTS_OURS ||
+                Merge::EXTRACTED_COMMENTS_OURS || Merge::FLAGS_OURS || Merge::REFERENCES_OURS
+            );
+        }
+
+        return $translations;
     }
 }
