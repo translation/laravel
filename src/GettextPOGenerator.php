@@ -80,12 +80,12 @@ class GettextPOGenerator
 
         # create po data for each language
         foreach ($targets as $target) {
-            $translations = clone $translations;
-            $translations->setLanguage($target);
+            $targetTranslations = clone $translations;
+            $targetTranslations->setLanguage($target);
 
-            $translations = $this->mergeWithExistingTargetPoFile($translations, $target);
+            $targetTranslations = $this->mergeWithExistingTargetPoFile($targetTranslations, $target);
 
-            $translations->toPoFile($tmpFile);
+            $targetTranslations->toPoFile($tmpFile);
             $poLocales[$target] = $this->filesystem->get($tmpFile);
         }
 
