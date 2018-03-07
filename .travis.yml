@@ -11,9 +11,13 @@ php:
   - 7.1
 
 env:
-  matrix:
-    - COMPOSER_FLAGS="--prefer-lowest"
-    - COMPOSER_FLAGS=""
+  - COMPOSER_FLAGS="--prefer-lowest"
+  - COMPOSER_FLAGS=""
+
+matrix:
+  exclude:
+    - php: 7.1
+      env: COMPOSER_FLAGS="--prefer-lowest"
 
 sudo: false
 
@@ -26,7 +30,7 @@ before_script:
   - travis_wait composer update ${COMPOSER_FLAGS} --no-interaction --prefer-stable
 
 script:
-  - vendor/bin/phpunit --columns=200
+  - vendor/bin/phpunit
 
 notifications:
   email: false
