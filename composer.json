@@ -21,7 +21,7 @@
   ],
   "require": {
     "php": ">=7.0",
-    "gettext/gettext": "~4.0",
+    "gettext/gettext": "~4.1",
     "illuminate/config": "~5.1",
     "illuminate/console": "~5.1",
     "illuminate/filesystem": "~5.1",
