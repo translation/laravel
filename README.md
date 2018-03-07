@@ -48,7 +48,7 @@ If you are on lower Laravel version that 5.5
 ```
 
  2. Create a new translation project [from the UI](https://translation.io).
- 3. Copy the initializer into your Laravel app (`config/translationio.php`) (or use `php artisan vendor:publish`).
+ 3. Copy the initializer into your Laravel app (`config/translationio.php`) or execute `php artisan vendor:publish`.
 
 The initializer looks like this:
 
@@ -62,7 +62,9 @@ return [
 ];
 ```
 
- 4. Initialize your project and push existing translations to Translation.io with:
+ 4. Add the API key (TRANSLATIONIO_KEY) in your `.env` file.
+
+ 5. Initialize your project and push existing translations to Translation.io with:
 
 ```bash
 $ php artisan translation:init
