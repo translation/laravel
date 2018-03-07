@@ -23,10 +23,10 @@ cache:
 
 before_script:
   - travis_retry composer self-update
-  - travis_wait composer update ${COMPOSER_FLAGS} --no-interaction --prefer-dist
+  - travis_wait composer update ${COMPOSER_FLAGS} --no-interaction --prefer-stable
 
 script:
-  - vendor/bin/phpunit
+  - vendor/bin/phpunit --columns=200
 
 notifications:
   email: false
