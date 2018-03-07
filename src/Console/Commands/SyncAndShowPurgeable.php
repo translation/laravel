@@ -10,7 +10,7 @@ class SyncAndShowPurgeable extends Command
 {
     protected $signature = 'translation:sync_and_show_purgeable';
 
-    protected $description = 'Sync translations and found out the unused keys/string from Translation.io, using the current branch as reference.';
+    protected $description = 'Sync translations and find out the unused keys/string from Translation.io, using the current branch as reference.';
 
     /**
      * @var SyncService
