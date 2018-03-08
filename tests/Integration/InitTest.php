@@ -12,6 +12,7 @@ class InitTest extends TestCase
     {
         app()['config']->set('translationio.target_locales', ['fr-BE', 'lv', 'ru']);
         app()['config']->set('translationio.key', 'b641be726cfc42a3a0e2daa7f6fdda5c');
+        app()['config']->set('translationio.gettext_parse_paths', ['tests/fixtures/gettext']);
 
         $this->addTranslationFixture('fr-BE', [], 'auth', [
             'fields' => [
@@ -93,6 +94,7 @@ EOT;
     {
         app()['config']->set('translationio.target_locales', ['fr-BE']);
         app()['config']->set('translationio.key', '2953c30ba10244f185fd8edc8443efe1');
+        app()['config']->set('translationio.gettext_parse_paths', ['tests/fixtures/gettext']);
 
         $frBePOContent = <<<EOT
 msgid ""
@@ -308,6 +310,19 @@ EOT;
             $this->filesystem->get($poPath),
             $expectedFrBePoContent
         );
+    }
 
+    public function testItWorksWithNoGettext()
+    {
+        app()['config']->set('translationio.target_locales', ['fr-BE', 'lv', 'ru']);
+        app()['config']->set('translationio.key', '1bd053fe4148408cbd869101dcae9419');
+
+        // a directory without Gettext
+        app()['config']->set('translationio.gettext_parse_paths', ['config']);
+
+        $this->cassette('integration/init_with_no_gettext.yml');
+        $this->artisan('translation:init');
+
+        $this->assertDirectoryNotExists($this->gettextDir());
     }
 }

@@ -64,18 +64,13 @@ class GettextPOGenerator
         $tmpFile = $tmpDir . DIRECTORY_SEPARATOR . 'app.po';
         $this->filesystem->makeDirectory($tmpDir, 0777, true, true);
 
-        # Create pot file (will be kept in app structure)
-        $potDir = $this->gettextLocalesPath();
-        $potFile = $potDir . DIRECTORY_SEPARATOR . 'app.pot';
-        $this->filesystem->makeDirectory($potDir, 0777, true, true);
-
         # po(t) headers
         $this->setPoHeaders($translations);
 
         # create pot data
-        $translations->toPoFile($potFile);
+        $translations->toPoFile($tmpFile);
         $poLocales = [
-            'pot_data' => $this->filesystem->get($potFile)
+            'pot_data' => $this->filesystem->get($tmpFile)
         ];
 
         # create po data for each language
@@ -139,12 +134,7 @@ class GettextPOGenerator
 
     private function gettextParsePaths()
     {
-        if ($this->application->environment('testing')) {
-            return ['tests/fixtures/gettext'];
-        }
-        else {
-            return $this->config['gettext_parse_paths'];
-        }
+        return $this->config['gettext_parse_paths'];
     }
 
     private function setPoHeaders($translations) {
