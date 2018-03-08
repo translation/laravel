@@ -34,15 +34,17 @@ class GettextTranslationSaver
         $poFile = $localeDir . DIRECTORY_SEPARATOR . 'app.po';
         $moFile = $lcMessagesDir . DIRECTORY_SEPARATOR . 'app.mo';
 
-        $this->filesystem->makeDirectory($localeDir, 0777, true, true);
-        $this->filesystem->makeDirectory($lcMessagesDir, 0777, true, true);
+        if ($this->hasAnySegments($poContent)) {
+            $this->filesystem->makeDirectory($localeDir, 0777, true, true);
+            $this->filesystem->makeDirectory($lcMessagesDir, 0777, true, true);
 
-        // Save to po file
-        $this->filesystem->put($poFile, $poContent);
+            // Save to po file
+            $this->filesystem->put($poFile, $poContent);
 
-        // Save to mo files
-        $translations = Translations::fromPoFile($poFile);
-        $translations->toMoFile($moFile);
+            // Save to mo files
+            $translations = Translations::fromPoFile($poFile);
+            $translations->toMoFile($moFile);
+        }
     }
 
     private function localePath($locale)
@@ -53,5 +55,10 @@ class GettextTranslationSaver
     private function gettextPath()
     {
         return base_path($this->config['gettext_locales_path']);
+    }
+
+    // poContent has only the headers
+    private function hasAnySegments($poContent) {
+        return substr_count($poContent, 'msgid "') > 1;
     }
 }

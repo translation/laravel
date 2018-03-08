@@ -58,10 +58,13 @@ EOT;
         return app()['path.lang'] . DIRECTORY_SEPARATOR . $locale;
     }
 
-    protected function gettextPoDir($locale) {
-        return app()['path.lang'] . DIRECTORY_SEPARATOR . 'gettext' . DIRECTORY_SEPARATOR . $locale;
+    protected function gettextDir() {
+        return app()['path.lang'] . DIRECTORY_SEPARATOR . 'gettext';
     }
 
+    protected function gettextPoDir($locale) {
+        return $this->gettextDir() . DIRECTORY_SEPARATOR . $locale;
+    }
 
     protected function gettextPoPath($locale) {
         return $this->gettextPoDir($locale) . DIRECTORY_SEPARATOR . 'app.po';

@@ -13,6 +13,7 @@ class SyncTest extends TestCase
         Carbon::setTestNow(Carbon::createFromTimestamp('1520275983'));
         app()['config']->set('translationio.target_locales', ['fr-BE', 'lv', 'ru']);
         app()['config']->set('translationio.key', 'b641be726cfc42a3a0e2daa7f6fdda5c');
+        app()['config']->set('translationio.gettext_parse_paths', ['tests/fixtures/gettext']);
 
         $this->addTranslationFixture('en', [], 'auth', [
             'password' => 'Password changed',
@@ -200,6 +201,7 @@ EOT;
         Carbon::setTestNow(Carbon::createFromTimestamp('1520275983'));
         app()['config']->set('translationio.target_locales', ['fr-BE', 'lv', 'ru']);
         app()['config']->set('translationio.key', 'b641be726cfc42a3a0e2daa7f6fdda5c');
+        app()['config']->set('translationio.gettext_parse_paths', ['tests/fixtures/gettext']);
 
         $this->addTranslationFixture('en', [], 'auth', [
             'password' => 'Password changed',
@@ -265,6 +267,7 @@ EOT;
         Carbon::setTestNow(Carbon::createFromTimestamp('1520275983'));
         app()['config']->set('translationio.target_locales', ['fr-BE', 'lv', 'ru']);
         app()['config']->set('translationio.key', 'b641be726cfc42a3a0e2daa7f6fdda5c');
+        app()['config']->set('translationio.gettext_parse_paths', ['tests/fixtures/gettext']);
 
         $this->addTranslationFixture('en', ['subfolder'], 'auth', [
             'password' => 'Password changed',
@@ -341,6 +344,7 @@ EOT;
         Carbon::setTestNow(Carbon::createFromTimestamp('1520275983'));
         app()['config']->set('translationio.target_locales', ['fr-BE', 'lv', 'ru']);
         app()['config']->set('translationio.key', 'b641be726cfc42a3a0e2daa7f6fdda5c');
+        app()['config']->set('translationio.gettext_parse_paths', ['tests/fixtures/gettext']);
 
         $this->addTranslationFixture('en', ['subfolder'], 'auth', [
             'password' => 'Password changed',
