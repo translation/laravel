@@ -13,7 +13,7 @@ use Armandsar\LaravelTranslationio\TranslationIO;
  *
  * @return string
  */
-function t__($original)
+function t($original)
 {
     $text = TranslationIO::$current->gettext($original);
 
@@ -33,7 +33,7 @@ function t__($original)
  *
  * @return string
  */
-function noop__($original)
+function noop($original)
 {
     return $original;
 }
@@ -47,7 +47,7 @@ function noop__($original)
  *
  * @return string
  */
-function n__($original, $plural, $value)
+function n($original, $plural, $value)
 {
     $text = TranslationIO::$current->ngettext($original, $plural, $value);
 
@@ -68,7 +68,7 @@ function n__($original, $plural, $value)
  *
  * @return string
  */
-function p__($context, $original)
+function p($context, $original)
 {
     $text = TranslationIO::$current->pgettext($context, $original);
 
@@ -91,7 +91,7 @@ function p__($context, $original)
  *
  * @return string
  */
-function np__($context, $original, $plural, $value)
+function np($context, $original, $plural, $value)
 {
     $text = TranslationIO::$current->npgettext($context, $original, $plural, $value);
 

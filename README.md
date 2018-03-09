@@ -113,22 +113,22 @@ that you use GetText to translate your applications since it allows a simpler an
 
 ```php
 // Regular
-t__("Text to be translated");
+t("Text to be translated");
 
 // Pluralization
-n__("Singular text", "Plural text", $number);
+n("Singular text", "Plural text", $number);
 
 // Regular with context
-p__("context", "Text to be translated");
+p("context", "Text to be translated");
 
 // Pluralization with context
-np__("context", "Singular text", "Plural text", $number);
+np("context", "Singular text", "Plural text", $number);
 
-// Simple Interpolations (works with n__, p__ and np__ too)
-t__('Hello %s', $user->name);
+// Simple Interpolations (works with n, p and np too)
+t('Hello %s', $user->name);
 
-// Complex Interpolations (works with n__, p__ and np__ too)
-t__('%city1% is bigger than %city2%', [ '%city1%' => 'NYC', '%city2%' => 'BXL' ]);
+// Complex Interpolations (works with n, p and np too)
+t('%city1% is bigger than %city2%', [ '%city1%' => 'NYC', '%city2%' => 'BXL' ]);
 ```
 
 You don't need another file with source text or translations, everything will

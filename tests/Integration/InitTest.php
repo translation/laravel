@@ -46,33 +46,33 @@ class InitTest extends TestCase
         $this->artisan('translation:init');
 
         $expectedEnglishOutput = <<<EOT
-Hello noop__ 1
-Hello noop__ 2
-Hello noop__ 3
-Hello t__
-Hello t__ interpolation
-Hello t__ complex interpolation
-Hello plural n__
-Hello plural n__ interpolation
-Hello plural n__ complex interpolation plural
-Hello singular n__
-Hello singular n__ interpolation
-Hello singular n__ complex interpolation singular
-Hello plural n__
-Hello plural n__ interpolation
-Hello plural n__ complex interpolation plural
-Hello p__
-Hello p__ interpolation
-Hello p__ complex interpolation
-Hello plural np__
-Hello plural np__ interpolation
-Hello plural np__ complex interpolation plural
-Hello singular np__
-Hello singular np__ interpolation
-Hello singular np__ complex interpolation singular
-Hello plural np__
-Hello plural np__ interpolation
-Hello plural np__ complex interpolation plural
+Hello noop 1
+Hello noop 2
+Hello noop 3
+Hello t
+Hello t interpolation
+Hello t complex interpolation
+Hello plural n
+Hello plural n interpolation
+Hello plural n complex interpolation plural
+Hello singular n
+Hello singular n interpolation
+Hello singular n complex interpolation singular
+Hello plural n
+Hello plural n interpolation
+Hello plural n complex interpolation plural
+Hello p
+Hello p interpolation
+Hello p complex interpolation
+Hello plural np
+Hello plural np interpolation
+Hello plural np complex interpolation plural
+Hello singular np
+Hello singular np interpolation
+Hello singular np complex interpolation singular
+Hello plural np
+Hello plural np interpolation
+Hello plural np complex interpolation plural
 
 EOT;
 
@@ -113,14 +113,14 @@ msgstr ""
 "\n"
 
 #: resources/views/welcome.blade.php:94
-msgid "Hello t__"
-msgstr "Bonjour t__"
+msgid "Hello t"
+msgstr "Bonjour t"
 
 #: resources/views/welcome.blade.php:95 resources/views/welcome.blade.php:96
-msgid "Hello singular n__"
-msgid_plural "Hello plural n__"
-msgstr[0] "Bonjour singulier n__"
-msgstr[1] "Bonjour pluriel n__"
+msgid "Hello singular n"
+msgid_plural "Hello plural n"
+msgstr[0] "Bonjour singulier n"
+msgstr[1] "Bonjour pluriel n"
 EOT;
 
         $this->addTranslationPOFixture('fr-BE', $frBePOContent);
@@ -131,64 +131,64 @@ EOT;
         # Some already translated segments need to stay translated
         # Careful: in French, 0 and 1 are singulars, and in English, 0 is plural
         $expectedFrBeOutput = <<<EOT
-Hello noop__ 1
-Hello noop__ 2
-Hello noop__ 3
-Bonjour t__
-Hello t__ interpolation
-Hello t__ complex interpolation
-Bonjour singulier n__
-Hello plural n__ interpolation
-Hello plural n__ complex interpolation plural
-Bonjour singulier n__
-Hello singular n__ interpolation
-Hello singular n__ complex interpolation singular
-Bonjour pluriel n__
-Hello plural n__ interpolation
-Hello plural n__ complex interpolation plural
-Hello p__
-Hello p__ interpolation
-Hello p__ complex interpolation
-Hello plural np__
-Hello plural np__ interpolation
-Hello plural np__ complex interpolation plural
-Hello singular np__
-Hello singular np__ interpolation
-Hello singular np__ complex interpolation singular
-Hello plural np__
-Hello plural np__ interpolation
-Hello plural np__ complex interpolation plural
+Hello noop 1
+Hello noop 2
+Hello noop 3
+Bonjour t
+Hello t interpolation
+Hello t complex interpolation
+Bonjour singulier n
+Hello plural n interpolation
+Hello plural n complex interpolation plural
+Bonjour singulier n
+Hello singular n interpolation
+Hello singular n complex interpolation singular
+Bonjour pluriel n
+Hello plural n interpolation
+Hello plural n complex interpolation plural
+Hello p
+Hello p interpolation
+Hello p complex interpolation
+Hello plural np
+Hello plural np interpolation
+Hello plural np complex interpolation plural
+Hello singular np
+Hello singular np interpolation
+Hello singular np complex interpolation singular
+Hello plural np
+Hello plural np interpolation
+Hello plural np complex interpolation plural
 
 EOT;
 
         $expectedEnOutput = <<<EOT
-Hello noop__ 1
-Hello noop__ 2
-Hello noop__ 3
-Hello t__
-Hello t__ interpolation
-Hello t__ complex interpolation
-Hello plural n__
-Hello plural n__ interpolation
-Hello plural n__ complex interpolation plural
-Hello singular n__
-Hello singular n__ interpolation
-Hello singular n__ complex interpolation singular
-Hello plural n__
-Hello plural n__ interpolation
-Hello plural n__ complex interpolation plural
-Hello p__
-Hello p__ interpolation
-Hello p__ complex interpolation
-Hello plural np__
-Hello plural np__ interpolation
-Hello plural np__ complex interpolation plural
-Hello singular np__
-Hello singular np__ interpolation
-Hello singular np__ complex interpolation singular
-Hello plural np__
-Hello plural np__ interpolation
-Hello plural np__ complex interpolation plural
+Hello noop 1
+Hello noop 2
+Hello noop 3
+Hello t
+Hello t interpolation
+Hello t complex interpolation
+Hello plural n
+Hello plural n interpolation
+Hello plural n complex interpolation plural
+Hello singular n
+Hello singular n interpolation
+Hello singular n complex interpolation singular
+Hello plural n
+Hello plural n interpolation
+Hello plural n complex interpolation plural
+Hello p
+Hello p interpolation
+Hello p complex interpolation
+Hello plural np
+Hello plural np interpolation
+Hello plural np complex interpolation plural
+Hello singular np
+Hello singular np interpolation
+Hello singular np complex interpolation singular
+Hello plural np
+Hello plural np interpolation
+Hello plural np complex interpolation plural
 
 EOT;
 
@@ -226,81 +226,81 @@ msgstr ""
 "\\n"
 
 #: resources/views/welcome.blade.php:94 tests/fixtures/gettext/example.php:16
-msgid "Hello t__"
-msgstr "Bonjour t__"
+msgid "Hello t"
+msgstr "Bonjour t"
 
 #: resources/views/welcome.blade.php:95 resources/views/welcome.blade.php:96
 #: tests/fixtures/gettext/example.php:32
-msgid "Hello singular n__"
-msgid_plural "Hello plural n__"
-msgstr[0] "Bonjour singulier n__"
-msgstr[1] "Bonjour pluriel n__"
+msgid "Hello singular n"
+msgid_plural "Hello plural n"
+msgstr[0] "Bonjour singulier n"
+msgstr[1] "Bonjour pluriel n"
 
 #: tests/fixtures/gettext/example.php:5
-msgid "Hello noop__ 1"
+msgid "Hello noop 1"
 msgstr ""
 
 #: tests/fixtures/gettext/example.php:6
-msgid "Hello noop__ 2"
+msgid "Hello noop 2"
 msgstr ""
 
 #: tests/fixtures/gettext/example.php:7
-msgid "Hello noop__ 3"
+msgid "Hello noop 3"
 msgstr ""
 
 #: tests/fixtures/gettext/example.php:19
-msgid "Hello t__ %s"
+msgid "Hello t %s"
 msgstr ""
 
 #: tests/fixtures/gettext/example.php:22
-msgid "Hello t__ %name%"
+msgid "Hello t %name%"
 msgstr ""
 
 #: tests/fixtures/gettext/example.php:35
-msgid "Hello singular n__ %s"
-msgid_plural "Hello plural n__ %s"
+msgid "Hello singular n %s"
+msgid_plural "Hello plural n %s"
 msgstr[0] ""
 msgstr[1] ""
 
 #: tests/fixtures/gettext/example.php:38
-msgid "Hello singular n__ %name1%"
-msgid_plural "Hello plural n__ %name2%"
+msgid "Hello singular n %name1%"
+msgid_plural "Hello plural n %name2%"
 msgstr[0] ""
 msgstr[1] ""
 
 #: tests/fixtures/gettext/example.php:47
-msgctxt "p__ context"
-msgid "Hello p__"
+msgctxt "p context"
+msgid "Hello p"
 msgstr ""
 
 #: tests/fixtures/gettext/example.php:50
-msgctxt "p__ context"
-msgid "Hello p__ %s"
+msgctxt "p context"
+msgid "Hello p %s"
 msgstr ""
 
 #: tests/fixtures/gettext/example.php:53
-msgctxt "p__ context"
-msgid "Hello p__ %name%"
+msgctxt "p context"
+msgid "Hello p %name%"
 msgstr ""
 
 #: tests/fixtures/gettext/example.php:61
-msgctxt "np__ context"
-msgid "Hello singular np__"
-msgid_plural "Hello plural np__"
+msgctxt "np context"
+msgid "Hello singular np"
+msgid_plural "Hello plural np"
 msgstr[0] ""
 msgstr[1] ""
 
 #: tests/fixtures/gettext/example.php:64
-msgctxt "np__ context"
-msgid "Hello singular np__ %s"
-msgid_plural "Hello plural np__ %s"
+msgctxt "np context"
+msgid "Hello singular np %s"
+msgid_plural "Hello plural np %s"
 msgstr[0] ""
 msgstr[1] ""
 
 #: tests/fixtures/gettext/example.php:67
-msgctxt "np__ context"
-msgid "Hello singular np__ %name1%"
-msgid_plural "Hello plural np__ %name2%"
+msgctxt "np context"
+msgid "Hello singular np %name1%"
+msgid_plural "Hello plural np %name2%"
 msgstr[0] ""
 msgstr[1] ""
 

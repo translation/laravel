@@ -72,95 +72,95 @@ class SyncTest extends TestCase
         $this->assertFileNotExists($this->localePath('ru') . DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'forms.php');
 
         $expectedEnOutput = <<<EOT
-Hello noop__ 1
-Hello noop__ 2
-Hello noop__ 3
-Hello t__
-Hello t__ interpolation
-Hello t__ complex interpolation
-Hello plural n__
-Hello plural n__ interpolation
-Hello plural n__ complex interpolation plural
-Hello singular n__
-Hello singular n__ interpolation
-Hello singular n__ complex interpolation singular
-Hello plural n__
-Hello plural n__ interpolation
-Hello plural n__ complex interpolation plural
-Hello p__
-Hello p__ interpolation
-Hello p__ complex interpolation
-Hello plural np__
-Hello plural np__ interpolation
-Hello plural np__ complex interpolation plural
-Hello singular np__
-Hello singular np__ interpolation
-Hello singular np__ complex interpolation singular
-Hello plural np__
-Hello plural np__ interpolation
-Hello plural np__ complex interpolation plural
+Hello noop 1
+Hello noop 2
+Hello noop 3
+Hello t
+Hello t interpolation
+Hello t complex interpolation
+Hello plural n
+Hello plural n interpolation
+Hello plural n complex interpolation plural
+Hello singular n
+Hello singular n interpolation
+Hello singular n complex interpolation singular
+Hello plural n
+Hello plural n interpolation
+Hello plural n complex interpolation plural
+Hello p
+Hello p interpolation
+Hello p complex interpolation
+Hello plural np
+Hello plural np interpolation
+Hello plural np complex interpolation plural
+Hello singular np
+Hello singular np interpolation
+Hello singular np complex interpolation singular
+Hello plural np
+Hello plural np interpolation
+Hello plural np complex interpolation plural
 
 EOT;
 
         $expectedLvOutput = <<<EOT
-Sveiki noop__ 1
-Sveiki noop__ 2
-Sveiki noop__ 3
-Sveiki t__
-Sveiki t__ interpolation
-Sveiki t__ complex interpolation
-Sveiki plural 2 n__
-Sveiki plural 2 n__ interpolation
-Sveiki plural 2 n__ complex interpolation plural
-Sveiki singular n__
-Sveiki singular n__ interpolation
-Sveiki singular n__ complex interpolation singular
-Sveiki plural 1 n__
-Sveiki plural 1 n__ interpolation
-Sveiki plural 1 n__ complex interpolation plural
-Sveiki p__
-Sveiki p__ interpolation
-Sveiki p__ complex interpolation
-Sveiki plural 2 np__
-Sveiki plural 2 np__ interpolation
-Sveiki plural 2 np__ complex interpolation plural
-Sveiki singular np__
-Sveiki singular np__ interpolation
-Sveiki singular np__ complex interpolation singular
-Sveiki plural 1 np__
-Sveiki plural 1 np__ interpolation
-Sveiki plural 1 np__ complex interpolation plural
+Sveiki noop 1
+Sveiki noop 2
+Sveiki noop 3
+Sveiki t
+Sveiki t interpolation
+Sveiki t complex interpolation
+Sveiki plural 2 n
+Sveiki plural 2 n interpolation
+Sveiki plural 2 n complex interpolation plural
+Sveiki singular n
+Sveiki singular n interpolation
+Sveiki singular n complex interpolation singular
+Sveiki plural 1 n
+Sveiki plural 1 n interpolation
+Sveiki plural 1 n complex interpolation plural
+Sveiki p
+Sveiki p interpolation
+Sveiki p complex interpolation
+Sveiki plural 2 np
+Sveiki plural 2 np interpolation
+Sveiki plural 2 np complex interpolation plural
+Sveiki singular np
+Sveiki singular np interpolation
+Sveiki singular np complex interpolation singular
+Sveiki plural 1 np
+Sveiki plural 1 np interpolation
+Sveiki plural 1 np complex interpolation plural
 
 EOT;
 
         $expectedFrenchOutput = <<<EOT
-Hello noop__ 1
-Hello noop__ 2
-Hello noop__ 3
-Bonjour t__
-Hello t__ interpolation
-Hello t__ complex interpolation
-Hello plural n__
-Hello plural n__ interpolation
-Hello plural n__ complex interpolation plural
-Hello singular n__
-Hello singular n__ interpolation
-Hello singular n__ complex interpolation singular
-Hello plural n__
-Hello plural n__ interpolation
-Hello plural n__ complex interpolation plural
-Hello p__
-Hello p__ interpolation
-Hello p__ complex interpolation
-Hello plural np__
-Hello plural np__ interpolation
-Hello plural np__ complex interpolation plural
-Hello singular np__
-Hello singular np__ interpolation
-Hello singular np__ complex interpolation singular
-Hello plural np__
-Hello plural np__ interpolation
-Hello plural np__ complex interpolation plural
+Hello noop 1
+Hello noop 2
+Hello noop 3
+Bonjour t
+Hello t interpolation
+Hello t complex interpolation
+Hello plural n
+Hello plural n interpolation
+Hello plural n complex interpolation plural
+Hello singular n
+Hello singular n interpolation
+Hello singular n complex interpolation singular
+Hello plural n
+Hello plural n interpolation
+Hello plural n complex interpolation plural
+Hello p
+Hello p interpolation
+Hello p complex interpolation
+Hello plural np
+Hello plural np interpolation
+Hello plural np complex interpolation plural
+Hello singular np
+Hello singular np interpolation
+Hello singular np complex interpolation singular
+Hello plural np
+Hello plural np interpolation
+Hello plural np complex interpolation plural
 
 EOT;
 
