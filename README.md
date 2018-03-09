@@ -1,7 +1,7 @@
 # [Translation.io](https://translation.io) client for Laravel 5
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/armandsar/laravel-translationio/master.svg?style=flat-square)](https://travis-ci.org/armandsar/laravel-translationio)
+[![Build Status](https://img.shields.io/travis/translation/laravel/master.svg?style=flat-square)](https://travis-ci.org/translation/laravel)
 [![Total Downloads](https://img.shields.io/packagist/dt/armandsar/laravel-translationio.svg?style=flat-square)](https://packagist.org/packages/armandsar/laravel-translationio)
 
 Add this package to translate your application with

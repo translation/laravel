@@ -1,13 +1,14 @@
 {
-  "name": "armandsar/laravel-translationio",
-  "description": "Sync laravel translations with translation.io",
+  "name": "translation/laravel",
+  "description": "Laravel translation made t('simple') with GetText and PHP (key/values) on Translation.io",
   "keywords": [
     "laravel",
-    "translations",
-    "translation.io",
-    "gettext"
+    "translation",
+    "localization",
+    "gettext",
+    "translation.io"
   ],
-  "homepage": "https://github.com/armandsar/laravel-translationio",
+  "homepage": "https://github.com/translation/laravel",
   "license": "MIT",
   "authors": [
     {
