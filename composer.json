@@ -1,6 +1,6 @@
 {
   "name": "translation/laravel",
-  "description": "Laravel translation made t('simple') with GetText and PHP (key/values) on Translation.io",
+  "description": "Laravel translation made t('simple') with GetText and PHP (key/values) using Translation.io",
   "keywords": [
     "laravel",
     "translation",

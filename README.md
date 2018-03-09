@@ -81,16 +81,16 @@ The [default Laravel method to localize](https://laravel.com/docs/master/localiz
 
 ```php
 // Regular
-__('inbox.title');
+trans('inbox.title');
 
 // Regular with sublevel key
-__('inbox.menu.title');
+trans('inbox.menu.title');
 
 // Pluralization
 trans_choice('inbox.message', $n);
 
 // Interpolation
-__('inbox.hello', ['name' => $user->name]);
+trans('inbox.hello', ['name' => $user->name]);
 ```
 
 With the PHP file `resources/lang/en/inbox.php`:
@@ -105,6 +105,8 @@ return [
     ]
 ];
 ```
+
+Note that `__` can also be used instead of `trans`.
 
 #### GetText
 
