@@ -2,24 +2,24 @@
 
 // Test noop(s) with dynamic variable interpolation
 
-noop__("Hello noop__ 1");
-noop__("Hello noop__ 2");
-noop__("Hello noop__ 3");
+noop("Hello noop 1");
+noop("Hello noop 2");
+noop("Hello noop 3");
 
-foreach (['noop__ 1', 'noop__ 2', 'noop__ 3'] as $noop) {
-    echo t__("Hello {$noop}");
+foreach (['noop 1', 'noop 2', 'noop 3'] as $noop) {
+    echo t("Hello {$noop}");
     echo "\n";
 }
 
 // Test regular gettext without and with interpolation
 
-echo t__("Hello t__");
+echo t("Hello t");
 echo "\n";
 
-echo t__("Hello t__ %s", 'interpolation');
+echo t("Hello t %s", 'interpolation');
 echo "\n";
 
-echo t__('Hello t__ %name%', [
+echo t('Hello t %name%', [
   '%name%' => 'complex interpolation'
 ]);
 echo "\n";
@@ -29,13 +29,13 @@ echo "\n";
 // Careful ! 0 is usually plural in languages, it reflects on the tests
 
 foreach ([0, 1, 8] as $quantity) {
-    echo n__("Hello singular n__", "Hello plural n__", $quantity);
+    echo n("Hello singular n", "Hello plural n", $quantity);
     echo "\n";
 
-    echo n__('Hello singular n__ %s', 'Hello plural n__ %s', $quantity, 'interpolation');
+    echo n('Hello singular n %s', 'Hello plural n %s', $quantity, 'interpolation');
     echo "\n";
 
-    echo n__('Hello singular n__ %name1%', 'Hello plural n__ %name2%', $quantity, [
+    echo n('Hello singular n %name1%', 'Hello plural n %name2%', $quantity, [
       '%name1%' => 'complex interpolation singular',
       '%name2%' => 'complex interpolation plural'
     ]);
@@ -44,13 +44,13 @@ foreach ([0, 1, 8] as $quantity) {
 
 // Test context gettext without and with interpolation
 
-echo p__("p__ context", "Hello p__");
+echo p("p context", "Hello p");
 echo "\n";
 
-echo p__("p__ context", "Hello p__ %s", "interpolation");
+echo p("p context", "Hello p %s", "interpolation");
 echo "\n";
 
-echo p__("p__ context", "Hello p__ %name%", [
+echo p("p context", "Hello p %name%", [
     '%name%' => 'complex interpolation'
 ]);
 echo "\n";
@@ -58,13 +58,13 @@ echo "\n";
 // Test plural and context gettext without and with interpolation
 
 foreach ([0, 1, 8] as $quantity) {
-    echo np__("np__ context", "Hello singular np__", "Hello plural np__", $quantity);
+    echo np("np context", "Hello singular np", "Hello plural np", $quantity);
     echo "\n";
 
-    echo np__("np__ context", "Hello singular np__ %s", "Hello plural np__ %s", $quantity, 'interpolation');
+    echo np("np context", "Hello singular np %s", "Hello plural np %s", $quantity, 'interpolation');
     echo "\n";
 
-    echo np__("np__ context", 'Hello singular np__ %name1%', 'Hello plural np__ %name2%', $quantity, [
+    echo np("np context", 'Hello singular np %name1%', 'Hello plural np %name2%', $quantity, [
       '%name1%' => 'complex interpolation singular',
       '%name2%' => 'complex interpolation plural'
     ]);

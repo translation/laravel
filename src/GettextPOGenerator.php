@@ -92,11 +92,11 @@ class GettextPOGenerator
     private function gettextFunctionsToExtract()
     {
         Extractors\PhpCode::$options['functions'] = [
-            'noop__' => 'noop',
-            't__'    => 'gettext',
-            'n__'    => 'ngettext',
-            'p__'    => 'pgettext',
-            'np__'   => 'npgettext'
+            'noop' => 'noop',
+            't'    => 'gettext',
+            'n'    => 'ngettext',
+            'p'    => 'pgettext',
+            'np'   => 'npgettext'
         ];
     }
 

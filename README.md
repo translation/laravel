@@ -1,7 +1,7 @@
 # [Translation.io](https://translation.io) client for Laravel 5
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/armandsar/laravel-translationio/master.svg?style=flat-square)](https://travis-ci.org/armandsar/laravel-translationio)
+[![Build Status](https://img.shields.io/travis/translation/laravel/master.svg?style=flat-square)](https://travis-ci.org/translation/laravel)
 [![Total Downloads](https://img.shields.io/packagist/dt/armandsar/laravel-translationio.svg?style=flat-square)](https://packagist.org/packages/armandsar/laravel-translationio)
 
 Add this package to translate your application with
@@ -81,16 +81,16 @@ The [default Laravel method to localize](https://laravel.com/docs/master/localiz
 
 ```php
 // Regular
-__('inbox.title');
+trans('inbox.title');
 
 // Regular with sublevel key
-__('inbox.menu.title');
+trans('inbox.menu.title');
 
 // Pluralization
 trans_choice('inbox.message', $n);
 
 // Interpolation
-__('inbox.hello', ['name' => $user->name]);
+trans('inbox.hello', ['name' => $user->name]);
 ```
 
 With the PHP file `resources/lang/en/inbox.php`:
@@ -106,6 +106,8 @@ return [
 ];
 ```
 
+Note that `__` can also be used instead of `trans`.
+
 #### GetText
 
 This package adds the GetText support for Laravel. We [strongly suggest](https://translation.io/blog/gettext-is-better-than-rails-i18n)
@@ -113,22 +115,22 @@ that you use GetText to translate your applications since it allows a simpler an
 
 ```php
 // Regular
-t__("Text to be translated");
+t("Text to be translated");
 
 // Pluralization
-n__("Singular text", "Plural text", $number);
+n("Singular text", "Plural text", $number);
 
 // Regular with context
-p__("context", "Text to be translated");
+p("context", "Text to be translated");
 
 // Pluralization with context
-np__("context", "Singular text", "Plural text", $number);
+np("context", "Singular text", "Plural text", $number);
 
-// Simple Interpolations (works with n__, p__ and np__ too)
-t__('Hello %s', $user->name);
+// Simple Interpolations (works with n, p and np too)
+t('Hello %s', $user->name);
 
-// Complex Interpolations (works with n__, p__ and np__ too)
-t__('%city1% is bigger than %city2%', [ '%city1%' => 'NYC', '%city2%' => 'BXL' ]);
+// Complex Interpolations (works with n, p and np too)
+t('%city1% is bigger than %city2%', [ '%city1%' => 'NYC', '%city2%' => 'BXL' ]);
 ```
 
 You don't need another file with source text or translations, everything will
