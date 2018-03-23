@@ -1,8 +1,8 @@
 <?php
 
-namespace Armandsar\LaravelTranslationio\Tests;
+namespace Tio\Laravel\Tests;
 
-use Armandsar\LaravelTranslationio\TranslationSaver;
+use Tio\Laravel\TranslationSaver;
 
 class TranslationSaverTest extends TestCase
 {

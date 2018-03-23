@@ -1,10 +1,10 @@
 <?php
 
-namespace Armandsar\LaravelTranslationio\Console\Commands;
+namespace Tio\Laravel\Console\Commands;
 
 use Illuminate\Console\Command;
-use Armandsar\LaravelTranslationio\Service\SourceEditSync as SourceEditSyncService;
-use Armandsar\LaravelTranslationio\Service\Sync as SyncService;
+use Tio\Laravel\Service\SourceEditSync as SourceEditSyncService;
+use Tio\Laravel\Service\Sync as SyncService;
 
 class Sync extends Command
 {

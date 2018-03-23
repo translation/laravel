@@ -1,25 +1,25 @@
-# [Translation.io](https://translation.io) client for Laravel 5
+# [Translation.io](https://translation.io/laravel) client for Laravel 5
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://img.shields.io/travis/translation/laravel/master.svg?style=flat-square)](https://travis-ci.org/translation/laravel)
-[![Total Downloads](https://img.shields.io/packagist/dt/armandsar/laravel-translationio.svg?style=flat-square)](https://packagist.org/packages/armandsar/laravel-translationio)
+[![Total Downloads](https://img.shields.io/packagist/dt/tio/laravel.svg?style=flat-square)](https://packagist.org/packages/tio/laravel)
 
 Add this package to translate your application with
 [Laravel](#laravel-localization-php-keyvalues) or [GetText](#gettext) syntaxes.
 
-Keep it synchronized with your translators on [Translation.io](https://translation.io).
+Keep it synchronized with your translators on [Translation.io](https://translation.io/laravel).
 
-[![Image](https://translation.io/interface.png)](https://translation.io)
+[![Image](https://translation.io/interface.png)](https://translation.io/laravel)
 
 Need help? [contact@translation.io](mailto:contact@translation.io)
 
 Table of contents
 =================
 
- * [Installation](#installation)
  * [Translation syntaxes](#translation-syntaxes)
    * [Laravel Localization (PHP key/values)](#laravel-localization-php-keyvalues)
    * [GetText](#gettext)
+ * [Installation](#installation)
  * [Usage](#usage)
    * [Sync](#sync)
    * [Sync and Show Purgeable](#sync-and-show-purgeable)
@@ -31,47 +31,6 @@ Table of contents
  * [Testing](#testing)
  * [Contributing](#contributing)
  * [License](#license)
-
-## Installation
-
- 1. Add the package via Composer:
-
-```bash
-$ composer require armandsar/laravel-translationio
-```
-
-If you are on lower Laravel version that 5.5
-(or choose not to use package auto discovery) add this to service providers:
-
-```php
-\Armandsar\LaravelTranslationio\ServiceProvider::class
-```
-
- 2. Create a new translation project [from the UI](https://translation.io).
- 3. Copy the initializer into your Laravel app (`config/translationio.php`) or execute `php artisan vendor:publish`.
-
-The initializer looks like this:
-
-```php
-return [
-    'key' => env('TRANSLATIONIO_KEY'),
-    'source_locale' => 'en',
-    'target_locales' => ['fr', 'nl', 'de', 'es'],
-    'gettext_parse_paths' => ['app', 'resources'],     // Where the GetText strings will be scanned
-    'gettext_locales_path' => 'resources/lang/gettext' // Where the GetText translations will be stored
-];
-```
-
- 4. Add the API key (`TRANSLATIONIO_KEY`) in your `.env` file.
-
- 5. Initialize your project and push existing translations to Translation.io with:
-
-```bash
-$ php artisan translation:init
-```
-
-If you later need to add/remove target languages, please read our
-[documentation](https://translation.io/blog/adding-target-languages) about that.
 
 ## Translation syntaxes
 
@@ -136,6 +95,47 @@ t('%city1% is bigger than %city2%', [ '%city1%' => 'NYC', '%city2%' => 'BXL' ]);
 You don't need another file with source text or translations, everything will
 be synchronized from Translation.io, and stored on PO/MO files.
 
+## Installation
+
+ 1. Add the package via Composer:
+
+```bash
+$ composer require tio/laravel
+```
+
+If you are on lower Laravel version that 5.5
+(or choose not to use package auto discovery) add this to service providers:
+
+```php
+\Tio\Laravel\ServiceProvider::class
+```
+
+ 2. Create a new translation project [from the UI](https://translation.io/laravel).
+ 3. Copy the initializer into your Laravel app (`config/translation.php`) or execute `php artisan vendor:publish`.
+
+The initializer looks like this:
+
+```php
+return [
+    'key' => env('TRANSLATIONIO_KEY'),
+    'source_locale' => 'en',
+    'target_locales' => ['fr', 'nl', 'de', 'es'],
+    'gettext_parse_paths' => ['app', 'resources'],     // Where the GetText strings will be scanned
+    'gettext_locales_path' => 'resources/lang/gettext' // Where the GetText translations will be stored
+];
+```
+
+ 4. Add the API key (`TRANSLATIONIO_KEY`) in your `.env` file.
+
+ 5. Initialize your project and push existing translations to Translation.io with:
+
+```bash
+$ php artisan translation:init
+```
+
+If you later need to add/remove target languages, please read our
+[documentation](https://translation.io/blog/adding-target-languages) about that.
+
 ## Usage
 
 #### Sync
@@ -182,7 +182,7 @@ we'll assist you with the workflow logic and send you API docs.
 
 #### Ruby on Rails (Ruby)
 
- > Officially Supported
+Officially Supported on [https://translation.io/rails](https://translation.io/rails)
 
  * GitHub: https://github.com/aurels/translation-gem
  * RubyGems: https://rubygems.org/gems/translation/
@@ -191,10 +191,10 @@ Credits: [@aurels](https://github.com/aurels), [@michaelhoste](https://github.co
 
 #### Laravel (PHP)
 
- > Officially Supported
+Officially Supported on [https://translation.io/laravel](https://translation.io/laravel)
 
- * GitHub: https://github.com/armandsar/laravel-translationio
- * Packagist: https://packagist.org/packages/armandsar/laravel-translationio
+ * GitHub: https://github.com/translation/laravel
+ * Packagist: https://packagist.org/packages/tio/laravel
 
 Credits: [@armandsar](https://github.com/armandsar), [@michaelhoste](https://github.com/michaelhoste)
 

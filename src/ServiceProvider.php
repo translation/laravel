@@ -1,11 +1,11 @@
 <?php
 
-namespace Armandsar\LaravelTranslationio;
+namespace Tio\Laravel;
 
-use Armandsar\LaravelTranslationio\Console\Commands\Init;
-use Armandsar\LaravelTranslationio\Console\Commands\Sync;
-use Armandsar\LaravelTranslationio\Console\Commands\SyncAndPurge;
-use Armandsar\LaravelTranslationio\Console\Commands\SyncAndShowPurgeable;
+use Tio\Laravel\Console\Commands\Init;
+use Tio\Laravel\Console\Commands\Sync;
+use Tio\Laravel\Console\Commands\SyncAndPurge;
+use Tio\Laravel\Console\Commands\SyncAndShowPurgeable;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 use Illuminate\Foundation\AliasLoader;
 
@@ -39,7 +39,7 @@ class ServiceProvider extends LaravelServiceProvider
         $this->config();
         $this->configureCommands();
 
-        $config = config('translationio');
+        $config = config('translation');
 
         $translationIO = new TranslationIO($config);
 
@@ -48,11 +48,11 @@ class ServiceProvider extends LaravelServiceProvider
 
     private function config()
     {
-        $configPath = __DIR__ . '/../config/translationio.php';
+        $configPath = __DIR__ . '/../config/translation.php';
 
-        $this->publishes([$configPath => config_path('translationio.php')]);
+        $this->publishes([$configPath => config_path('translation.php')]);
 
-        $this->mergeConfigFrom($configPath, 'translationio');
+        $this->mergeConfigFrom($configPath, 'translation');
     }
 
     private function configureCommands()

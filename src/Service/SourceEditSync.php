@@ -1,8 +1,8 @@
 <?php
 
-namespace Armandsar\LaravelTranslationio\Service;
+namespace Tio\Laravel\Service;
 
-use Armandsar\LaravelTranslationio\SourceSaver;
+use Tio\Laravel\SourceSaver;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Contracts\Foundation\Application;
@@ -33,7 +33,7 @@ class SourceEditSync
         SourceSaver $sourceSaver
     )
     {
-        $this->config = $application['config']['translationio'];
+        $this->config = $application['config']['translation'];
         $this->application = $application;
         $this->filesystem = $filesystem;
         $this->sourceSaver = $sourceSaver;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Armandsar\LaravelTranslationio;
+namespace Tio\Laravel;
 
 use Illuminate\Support\Facades\App;
 use Gettext\Translator;
@@ -16,7 +16,7 @@ class TranslationIO
 
     public function __construct($config = null)
     {
-        $this->config = $config ?? config('translationio');
+        $this->config = $config ?? config('translation');
     }
 
     public function setLocale($locale)

@@ -1,9 +1,9 @@
 <?php
 
-namespace Armandsar\LaravelTranslationio\Console\Commands;
+namespace Tio\Laravel\Console\Commands;
 
 use Illuminate\Console\Command;
-use Armandsar\LaravelTranslationio\Service\Init as InitService;
+use Tio\Laravel\Service\Init as InitService;
 
 class Init extends Command
 {

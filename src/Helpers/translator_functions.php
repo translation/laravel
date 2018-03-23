@@ -4,7 +4,7 @@
 # Inspired by https://github.com/oscarotero/Gettext/blob/master/src/translator_functions.php
 ###
 
-use Armandsar\LaravelTranslationio\TranslationIO;
+use Tio\Laravel\TranslationIO;
 
 /**
  * Returns the translation of a string.

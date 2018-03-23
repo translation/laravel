@@ -1,12 +1,12 @@
 <?php
 
-namespace Armandsar\LaravelTranslationio\Service;
+namespace Tio\Laravel\Service;
 
-use Armandsar\LaravelTranslationio\POExtractor;
-use Armandsar\LaravelTranslationio\GettextPOGenerator;
-use Armandsar\LaravelTranslationio\SourcePOGenerator;
-use Armandsar\LaravelTranslationio\TranslationSaver;
-use Armandsar\LaravelTranslationio\GettextTranslationSaver;
+use Tio\Laravel\POExtractor;
+use Tio\Laravel\GettextPOGenerator;
+use Tio\Laravel\SourcePOGenerator;
+use Tio\Laravel\TranslationSaver;
+use Tio\Laravel\GettextTranslationSaver;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Contracts\Foundation\Application;
@@ -50,7 +50,7 @@ class Sync
         GettextTranslationSaver $gettextTranslationSaver
     )
     {
-        $this->config = $application['config']['translationio'];
+        $this->config = $application['config']['translation'];
         $this->poGenerator = $poGenerator;
         $this->gettextPoGenerator = $gettextPoGenerator;
         $this->poExtractor = $poExtractor;

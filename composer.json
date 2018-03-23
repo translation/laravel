@@ -1,6 +1,6 @@
 {
-  "name": "translation/laravel",
-  "description": "Laravel translation made t('simple') with GetText and PHP (key/values) using Translation.io",
+  "name": "tio/laravel",
+  "description": "Laravel translation made t('simple') with PHP keys and GetText using Translation.io.",
   "keywords": [
     "laravel",
     "translation",
@@ -39,7 +39,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Armandsar\\LaravelTranslationio\\": "src/"
+      "Tio\\Laravel\\": "src/"
     },
     "files": [
       "src/Helpers/translator_functions.php"
@@ -47,7 +47,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Armandsar\\LaravelTranslationio\\Tests\\": "tests"
+      "Tio\\Laravel\\Tests\\": "tests"
     }
   },
   "minimum-stability": "dev",
@@ -58,7 +58,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Armandsar\\LaravelTranslationio\\ServiceProvider"
+        "Tio\\Laravel\\ServiceProvider"
       ]
     }
   }

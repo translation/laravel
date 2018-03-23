@@ -1,6 +1,6 @@
 <?php
 
-namespace Armandsar\LaravelTranslationio;
+namespace Tio\Laravel;
 
 class PrettyVarExport
 {

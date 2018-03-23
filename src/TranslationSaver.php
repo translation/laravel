@@ -1,9 +1,9 @@
 <?php
 
-namespace Armandsar\LaravelTranslationio;
+namespace Tio\Laravel;
 
 use Illuminate\Contracts\Foundation\Application;
-use Armandsar\LaravelTranslationio\PrettyVarExport;
+use Tio\Laravel\PrettyVarExport;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Translation\Translator;
 use SplFileInfo;

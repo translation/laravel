@@ -1,8 +1,8 @@
 <?php
 
-namespace Armandsar\LaravelTranslationio\Tests;
+namespace Tio\Laravel\Tests;
 
-use Armandsar\LaravelTranslationio\ServiceProvider;
+use Tio\Laravel\ServiceProvider;
 use Illuminate\Container\Container;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Facade;

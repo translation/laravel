@@ -1,6 +1,6 @@
 <?php
 
-namespace Armandsar\LaravelTranslationio;
+namespace Tio\Laravel;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Filesystem\Filesystem;
@@ -24,7 +24,7 @@ class GettextTranslationSaver
     {
         $this->application = $application;
         $this->filesystem = $fileSystem;
-        $this->config = $application['config']['translationio'];
+        $this->config = $application['config']['translation'];
     }
 
     public function call($locale, $poContent)

@@ -1,6 +1,6 @@
 <?php
 
-namespace Armandsar\LaravelTranslationio;
+namespace Tio\Laravel;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Filesystem\Filesystem;

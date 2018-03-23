@@ -1,10 +1,10 @@
 <?php
 
-namespace Armandsar\LaravelTranslationio\Service;
+namespace Tio\Laravel\Service;
 
-use Armandsar\LaravelTranslationio\TargetPOGenerator;
-use Armandsar\LaravelTranslationio\GettextPOGenerator;
-use Armandsar\LaravelTranslationio\GettextTranslationSaver;
+use Tio\Laravel\TargetPOGenerator;
+use Tio\Laravel\GettextPOGenerator;
+use Tio\Laravel\GettextTranslationSaver;
 use GuzzleHttp\Client;
 use Illuminate\Contracts\Foundation\Application;
 
@@ -37,7 +37,7 @@ class Init
         $this->poGenerator = $poGenerator;
         $this->gettextPoGenerator = $gettextPoGenerator;
         $this->gettextTranslationSaver = $gettextTranslationSaver;
-        $this->config = $application['config']['translationio'];
+        $this->config = $application['config']['translation'];
     }
 
     public function call($command)

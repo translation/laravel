@@ -1,8 +1,8 @@
 <?php
 
-namespace Armandsar\LaravelTranslationio\Tests;
+namespace Tio\Laravel\Tests;
 
-use Armandsar\LaravelTranslationio\TranslationExtractor;
+use Tio\Laravel\TranslationExtractor;
 
 class TranslationExtractorTest extends TestCase
 {
