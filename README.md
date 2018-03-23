@@ -184,7 +184,7 @@ we'll assist you with the workflow logic and send you API docs.
 
 Officially Supported on [https://translation.io/rails](https://translation.io/rails)
 
- * GitHub: https://github.com/aurels/translation-gem
+ * GitHub: https://github.com/translation/rails
  * RubyGems: https://rubygems.org/gems/translation/
 
 Credits: [@aurels](https://github.com/aurels), [@michaelhoste](https://github.com/michaelhoste)
