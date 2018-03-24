@@ -23,12 +23,14 @@ Table of contents
    * [Sync](#sync)
    * [Sync and Show Purgeable](#sync-and-show-purgeable)
    * [Sync and Purge](#sync-and-purge)
+ * [Change the current locale](#change-the-current-locale)
+ * [Testing](#testing)
+ * [Contributing](#contributing)
  * [List of clients for Translation.io](#list-of-clients-for-translationio)
    * [Ruby on Rails (Ruby)](#ruby-on-rails-ruby)
    * [Laravel (PHP)](#laravel-php)
    * [React and React-Intl (JavaScript)](#react-and-react-intl-javascript)
- * [Testing](#testing)
- * [Contributing](#contributing)
+   * [Others](#others)
  * [License](#license)
 
 ## Translation syntaxes
@@ -167,6 +169,28 @@ As the name says, this operation will also perform a sync at the same time.
 
 Warning: all keys that are not present in the current branch will be **permanently deleted from Translation.io**.
 
+## Change the current locale
+
+Change the current locale with:
+
+```php
+use Tio\Laravel\Facade as Translation;
+
+Translation::setLocale('fr');
+```
+
+## Testing
+
+To run the specs:
+
+```bash
+$ phpunit
+```
+
+## Contributing
+
+Please read the [CONTRIBUTING](CONTRIBUTING.md) file.
+
 ## List of clients for Translation.io
 
 These implementations were usually started by contributors for their own projects.
@@ -174,10 +198,6 @@ Some of them are officially supported by [Translation.io](https://translation.io
 and some are not yet supported. However, they are quite well documented.
 
 Thanks a lot to these contributors for their hard work!
-
-If you want to create a new client for your favorite language or framework, feel
-free to reach us on [contact@translation.io](mailto:contact@translation.io) and
-we'll assist you with the workflow logic and send you API docs.
 
 #### Ruby on Rails (Ruby)
 
@@ -204,17 +224,11 @@ Credits: [@armandsar](https://github.com/armandsar), [@michaelhoste](https://git
 
 Credits: [@deecewan](https://github.com/deecewan)
 
-## Testing
+#### Others
 
-To run the specs:
-
-```bash
-$ phpunit
-```
-
-## Contributing
-
-Please read the [CONTRIBUTING](CONTRIBUTING.md) file.
+If you want to create a new client for your favorite language or framework, feel
+free to reach us on [contact@translation.io](mailto:contact@translation.io) and
+we'll assist you with the workflow logic and send you API docs.
 
 ## License
 
