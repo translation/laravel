@@ -20,12 +20,11 @@ cache:
     - $HOME/.composer/cache
 
 before_script:
-  - stty cols 80;
   - travis_retry composer self-update
   - travis_wait composer update ${COMPOSER_FLAGS} --no-interaction --prefer-stable
 
 script:
-  - vendor/bin/phpunit
+  - stty cols 80;vendor/bin/phpunit
 
 notifications:
   email:
