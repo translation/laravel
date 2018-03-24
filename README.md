@@ -2,7 +2,6 @@
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://img.shields.io/travis/translation/laravel/master.svg?style=flat-square)](https://travis-ci.org/translation/laravel)
-[![Total Downloads](https://img.shields.io/packagist/dt/tio/laravel.svg?style=flat-square)](https://packagist.org/packages/tio/laravel)
 
 Add this package to translate your application with
 [Laravel](#laravel-localization-php-keyvalues) or [GetText](#gettext) syntaxes.
