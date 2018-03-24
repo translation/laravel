@@ -24,7 +24,7 @@ before_script:
   - travis_wait composer update ${COMPOSER_FLAGS} --no-interaction --prefer-stable
 
 script:
-  - stty cols 80;vendor/bin/phpunit
+  - vendor/bin/phpunit
 
 notifications:
   email:
