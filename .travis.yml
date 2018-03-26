@@ -15,6 +15,11 @@ matrix:
 
 sudo: false
 
+addons:
+  code_climate:
+    repo_token:
+      secure: "R3J7JU7jBBiBwHRXJHbU7W5o9wH6mvwKm/DTWc7tmRIrrfoP2oLNVQwvFlvvvNcHyQahADzI/3YHHK50truhVEv/92ty4/CvuWSUgp7Yri7HN3qEZR3h3HOUCCNjKoUqYrhiQY3Oh6YM8/+oILeHxUIW+820R0HyF9wUMJKFPuu0V4fxpDEoKCOfsuh4cogMtJGwEhn6qqqPbHP1/o7fazgfPfZcpkzOBUM0M6r3GtHDnDCKzqyybEGBlNDEwHzsD6vvQxBPEcu4avYtcwmRu0BIHQp3QNlMGoNv6SSqg4TYgwt/3SUCi7c4wr5Hq+cXSjlFMev+JJ9KcWGIg4Uq1vvvLP9Eqd++f6xwEW/TAzeY+L1zDcEGrqaCR4P3a7VZearYLTw5gzcGempJRPEPJAKf2BZNRUdMROjSr7EcNNp586lcIFJ9zlqh+hvQHu/fYjyc1RUe5zTEbl4/hY27TjvJrzYHb32A8Z/vPvd+E09Wnuzp1XClodTMztPWaLMoy4P27feKCdRjifl13z4J4Dr/IDpfzUHp12vJLCtyHRw8hCaATMzTadVBGCRD2ilEyP7HrrtQTmeJFkMl4OVjHxp9m43Z5jRrYTIrniPvC3KflhisNN2H3QKXMD0u77wX+ikx6qjOakl8jg+BRVNsgs3A8Tpe75tY/vHQdqK/GeU="
+
 cache:
   directories:
     - $HOME/.composer/cache
@@ -25,6 +30,9 @@ before_script:
 
 script:
   - vendor/bin/phpunit
+
+after_script:
+  - vendor/bin/test-reporter
 
 notifications:
   email:
