@@ -26,6 +26,8 @@ Table of contents
    * [Sync and Show Purgeable](#sync-and-show-purgeable)
    * [Sync and Purge](#sync-and-purge)
  * [Change the current locale](#change-the-current-locale)
+   * [Globally](#globally)
+   * [Locally](#locally)
  * [Testing](#testing)
  * [Contributing](#contributing)
  * [List of clients for Translation.io](#list-of-clients-for-translationio)
@@ -172,6 +174,38 @@ As the name says, this operation will also perform a sync at the same time.
 Warning: all keys that are not present in the current branch will be **permanently deleted from Translation.io**.
 
 ## Change the current locale
+
+#### Globally
+
+The easiest way to change the current locale is with the `set.locale` Middleware.
+
+```php
+// in routes/web.php
+
+Route::middleware('set.locale')->group(function () {
+    Route::get('/', function () {
+        return view('welcome');
+    });
+});
+```
+
+It will automatically set the locale extracted from the user's browser `HTTP_ACCEPT_LANGUAGE` value, and keep it in the session between requests.
+
+Update the current locale by redirecting the user to https://yourdomain.com?locale=fr or even https://yourdomain.com/fr if you prefixed your routes like this:
+
+```php
+// in routes/web.php
+
+Route::prefix('{locale?}')->middleware('set.locale')->group(function() {
+    Route::get('/', function () {
+        return view('welcome');
+    });
+});
+```
+
+The `set.locale` Middleware code is [here](https://github.com/translation/laravel/blob/master/src/Middleware/SetLocaleMiddleware.php), feel free to adapt it with your own locale management.
+
+#### Locally
 
 Change the current locale with:
 

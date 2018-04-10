@@ -6,6 +6,7 @@ use Tio\Laravel\Console\Commands\Init;
 use Tio\Laravel\Console\Commands\Sync;
 use Tio\Laravel\Console\Commands\SyncAndPurge;
 use Tio\Laravel\Console\Commands\SyncAndShowPurgeable;
+use Tio\Laravel\Middleware\SetLocaleMiddleware;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 use Illuminate\Foundation\AliasLoader;
 
@@ -26,7 +27,7 @@ class ServiceProvider extends LaravelServiceProvider
      */
     public function register()
     {
-
+        $this->app['router']->aliasMiddleware('set.locale' , SetLocaleMiddleware::class);
     }
 
     /**
