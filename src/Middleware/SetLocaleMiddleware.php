@@ -5,7 +5,6 @@ namespace Tio\Laravel\Middleware;
 use Tio\Laravel\Facade as Translation;
 
 use Closure;
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 
 class SetLocaleMiddleware
@@ -26,13 +25,11 @@ class SetLocaleMiddleware
 
         $availableLocales = array_merge($targetLocales, array($sourceLocale));
 
-        $session = $request->getSession();
-
         # Ordered by preference
         $priorityLocales = [
             $request->query('locale'),
             $request->segment(1), # /en/
-            $session->get('locale'),
+            session('locale'),
             $request->getPreferredLanguage($availableLocales),
             config('app.fallback_locale'),
             $sourceLocale
@@ -47,7 +44,7 @@ class SetLocaleMiddleware
         $locale = reset($eligibleLocales);
 
         # Store in session for next time
-        $session->put('locale', $locale);
+        session(['locale' => $locale]);
 
         # Set Locale for Gettext and Laravel PHP
         Translation::setLocale($locale);
