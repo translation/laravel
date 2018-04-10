@@ -22,7 +22,7 @@ class SetLocaleMiddleware
     public function handle($request, Closure $next)
     {
         $targetLocales = config('translation.target_locales');
-        $sourceLocale  = config('translation.source_locale');
+        $sourceLocale = config('translation.source_locale');
 
         $availableLocales = array_merge($targetLocales, array($sourceLocale));
 
@@ -30,12 +30,12 @@ class SetLocaleMiddleware
 
         # Ordered by preference
         $priorityLocales = [
-          $request->query('locale'),
-          $request->segment(1), # /en/
-          $session->get('locale'),
-          $request->getPreferredLanguage($availableLocales),
-          config('app.fallback_locale'),
-          $sourceLocale
+            $request->query('locale'),
+            $request->segment(1), # /en/
+            $session->get('locale'),
+            $request->getPreferredLanguage($availableLocales),
+            config('app.fallback_locale'),
+            $sourceLocale
         ];
 
         # Keep the locales included in $availableLocales
