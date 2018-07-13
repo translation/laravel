@@ -10,9 +10,11 @@ Add this package to translate your application with
 
 Keep it synchronized with your translators on [Translation.io](https://translation.io/laravel).
 
-[Technical Demo](https://translation.io/videos/laravel.mp4) (2.5min)
+<a href="https://translation.io/laravel">
+  <img width="720px" alt="Translation.io interface" src="https://translation.io/gifs/translation.gif">
+</a>
 
-[![Image](https://translation.io/assets/gifs/translation-fe6fc5848766fb926e6ca06943ca6c03cc387fa539d9b37d0e375a42e858c70e.gif)](https://translation.io/laravel)
+[Technical Demo](https://translation.io/videos/laravel.mp4) (2.5min)
 
 Need help? [contact@translation.io](mailto:contact@translation.io)
 
