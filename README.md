@@ -10,7 +10,7 @@ Add this package to translate your application with
 
 Keep it synchronized with your translators on [Translation.io](https://translation.io/laravel).
 
-[Technical Demo](https://translation.io/laravel?video) (2.5min)
+[Technical Demo](https://translation.io/videos/laravel.mp4) (2.5min)
 
 [![Image](https://translation.io/interface.png)](https://translation.io/laravel)
 
@@ -27,6 +27,9 @@ Table of contents
    * [Sync](#sync)
    * [Sync and Show Purgeable](#sync-and-show-purgeable)
    * [Sync and Purge](#sync-and-purge)
+ * [Manage Languages](#manage-languages)
+   * [Add or Remove Language](#add-or-remove-language)
+   * [Custom Languages](#custom-languages)
  * [Change the current locale](#change-the-current-locale)
    * [Globally](#globally)
    * [Locally](#locally)
@@ -41,7 +44,7 @@ Table of contents
 
 ## Translation syntaxes
 
-#### Laravel Localization (PHP key/values)
+### Laravel Localization (PHP key/values)
 
 The [default Laravel method to localize](https://laravel.com/docs/master/localization#using-short-keys).
 
@@ -74,7 +77,7 @@ return [
 
 Note that `__` can also be used instead of `trans`.
 
-#### GetText
+### GetText
 
 This package adds the GetText support for Laravel. We [strongly suggest](https://translation.io/blog/gettext-is-better-than-rails-i18n)
 that you use GetText to translate your applications since it allows a simpler and more maintainable syntax.
@@ -145,7 +148,7 @@ If you later need to add/remove target languages, please read our
 
 ## Usage
 
-#### Sync
+### Sync
 
 To send new translatable keys/strings and get new translations from Translation.io, simply run:
 
@@ -153,7 +156,7 @@ To send new translatable keys/strings and get new translations from Translation.
 $ php artisan translation:sync
 ```
 
-#### Sync and Show Purgeable
+### Sync and Show Purgeable
 
 If you need to find out what are the unused keys/strings from Translation.io, using the current branch as reference:
 
@@ -163,7 +166,7 @@ $ php artisan translation:sync_and_show_purgeable
 
 As the name says, this operation will also perform a sync at the same time.
 
-#### Sync and Purge
+### Sync and Purge
 
 If you need to remove unused keys/strings from Translation.io, using the current branch as reference:
 
@@ -175,9 +178,32 @@ As the name says, this operation will also perform a sync at the same time.
 
 Warning: all keys that are not present in the current branch will be **permanently deleted from Translation.io**.
 
+## Manage Languages
+
+### Add or Remove Language
+
+You can add or remove a language by updating `'target_locales' => []` in your
+`config/translation.php` file, and executing `php artisan translation:sync`.
+
+If you want to add a new language with existing translations (ex. if you already have
+a translated PHP file in your `lang` folder), you will need to create a new project on
+Translation.io and run `php artisan translation:init` for them to appear.
+
+### Custom Languages
+
+You may want to add a custom language that is derived from an existing language.
+It's useful if you want to change some translations for another instance of the
+application or for a specific customer.
+
+The structure of a custom language is : existing language code + "-" + custom text.
+
+Examples: `en-microsoft` or `fr-be-custom`.
+
+Custom languages can be added and used like any other language.
+
 ## Change the current locale
 
-#### Globally
+### Globally
 
 The easiest way to change the current locale is with the `set.locale` Middleware.
 
@@ -207,7 +233,7 @@ Route::prefix('{locale?}')->middleware('set.locale')->group(function() {
 
 The `set.locale` Middleware code is [here](https://github.com/translation/laravel/blob/master/src/Middleware/SetLocaleMiddleware.php), feel free to adapt it with your own locale management.
 
-#### Locally
+### Locally
 
 Change the current locale with:
 
@@ -237,7 +263,7 @@ and some are not yet supported. However, they are quite well documented.
 
 Thanks a lot to these contributors for their hard work!
 
-#### Ruby on Rails (Ruby)
+### Ruby on Rails (Ruby)
 
 Officially Supported on [https://translation.io/rails](https://translation.io/rails)
 
@@ -246,7 +272,7 @@ Officially Supported on [https://translation.io/rails](https://translation.io/ra
 
 Credits: [@aurels](https://github.com/aurels), [@michaelhoste](https://github.com/michaelhoste)
 
-#### Laravel (PHP)
+### Laravel (PHP)
 
 Officially Supported on [https://translation.io/laravel](https://translation.io/laravel)
 
@@ -255,14 +281,14 @@ Officially Supported on [https://translation.io/laravel](https://translation.io/
 
 Credits: [@armandsar](https://github.com/armandsar), [@michaelhoste](https://github.com/michaelhoste)
 
-#### React and React-Intl (JavaScript)
+### React and React-Intl (JavaScript)
 
  * GitHub: https://github.com/deecewan/translation-io
  * NPM: https://www.npmjs.com/package/translation-io
 
 Credits: [@deecewan](https://github.com/deecewan)
 
-#### Others
+### Others
 
 If you want to create a new client for your favorite language or framework, feel
 free to reach us on [contact@translation.io](mailto:contact@translation.io) and
