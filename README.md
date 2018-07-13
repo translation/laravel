@@ -12,7 +12,7 @@ Keep it synchronized with your translators on [Translation.io](https://translati
 
 [Technical Demo](https://translation.io/videos/laravel.mp4) (2.5min)
 
-[![Image](https://translation.io/interface.png)](https://translation.io/laravel)
+[![Image](https://translation.io/assets/gifs/translation-fe6fc5848766fb926e6ca06943ca6c03cc387fa539d9b37d0e375a42e858c70e.gif)](https://translation.io/laravel)
 
 Need help? [contact@translation.io](mailto:contact@translation.io)
 
