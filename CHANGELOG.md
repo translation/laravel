@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.2](https://github.com/translation/laravel/releases/tag/v1.2) (2018-07-13)
+
+#### Fixes (bugs & defects):
+
+  * If a sync received no content for a PHP file (ex: if it was untranslated), it was not removed an neither its content.
+
 ## [v1.1](https://github.com/translation/laravel/releases/tag/v1.1) (2018-04-10)
 
 #### New features:
