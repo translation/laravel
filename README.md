@@ -31,6 +31,7 @@ Table of contents
    * [Sync and Purge](#sync-and-purge)
  * [Manage Languages](#manage-languages)
    * [Add or Remove Language](#add-or-remove-language)
+   * [Edit Language](#edit-language)
    * [Custom Languages](#custom-languages)
  * [Change the current locale](#change-the-current-locale)
    * [Globally](#globally)
@@ -191,6 +192,19 @@ If you want to add a new language with existing translations (ex. if you already
 a translated PHP file in your `lang` folder), you will need to create a new project on
 Translation.io and run `php artisan translation:init` for them to appear.
 
+### Edit Language
+
+To edit existing languages while keeping their translations (e.g. changing from `en` to `en-US`).
+
+ 1. Create a new project on Translation.io with the correct languages.
+ 2. Adapt `config/translation.php` (new API key and languages)
+ 3. Adapt directory language names in `resources/lang` (optional: adapt GetText `.po` headers)
+ 4. Execute "php artisan translation:init" and check that everything went fine.
+ 5. Invite your collaborators in the new project.
+ 6. Remove the old project.
+
+Since you created a new project, the translation history and tags will unfortunately be lost.
+
 ### Custom Languages
 
 You may want to add a custom language that is derived from an existing language.
@@ -199,7 +213,7 @@ application or for a specific customer.
 
 The structure of a custom language is : existing language code + "-" + custom text.
 
-Examples: `en-microsoft` or `fr-be-custom`.
+Examples: `en-microsoft` or `fr-BE-custom`.
 
 Custom languages can be added and used like any other language.
 
