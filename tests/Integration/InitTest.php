@@ -223,13 +223,14 @@ msgstr ""
 "PO-Revision-Date: 2018-03-06 15:42+0100\\n"
 "Language: fr_BE\\n"
 "Plural-Forms: nplurals=2; plural=n>1;\\n"
-"\\n"
 
-#: resources/views/welcome.blade.php:94 tests/fixtures/gettext/example.php:16
+#: resources/views/welcome.blade.php:94
+#: tests/fixtures/gettext/example.php:16
 msgid "Hello t"
 msgstr "Bonjour t"
 
-#: resources/views/welcome.blade.php:95 resources/views/welcome.blade.php:96
+#: resources/views/welcome.blade.php:95
+#: resources/views/welcome.blade.php:96
 #: tests/fixtures/gettext/example.php:32
 msgid "Hello singular n"
 msgid_plural "Hello plural n"

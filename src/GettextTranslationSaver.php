@@ -79,38 +79,38 @@ class GettextTranslationSaver
 
     private function extractGettextTranslations($translations) {
         $gettextTranslations = clone $translations;
-        $gettextTranslationsCollection = collect($gettextTranslations);
+        $keysToRemove = [];
 
         // only keep non-JSON translations
-        $gettextTranslationsCollection = $gettextTranslationsCollection->filter(function ($gettextTranslation) {
-            return $gettextTranslation->getContext() != $this->jsonStringContext();
-        });
-
-        $ts = new Translations();
-
-        foreach ($gettextTranslationsCollection->all() as $t) {
-            $ts[] = $t;
+        foreach ($gettextTranslations as $key => $gettextTranslation) {
+            if ($gettextTranslation->getContext() == $this->jsonStringContext()) {
+                $keysToRemove[] = $key;
+            }
         }
 
-        return $ts;
+        foreach ($keysToRemove as $keyToRemove) {
+            unset($gettextTranslations[$keyToRemove]);
+        }
+
+        return $gettextTranslations;
     }
 
     private function extractJsonTranslations($translations) {
         $jsonTranslations = clone $translations;
-        $jsonTranslationsCollection = collect($jsonTranslations);
+        $keysToRemove = [];
 
         // only keep JSON translations
-        $jsonTranslationsCollection = $jsonTranslationsCollection->filter(function ($jsonTranslation) {
-            return $jsonTranslation->getContext() == $this->jsonStringContext();
-        });
-
-        $ts = new Translations();
-
-        foreach ($jsonTranslationsCollection->all() as $t) {
-            $ts[] = $t;
+        foreach ($jsonTranslations as $key => $jsonTranslation) {
+            if ($jsonTranslation->getContext() != $this->jsonStringContext()) {
+                $keysToRemove[] = $key;
+            }
         }
 
-        return $ts;
+        foreach ($keysToRemove as $keyToRemove) {
+            unset($jsonTranslations[$keyToRemove]);
+        }
+
+        return $jsonTranslations;
     }
 
     private function localePath($locale)
