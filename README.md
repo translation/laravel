@@ -7,8 +7,8 @@
 
 Add this package to localize your Laravel application.
 
-Use the official syntax with [PHP](#laravel-localization-php-keyvalues) or [JSON](#laravel-localization-json-source-text) files,
-or use the better [GetText](#gettext) syntax.
+Use the official Laravel syntax (with [PHP](#laravel-localization-php-keyvalues) or [JSON](#laravel-localization-json-source-text) files),
+or use the [GetText](#gettext) syntax.
 
 Write only the source text, and keep it synchronized with your translators on [Translation.io](https://translation.io/laravel).
 
