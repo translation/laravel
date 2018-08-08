@@ -120,8 +120,8 @@ of the target languages.
 
 ### GetText
 
-This package adds the GetText support for Laravel. We [strongly suggest](https://translation.io/blog/gettext-is-better-than-rails-i18n)
-that you use GetText to localize your applications since it allows an easier and more complete syntax.
+This package adds the GetText support to Laravel. We [strongly suggest](https://translation.io/blog/gettext-is-better-than-rails-i18n)
+that you use GetText to localize your application since it allows an easier and more complete syntax.
 
 Also, you won't need to create and manage any PHP or JSON file since your code will be
 automatically scanned for any string to translate.
