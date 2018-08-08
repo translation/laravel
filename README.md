@@ -86,7 +86,7 @@ Note that `trans` can also be used instead of `__`.
 ### Laravel Localization (JSON source text)
 
 [A new feature](https://laravel.com/docs/5.6/localization#using-translation-strings-as-keys) of Laravel 5.4
-is possibility to use `__` directly with the source text and not only with keys like in the previous section.
+is the possibility to use `__` with the source text (and not only with keys like in the previous section).
 
 These translations are stored into JSON files located in the `resources/lang/` directory.
 
@@ -112,8 +112,8 @@ With the JSON file `resources/lang/en.json`:
 ```
 
 To spend less time dealing with multiple JSON files, we advise to only edit
-the JSON file of the original language (usually `en.json`) to add new text,
-and leave the translation empty.
+the original language (usually `en.json`) to add new strings, and leave the
+translations empty.
 
 During a [sync](#sync), This package will automatically create and fill the JSON files
 of the target languages.
