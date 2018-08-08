@@ -7,6 +7,7 @@ use Illuminate\Filesystem\Filesystem;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use Gettext\Extractors;
+use Gettext\Translation;
 use Gettext\Translations;
 use Gettext\Merge;
 
@@ -45,6 +46,7 @@ class GettextPOGenerator
         $translations = new Translations();
         $directories = $this->gettextParsePaths();
 
+        // Extract GetText strings from project
         foreach ($directories as $dir) {
             if (!is_dir($dir)) {
                 throw new \Exception('Folder "' . $dir . '" doest not exists. Gettext scan aborted.');
@@ -59,26 +61,30 @@ class GettextPOGenerator
             }
         }
 
-        # Create Temporary path (create po files to load them in memory)
+        // Extract strings from all language JSON files
+        $this->addStringsFromJsonFiles($translations);
+
+        // Create Temporary path (create po files to load them in memory)
         $tmpDir = $this->tmpPath();
         $tmpFile = $tmpDir . DIRECTORY_SEPARATOR . 'app.po';
         $this->filesystem->makeDirectory($tmpDir, 0777, true, true);
 
-        # po(t) headers
+        // po(t) headers
         $this->setPoHeaders($translations);
 
-        # create pot data
+        // Create pot data
         $translations->toPoFile($tmpFile);
         $poLocales = [
             'pot_data' => $this->filesystem->get($tmpFile)
         ];
 
-        # create po data for each language
+        // Create po data for each language
         foreach ($targets as $target) {
             $targetTranslations = clone $translations;
             $targetTranslations->setLanguage($target);
 
             $targetTranslations = $this->mergeWithExistingTargetPoFile($targetTranslations, $target);
+            $targetTranslations = $this->mergeWithExistingStringsFromTargetJsonFile($targetTranslations, $target);
 
             $targetTranslations->toPoFile($tmpFile);
             $poLocales[$target] = $this->filesystem->get($tmpFile);
@@ -137,15 +143,52 @@ class GettextPOGenerator
         return $this->config['gettext_parse_paths'];
     }
 
+    private function jsonFiles()
+    {
+        $files = [];
+
+        foreach (glob($this->application['path.lang'] . DIRECTORY_SEPARATOR . '*.json') as $filename) {
+            $files[] = $filename;
+        }
+
+        return $files;
+    }
+
+    private function path()
+    {
+        return $this->application['path.lang'];
+    }
+
+    private function addStringsFromJsonFiles($translations) {
+      $sourceStrings = [];
+
+      // Load each JSON file to get source strings
+      foreach ($this->JsonFiles() as $jsonFile) {
+          $jsonTranslations = json_decode(file_get_contents($jsonFile), true);
+
+          foreach ($jsonTranslations as $key => $value) {
+              $sourceStrings[] = $key;
+          }
+      }
+
+      // Deduplicate them (in a perfect world, each JSON locale file must have the same sources)
+      $sourceStrings = array_unique($sourceStrings);
+
+      // Insert them in $translations with a special context
+      foreach ($sourceStrings as $sourceString) {
+          $translations->insert($this->jsonStringContext(), $sourceString, '');
+      }
+    }
+
     private function setPoHeaders($translations) {
       $translations->setHeader('Project-Id-Version', config('app.name'));
       $translations->setHeader('Report-Msgid-Bugs-To', 'contact@translation.io');
       $translations->setHeader("Plural-Forms", "nplurals=INTEGER; plural=EXPRESSION;");
 
-      // only for testing (for VCR)
+      // Only for testing (for VCR)
       if ($this->application->environment('testing')) {
-        $translations->setHeader('POT-Creation-Date', '2018-01-01T12:00:00+00:00');
-        $translations->setHeader("PO-Revision-Date",  "2018-01-02T12:00:00+00:00");
+          $translations->setHeader('POT-Creation-Date', '2018-01-01T12:00:00+00:00');
+          $translations->setHeader("PO-Revision-Date",  "2018-01-02T12:00:00+00:00");
       }
     }
 
@@ -164,5 +207,34 @@ class GettextPOGenerator
         }
 
         return $translations;
+    }
+
+    private function mergeWithExistingStringsFromTargetJsonFile($translations, $target) {
+        $targetTranslations = new Translations();
+        $targetTranslations->setLanguage($target);
+
+        $targetJsonFile = $this->application['path.lang'] . DIRECTORY_SEPARATOR . $target . '.json';
+
+        if ($this->filesystem->exists($targetJsonFile)) {
+            $targetJsonTranslations = json_decode(file_get_contents($targetJsonFile), true);
+
+            foreach ($targetJsonTranslations as $key => $value) {
+                $translation = new Translation($this->jsonStringContext(), $key, '');
+                $translation->setTranslation($value);
+                $targetTranslations[] = $translation;
+            }
+
+            $translations->mergeWith(
+                $targetTranslations,
+                Merge::ADD || Merge::HEADERS_ADD || Merge::COMMENTS_OURS ||
+                Merge::EXTRACTED_COMMENTS_OURS || Merge::FLAGS_OURS || Merge::REFERENCES_OURS
+            );
+        }
+
+        return $translations;
+    }
+
+    private function jsonStringContext() {
+        return 'Extracted from JSON file';
     }
 }
