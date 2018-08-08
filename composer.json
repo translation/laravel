@@ -1,6 +1,6 @@
 {
   "name": "tio/laravel",
-  "description": "Laravel translation made t('simple') with PHP keys and GetText using Translation.io.",
+  "description": "Add this package to localize your Laravel application (PHP, JSON or GetText).",
   "keywords": [
     "laravel",
     "translation",
