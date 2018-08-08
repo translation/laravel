@@ -5,11 +5,12 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/552e1ddc3f3f604d4908/test_coverage)](https://codeclimate.com/github/translation/laravel/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/552e1ddc3f3f604d4908/maintainability)](https://codeclimate.com/github/translation/laravel/maintainability)
 
-Add this package to localize your application using the official Laravel syntax
-([PHP]((#laravel-localization-php-keyvalues)) and [JSON](#laravel-localization-json-source-text))
-or the alternative and better [GetText](#gettext) syntax.
+Add this package to localize your Laravel application.
 
-Write only the source language, and keep it synchronized with your translators on [Translation.io](https://translation.io/laravel).
+Use the official syntax with [PHP](#laravel-localization-php-keyvalues) or [JSON](#laravel-localization-json-source-text) files,
+or use the better [GetText](#gettext) syntax.
+
+Write only the source text, and keep it synchronized with your translators on [Translation.io](https://translation.io/laravel).
 
 <a href="https://translation.io/laravel">
   <img width="720px" alt="Translation.io interface" src="https://translation.io/gifs/translation.gif">
