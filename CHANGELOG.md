@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.3](https://github.com/translation/laravel/releases/tag/v1.3) (2018-08-08)
+
+#### New features:
+
+  * Management of JSON translations (source text) (more info [here](https://github.com/translation/laravel#laravel-localization-json-source-text)).
+
 ## [v1.2](https://github.com/translation/laravel/releases/tag/v1.2) (2018-07-13)
 
 #### Fixes (bugs & defects):

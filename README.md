@@ -5,10 +5,11 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/552e1ddc3f3f604d4908/test_coverage)](https://codeclimate.com/github/translation/laravel/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/552e1ddc3f3f604d4908/maintainability)](https://codeclimate.com/github/translation/laravel/maintainability)
 
-Add this package to translate your application with
-[Laravel](#laravel-localization-php-keyvalues) or [GetText](#gettext) syntaxes.
+Add this package to localize your application using the official Laravel syntax
+([PHP]((#laravel-localization-php-keyvalues)) and [JSON](#laravel-localization-json-source-text))
+or the alternative and better [GetText](#gettext) syntax.
 
-Keep it synchronized with your translators on [Translation.io](https://translation.io/laravel).
+Write only the source language, and keep it synchronized with your translators on [Translation.io](https://translation.io/laravel).
 
 <a href="https://translation.io/laravel">
   <img width="720px" alt="Translation.io interface" src="https://translation.io/gifs/translation.gif">
@@ -23,6 +24,7 @@ Table of contents
 
  * [Translation syntaxes](#translation-syntaxes)
    * [Laravel Localization (PHP key/values)](#laravel-localization-php-keyvalues)
+   * [Laravel Localization (JSON source text)](#laravel-localization-json-source-text)
    * [GetText](#gettext)
  * [Installation](#installation)
  * [Usage](#usage)
@@ -53,16 +55,16 @@ The [default Laravel method to localize](https://laravel.com/docs/master/localiz
 
 ```php
 // Regular
-trans('inbox.title');
+__('inbox.title');
 
 // Regular with sublevel key
-trans('inbox.menu.title');
+__('inbox.menu.title');
 
 // Pluralization
-trans_choice('inbox.message', $n);
+trans_choice('inbox.message', $number);
 
 // Interpolation
-trans('inbox.hello', ['name' => $user->name]);
+__('inbox.hello', ['name' => $user->name]);
 ```
 
 With the PHP file `resources/lang/en/inbox.php`:
@@ -78,12 +80,50 @@ return [
 ];
 ```
 
-Note that `__` can also be used instead of `trans`.
+Note that `trans` can also be used instead of `__`.
+
+### Laravel Localization (JSON source text)
+
+[A new feature](https://laravel.com/docs/5.6/localization#using-translation-strings-as-keys) of Laravel 5.4
+is possibility to use `__` directly with the source text and not only with keys like in the previous section.
+
+These translations are stored into JSON files located in the `resources/lang/` directory.
+
+```php
+// Regular
+__("Text to be translated");
+
+// Pluralization
+trans_choice(__('One message|Many messages'), $number);
+
+// Interpolation
+__('Hello :name', ['name' => $user->name]);
+```
+
+With the JSON file `resources/lang/en.json`:
+
+```json
+{
+    "Text to be translated": "",
+    "One message|Many messages": "",
+    "Hello :name": ""
+}
+```
+
+To spend less time dealing with multiple JSON files, we advise to only edit
+the JSON file of the original language (usually `en.json`) to add new text,
+and leave the translation empty.
+
+During a [sync](#sync), This package will automatically create and fill the JSON files
+of the target languages.
 
 ### GetText
 
 This package adds the GetText support for Laravel. We [strongly suggest](https://translation.io/blog/gettext-is-better-than-rails-i18n)
-that you use GetText to translate your applications since it allows a simpler and more maintainable syntax.
+that you use GetText to localize your applications since it allows an easier and more complete syntax.
+
+Also, you won't need to create and manage any PHP or JSON file since your code will be
+automatically scanned for any string to translate.
 
 ```php
 // Regular
@@ -104,9 +144,6 @@ t('Hello %s', $user->name);
 // Complex Interpolations (works with n, p and np too)
 t('%city1% is bigger than %city2%', [ '%city1%' => 'NYC', '%city2%' => 'BXL' ]);
 ```
-
-You don't need another file with source text or translations, everything will
-be synchronized from Translation.io, and stored on PO/MO files.
 
 ## Installation
 
