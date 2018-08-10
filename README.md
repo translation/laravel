@@ -154,7 +154,7 @@ t('%city1% is bigger than %city2%', [ '%city1%' => 'NYC', '%city2%' => 'BXL' ]);
 $ composer require tio/laravel
 ```
 
-If you are on lower Laravel version that 5.5
+If you are on a Laravel version lower than 5.5
 (or choose not to use package auto discovery) add this to service providers:
 
 ```php
