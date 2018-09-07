@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.4](https://github.com/translation/laravel/releases/tag/v1.4) (2018-09-07)
+
+#### Fixes (bugs & defects):
+
+  * Fix important bug that didn't detect some existing translations when `php artisan translation:init` a new already-translated project.
+
 ## [v1.3](https://github.com/translation/laravel/releases/tag/v1.3) (2018-08-08)
 
 #### New features:

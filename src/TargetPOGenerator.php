@@ -41,10 +41,11 @@ class TargetPOGenerator
         $this->sourceEntryKeys = $this->sourceEntries->keys();
 
         $targetEntries = $this->targetEntries($targets)->map(function ($localeEntries) {
-            $valid = collect(array_flip(array_filter(array_flip($localeEntries), function ($key) {
+            $valid = collect($localeEntries)->filter(function ($value, $key) {
                 return $this->sourceEntryKeys->contains($key);
-            })));
+            });
 
+            // Source keys that are not translated are created with empty translation
             $this->sourceEntryKeys->diff($valid->keys()->all())
                 ->each(function ($key) use (&$valid) {
                     $valid->put($key, "");
