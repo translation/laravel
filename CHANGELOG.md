@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.5](https://github.com/translation/laravel/releases/tag/v1.5) (2018-09-28)
+
+#### Fixes (bugs & defects):
+
+  * Increase the compatibility with Laravel 5.1 (maybe less).
+
 ## [v1.4](https://github.com/translation/laravel/releases/tag/v1.4) (2018-09-07)
 
 #### Fixes (bugs & defects):

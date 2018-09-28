@@ -41,17 +41,24 @@ class TargetPOGenerator
         $this->sourceEntryKeys = $this->sourceEntries->keys();
 
         $targetEntries = $this->targetEntries($targets)->map(function ($localeEntries) {
-            $valid = collect($localeEntries)->filter(function ($value, $key) {
-                return $this->sourceEntryKeys->contains($key);
+            $validEntries = [];
+
+            # previously used filter($key, $value) but not compatible with Laravel 5.1
+            collect($localeEntries)->each(function ($value, $key) use (&$validEntries) {
+                if ($this->sourceEntryKeys->contains($key)) {
+                    $validEntries[$key] = $value;
+                }
             });
 
+            $validEntries = collect($validEntries);
+
             // Source keys that are not translated are created with empty translation
-            $this->sourceEntryKeys->diff($valid->keys()->all())
-                ->each(function ($key) use (&$valid) {
-                    $valid->put($key, "");
+            $this->sourceEntryKeys->diff($validEntries->keys()->all())
+                ->each(function ($key) use (&$validEntries) {
+                    $validEntries->put($key, "");
                 });
 
-            return $valid->all();
+            return $validEntries->all();
         });
 
         return $targetEntries->map(function ($entries) {

@@ -61,7 +61,7 @@ class SourceEditSync
 
         $formData = [
             'client' => 'laravel',
-            'version' => '1.4',
+            'version' => '1.5',
             'timestamp' => $this->metadataTimestamp(),
             'source_language' => $locale
         ];

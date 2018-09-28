@@ -155,7 +155,7 @@ $ composer require tio/laravel
 ```
 
 If you are on a Laravel version lower than 5.5
-(or choose not to use package auto discovery) add this to service providers:
+(or choose not to use package auto discovery) add this to service providers (`config/app.php`):
 
 ```php
 \Tio\Laravel\ServiceProvider::class
@@ -264,26 +264,29 @@ The easiest way to change the current locale is with the `set.locale` Middleware
 ```php
 // in routes/web.php
 
+// Solution 1: Apply the locale selection to root
+Route::get('/', function () {
+    return view('welcome');
+})->middleware('set.locale');
+
+// Solution 2: Apply the locale selection to many routes
 Route::middleware('set.locale')->group(function () {
     Route::get('/', function () {
         return view('welcome');
     });
 });
-```
 
-It will automatically set the locale extracted from the user's browser `HTTP_ACCEPT_LANGUAGE` value, and keep it in the session between requests.
-
-Update the current locale by redirecting the user to https://yourdomain.com?locale=fr or even https://yourdomain.com/fr if you prefixed your routes like this:
-
-```php
-// in routes/web.php
-
+// Solution 3: prefix your routes with the locale and apply it
 Route::prefix('{locale?}')->middleware('set.locale')->group(function() {
     Route::get('/', function () {
         return view('welcome');
     });
 });
 ```
+
+First time the user will connect, it will automatically set the locale extracted from the browser `HTTP_ACCEPT_LANGUAGE` value, and keep it in the session between requests.
+
+Update the user locale by redirecting to https://yourdomain.com?locale=fr or https://yourdomain.com/fr (Solution 3)
 
 The `set.locale` Middleware code is [here](https://github.com/translation/laravel/blob/master/src/Middleware/SetLocaleMiddleware.php), feel free to adapt it with your own locale management.
 

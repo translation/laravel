@@ -27,7 +27,14 @@ class ServiceProvider extends LaravelServiceProvider
      */
     public function register()
     {
-        $this->app['router']->aliasMiddleware('set.locale' , SetLocaleMiddleware::class);
+        $router = $this->app['router'];
+
+        if (method_exists($router, 'aliasMiddleware')) {
+          $router->aliasMiddleware('set.locale' , SetLocaleMiddleware::class);
+        }
+        else {
+          $router->middleware('set.locale' , SetLocaleMiddleware::class);
+        }
     }
 
     /**
