@@ -143,7 +143,7 @@ np("context", "Singular text", "Plural text", $number);
 t('Hello %s', $user->name);
 
 // Complex Interpolations (works with n, p and np too)
-t('%city1% is bigger than %city2%', [ '%city1%' => 'NYC', '%city2%' => 'BXL' ]);
+t(':city1 is bigger than :city2', [ ':city1' => 'NYC', ':city2' => 'BXL' ]);
 ```
 
 ## Installation
