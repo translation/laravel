@@ -51,7 +51,7 @@ class ServiceProvider extends LaravelServiceProvider
 
         $translationIO = new TranslationIO($config);
 
-        $translationIO->setLocale($config['source_locale']);
+        $translationIO->setLocale(config('app.locale'));
     }
 
     private function config()
