@@ -58,7 +58,7 @@ class GettextTranslationSaver
                 $jsonArray[$jsonTranslation->getOriginal()] = $jsonTranslation->getTranslation();
             }
 
-            file_put_contents($this->jsonPath($locale), json_encode($jsonArray, JSON_PRETTY_PRINT));
+            file_put_contents($this->jsonPath($locale), json_encode($jsonArray, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES));
         }
     }
 

@@ -185,7 +185,7 @@ $ php artisan translation:init
 ```
 
 If you later need to add/remove target languages, please read our
-[documentation](https://translation.io/blog/adding-target-languages) about that.
+[this section](#add-or-remove-language) about that.
 
 ## Usage
 
