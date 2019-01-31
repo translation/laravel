@@ -1,5 +1,12 @@
 # Changelog
 
+## [v1.6](https://github.com/translation/laravel/releases/tag/v1.6) (2019-01-31)
+
+#### Fixes (bugs & defects):
+
+  * Default locale independent to translation setup (PR #9), thanks @nikosv
+  * Improve readability of target language JSON files by not escaping unicode chars or slashes.
+
 ## [v1.5](https://github.com/translation/laravel/releases/tag/v1.5) (2018-09-28)
 
 #### Fixes (bugs & defects):

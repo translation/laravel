@@ -94,7 +94,7 @@ class Sync
 
         $formData = [
             'client' => 'laravel',
-            'version' => '1.5',
+            'version' => '1.6',
             'source_language' => $locale
         ];
 
