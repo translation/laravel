@@ -177,7 +177,6 @@ return [
 ```
 
  4. Add the API key (`TRANSLATIONIO_KEY`) in your `.env` file.
-
  5. Initialize your project and push existing translations to Translation.io with:
 
 ```bash
