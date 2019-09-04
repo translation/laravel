@@ -26,7 +26,7 @@
     "illuminate/config": "~5.1",
     "illuminate/console": "~5.1",
     "illuminate/filesystem": "~5.1",
-    "illuminate/support": "~5.1",
+    "illuminate/support": "~5.1 || ^6.0",
     "illuminate/translation": "~5.1",
     "guzzlehttp/guzzle": "^6.0"
   },
