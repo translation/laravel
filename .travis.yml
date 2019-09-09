@@ -10,10 +10,10 @@ env:
   - COMPOSER_FLAGS="--prefer-lowest"
   - COMPOSER_FLAGS=""
 
-matrix:
-  exclude:
-    - php: 7.1
-      env: COMPOSER_FLAGS="--prefer-lowest"
+# matrix:
+#   exclude:
+#     - php: 7.1
+#       env: COMPOSER_FLAGS="--prefer-lowest"
 
 sudo: false
 
