@@ -16,7 +16,7 @@ class TestCase extends OrchestraTestCase
      */
     protected $filesystem;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->filesystem = app(Filesystem::class);

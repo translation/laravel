@@ -7,13 +7,8 @@ php:
   - 7.3
 
 env:
-  - COMPOSER_FLAGS="--prefer-lowest"
-  - COMPOSER_FLAGS=""
-
-# matrix:
-#   exclude:
-#     - php: 7.1
-#       env: COMPOSER_FLAGS="--prefer-lowest"
+  - COMPOSER_FLAGS=--prefer-lowest
+  - COMPOSER_FLAGS=
 
 sudo: false
 
@@ -28,7 +23,7 @@ cache:
 
 before_script:
   - travis_retry composer self-update
-  - travis_wait composer update ${COMPOSER_FLAGS} --no-interaction --prefer-stable
+  - travis_wait composer update --no-interaction --prefer-stable $COMPOSER_FLAGS
 
 script:
   - vendor/bin/phpunit
