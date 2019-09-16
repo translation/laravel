@@ -4,7 +4,7 @@
 
 #### New features:
 
-* Upgrade for Laravel 6 compatibility ([#14](https://github.com/translation/laravel/pull/14))
+* Laravel 6 compatibility ([#14](https://github.com/translation/laravel/pull/14))
 
 ## [v1.6](https://github.com/translation/laravel/releases/tag/v1.6) (2019-01-31)
 
