@@ -6,6 +6,8 @@ use Illuminate\Contracts\Foundation\Application;
 use Tio\Laravel\PrettyVarExport;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Translation\Translator;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use SplFileInfo;
 
 class TranslationSaver
@@ -43,7 +45,7 @@ class TranslationSaver
 
         foreach ($translationsDotted as $key => $value) {
             if ($value !== '' && ! is_null($value)) {
-                array_set($translationsWithGroups, $key, $value);
+                Arr::set($translationsWithGroups, $key, $value);
             }
         }
 
@@ -59,7 +61,7 @@ class TranslationSaver
 
         // Adapt $group and $dir if key contains subfolders:
         // https://laravel.io/forum/02-23-2015-localization-load-files-from-subdirectories-at-resourceslanglocale)
-        if (str_contains($group, '/')) {
+        if (Str::contains($group, '/')) {
             $subFolders = explode('/', $group);
             $group = array_pop($subFolders);
             $dir = join(DIRECTORY_SEPARATOR, array_merge([$dir], $subFolders));

@@ -7,7 +7,6 @@ use Tio\Laravel\GettextPOGenerator;
 use Tio\Laravel\SourcePOGenerator;
 use Tio\Laravel\TranslationSaver;
 use Tio\Laravel\GettextTranslationSaver;
-use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Facades\Log;

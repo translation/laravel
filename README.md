@@ -1,4 +1,4 @@
-# [Translation.io](https://translation.io/laravel) client for Laravel 5
+# [Translation.io](https://translation.io/laravel) client for Laravel 5/6
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://img.shields.io/travis/translation/laravel/master.svg?style=flat-square)](https://travis-ci.org/translation/laravel)
@@ -301,10 +301,18 @@ Translation::setLocale('fr');
 
 ## Testing
 
-To run the specs:
+To run the specs with oldest dependencies:
 
 ```bash
-$ phpunit
+$ composer update --no-interaction --prefer-stable --prefer-lowest
+$ ./vendor/bin/phpunit
+```
+
+To run the specs with latest dependencies:
+
+```bash
+$ composer update --no-interaction --prefer-stable
+$ ./vendor/bin/phpunit
 ```
 
 ## Contributing
@@ -346,9 +354,16 @@ Credits: [@deecewan](https://github.com/deecewan)
 
 ### Others
 
-If you want to create a new client for your favorite language or framework, feel
-free to reach us on [contact@translation.io](mailto:contact@translation.io) and
-we'll assist you with the workflow logic and send you API docs.
+If you want to create a new client for your favorite language or framework, please read our
+[Create a Translation.io Library](https://translation.io/docs/create-library)
+guide and use the special
+[init](https://translation.io/docs/create-library#initialization) and
+[sync](https://translation.io/docs/create-library#synchronization) endpoints.
+
+You can also use the more [traditional API](https://translation.io/docs/api).
+
+Feel free to contact us on [contact@translation.io](mailto:contact@translation.io) if
+you need some help or if you want to share your library.
 
 ## License
 

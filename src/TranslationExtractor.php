@@ -5,6 +5,7 @@ namespace Tio\Laravel;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Translation\Translator;
+use Illuminate\Support\Arr;
 use SplFileInfo;
 use Symfony\Component\Finder\Finder;
 
@@ -53,7 +54,7 @@ class TranslationExtractor
             $group = $file->getBasename('.' . $file->getExtension());
             $relativePath = $file->getRelativePath();
 
-            $data = array_dot([
+            $data = Arr::dot([
                 $group => $this->translator->getLoader()->load($locale, $relativePath . DIRECTORY_SEPARATOR . $group)
             ]);
 
