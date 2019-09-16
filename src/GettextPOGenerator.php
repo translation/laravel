@@ -160,36 +160,36 @@ class GettextPOGenerator
     }
 
     private function addStringsFromJsonFiles($translations) {
-      $sourceStrings = [];
+        $sourceStrings = [];
 
-      // Load each JSON file to get source strings
-      foreach ($this->JsonFiles() as $jsonFile) {
-          $jsonTranslations = json_decode(file_get_contents($jsonFile), true);
+        // Load each JSON file to get source strings
+        foreach ($this->JsonFiles() as $jsonFile) {
+            $jsonTranslations = json_decode(file_get_contents($jsonFile), true);
 
-          foreach ($jsonTranslations as $key => $value) {
-              $sourceStrings[] = $key;
-          }
-      }
+            foreach ($jsonTranslations as $key => $value) {
+                $sourceStrings[] = $key;
+            }
+        }
 
-      // Deduplicate them (in a perfect world, each JSON locale file must have the same sources)
-      $sourceStrings = array_unique($sourceStrings);
+        // Deduplicate them (in a perfect world, each JSON locale file must have the same sources)
+        $sourceStrings = array_unique($sourceStrings);
 
-      // Insert them in $translations with a special context
-      foreach ($sourceStrings as $sourceString) {
-          $translations->insert($this->jsonStringContext(), $sourceString, '');
-      }
+        // Insert them in $translations with a special context
+        foreach ($sourceStrings as $sourceString) {
+            $translations->insert($this->jsonStringContext(), $sourceString, '');
+        }
     }
 
     private function setPoHeaders($translations) {
-      $translations->setHeader('Project-Id-Version', config('app.name'));
-      $translations->setHeader('Report-Msgid-Bugs-To', 'contact@translation.io');
-      $translations->setHeader("Plural-Forms", "nplurals=INTEGER; plural=EXPRESSION;");
+        $translations->setHeader('Project-Id-Version', $this->appName());
+        $translations->setHeader('Report-Msgid-Bugs-To', 'contact@translation.io');
+        $translations->setHeader("Plural-Forms", "nplurals=INTEGER; plural=EXPRESSION;");
 
-      // Only for testing (for VCR)
-      if ($this->application->environment('testing')) {
-          $translations->setHeader('POT-Creation-Date', '2018-01-01T12:00:00+00:00');
-          $translations->setHeader("PO-Revision-Date",  "2018-01-02T12:00:00+00:00");
-      }
+        // Only for testing (for VCR)
+        if ($this->application->environment('testing')) {
+            $translations->setHeader('POT-Creation-Date', '2018-01-01T12:00:00+00:00');
+            $translations->setHeader("PO-Revision-Date",  "2018-01-02T12:00:00+00:00");
+        }
     }
 
     private function mergeWithExistingTargetPoFile($translations, $target) {
@@ -236,5 +236,15 @@ class GettextPOGenerator
 
     private function jsonStringContext() {
         return 'Extracted from JSON file';
+    }
+
+    private function appName() {
+        $appName = 'Laravel';
+
+        if(config('app.name') != '') {
+            $appName = config('app.name');
+        }
+
+        return $appName;
     }
 }
