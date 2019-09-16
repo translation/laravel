@@ -1,10 +1,16 @@
 # Changelog
 
+## [v1.7](https://github.com/translation/laravel/releases/tag/v1.7) (2019-09-16)
+
+#### New features:
+
+* Upgrade for Laravel 6 compatibility ([#14](https://github.com/translation/laravel/pull/14))
+
 ## [v1.6](https://github.com/translation/laravel/releases/tag/v1.6) (2019-01-31)
 
 #### Fixes (bugs & defects):
 
-  * Default locale independent to translation setup (PR #9), thanks @nikosv
+  * Default locale independent to translation setup ([#9](https://github.com/translation/laravel/pull/9)), thanks @nikosv
   * Improve readability of target language JSON files by not escaping unicode chars or slashes.
 
 ## [v1.5](https://github.com/translation/laravel/releases/tag/v1.5) (2018-09-28)
