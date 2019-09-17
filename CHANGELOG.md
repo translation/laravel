@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.8](https://github.com/translation/laravel/releases/tag/v1.8) (2019-09-17)
+
+#### Fixes (bugs & defects):
+
+* Don't crash on sync when locale files don't contain a specific key for source editions, thanks @lsmith77
+
 ## [v1.7](https://github.com/translation/laravel/releases/tag/v1.7) (2019-09-16)
 
 #### New features:
