@@ -114,7 +114,7 @@ EOT;
             $current = &$current[$key];
         }
 
-        if ($current[$keys[count($keys) - 1]] == $oldText) {
+        if (isset($current[$keys[count($keys) - 1]]) && $current[$keys[count($keys) - 1]] == $oldText) {
             $current[$keys[count($keys) - 1]] = $newText;
         }
 

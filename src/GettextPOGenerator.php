@@ -241,7 +241,7 @@ class GettextPOGenerator
     private function appName() {
         $appName = 'Laravel';
 
-        if(config('app.name') != '') {
+        if (config('app.name') != '') {
             $appName = config('app.name');
         }
 
