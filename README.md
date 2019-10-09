@@ -249,7 +249,7 @@ to adapt some translations to another instance of your application, or to a spec
 customer.
 
 The structure of a custom language is: `existing language code` + `-` + `custom text`, where
-`custom text` can only contain alphanumeric character and `-`.
+`custom text` can only contain alphanumeric characters and `-`.
 
 Examples: `en-microsoft` or `fr-BE-custom`.
 
@@ -265,13 +265,13 @@ The easiest way to change the current locale is with the `set.locale` Middleware
 // in routes/web.php
 
 // Solution 1: Apply the locale selection to root.
-// => https://yourdomain.com?locale=fr
+//             => https://yourdomain.com?locale=fr
 Route::get('/', function () {
     return view('welcome');
 })->middleware('set.locale');
 
 // Solution 2: Apply the locale selection to many routes.
-// => https://yourdomain.com/...?locale=fr
+//             => https://yourdomain.com/...?locale=fr
 Route::middleware('set.locale')->group(function () {
     Route::get('/', function () {
         return view('welcome');
@@ -279,8 +279,8 @@ Route::middleware('set.locale')->group(function () {
 });
 
 // Solution 3: prefix your routes with the locale and apply it.
-// => https://yourdomain.com/fr
-// => https://yourdomain.com/fr/...
+//             => https://yourdomain.com/fr
+//             => https://yourdomain.com/fr/...
 Route::prefix('{locale?}')->middleware('set.locale')->group(function() {
     Route::get('/', function () {
         return view('welcome');

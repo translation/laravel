@@ -1,5 +1,16 @@
 # Changelog
 
+## [v1.9](https://github.com/translation/laravel/releases/tag/v1.9) (2019-10-09)
+
+#### New features:
+
+ * Add "ignored_key_prefixes" option ([documentation](https://github.com/translation/laravel#ignored-php-keys)).
+ * Better API request error management.
+
+#### Fixes (bugs & defects):
+
+ * `gettext_parse_paths` and `gettext_locales_path` are now optional and will use the default values if not specified.
+
 ## [v1.8](https://github.com/translation/laravel/releases/tag/v1.8) (2019-09-17)
 
 #### Fixes (bugs & defects):
