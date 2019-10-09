@@ -12,15 +12,16 @@ return [
     | # Ignored PHP key prefixes.
     |--------------------------------------------------------------------------
     |
-    | Ex:  * 'auth' for the whole auth.php file
-    |      * 'validation.size' for subtree of "size" key in validation.php file
+    | Ex: * 'auth':           ignore the whole auth.php file.
+    |     * 'auth.guards':    ignore the "guards" subtree in auth.php file.
+    |     * 'subfolder/more': ignore the whole subfolder/more.php file.
     |
     */
     'ignored_key_prefixes' => [],
 
     /*
     |--------------------------------------------------------------------------
-    | Directories to scan for Gettext strings
+    | Directories to scan for Gettext strings.
     |--------------------------------------------------------------------------
     |
     */
@@ -28,7 +29,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Where the Gettext translations are stored
+    | Where the Gettext translations are stored.
     |--------------------------------------------------------------------------
     |
     \ PO file is here: $gettext_locales_path/xx_XX/app.po

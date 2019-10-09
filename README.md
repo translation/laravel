@@ -39,6 +39,8 @@ Table of contents
  * [Change the current locale](#change-the-current-locale)
    * [Globally](#globally)
    * [Locally](#locally)
+ * [Advanced Configuration Options](#advanced-configuration-options)
+   * [Ignored PHP keys](#ignored-php-keys)
  * [Testing](#testing)
  * [Contributing](#contributing)
  * [List of clients for Translation.io](#list-of-clients-for-translationio)
@@ -170,9 +172,7 @@ The initializer looks like this:
 return [
     'key' => env('TRANSLATIONIO_KEY'),
     'source_locale' => 'en',
-    'target_locales' => ['fr', 'nl', 'de', 'es'],
-    'gettext_parse_paths' => ['app', 'resources'],     // Where the GetText strings will be scanned
-    'gettext_locales_path' => 'resources/lang/gettext' // Where the GetText translations will be stored
+    'target_locales' => ['fr', 'nl', 'de', 'es']
 ];
 ```
 
@@ -226,7 +226,7 @@ You can add or remove a language by updating `'target_locales' => []` in your
 `config/translation.php` file, and executing `php artisan translation:sync`.
 
 If you want to add a new language with existing translations (ex. if you already have
-a translated PHP file in your `lang` folder), you will need to create a new project on
+a translated PHP file in your `lang` directory), you will need to create a new project on
 Translation.io and run `php artisan translation:init` for them to appear.
 
 ### Edit Language
@@ -244,11 +244,12 @@ Since you created a new project, the translation history and tags will unfortuna
 
 ### Custom Languages
 
-You may want to add a custom language that is derived from an existing language.
-It's useful if you want to change some translations for another instance of the
-application or for a specific customer.
+A custom language is always derived from an existing language. It's useful if you want
+to adapt some translations to another instance of your application, or to a specific
+customer.
 
-The structure of a custom language is : existing language code + "-" + custom text.
+The structure of a custom language is: `existing language code` + `-` + `custom text`, where
+`custom text` can only contain alphanumeric character and `-`.
 
 Examples: `en-microsoft` or `fr-BE-custom`.
 
@@ -263,19 +264,23 @@ The easiest way to change the current locale is with the `set.locale` Middleware
 ```php
 // in routes/web.php
 
-// Solution 1: Apply the locale selection to root
+// Solution 1: Apply the locale selection to root.
+// => https://yourdomain.com?locale=fr
 Route::get('/', function () {
     return view('welcome');
 })->middleware('set.locale');
 
-// Solution 2: Apply the locale selection to many routes
+// Solution 2: Apply the locale selection to many routes.
+// => https://yourdomain.com/...?locale=fr
 Route::middleware('set.locale')->group(function () {
     Route::get('/', function () {
         return view('welcome');
     });
 });
 
-// Solution 3: prefix your routes with the locale and apply it
+// Solution 3: prefix your routes with the locale and apply it.
+// => https://yourdomain.com/fr
+// => https://yourdomain.com/fr/...
 Route::prefix('{locale?}')->middleware('set.locale')->group(function() {
     Route::get('/', function () {
         return view('welcome');
@@ -283,11 +288,12 @@ Route::prefix('{locale?}')->middleware('set.locale')->group(function() {
 });
 ```
 
-First time the user will connect, it will automatically set the locale extracted from the browser `HTTP_ACCEPT_LANGUAGE` value, and keep it in the session between requests.
+First time the user will connect, it will automatically set the locale extracted
+from the browser `HTTP_ACCEPT_LANGUAGE` value, and keep it in the session between
+requests.
 
-Update the user locale by redirecting to https://yourdomain.com?locale=fr or https://yourdomain.com/fr (Solution 3)
-
-The `set.locale` Middleware code is [here](https://github.com/translation/laravel/blob/master/src/Middleware/SetLocaleMiddleware.php), feel free to adapt it with your own locale management.
+The `set.locale` Middleware code is [here](https://github.com/translation/laravel/blob/master/src/Middleware/SetLocaleMiddleware.php),
+feel free to adapt it with your own locale management.
 
 ### Locally
 
@@ -297,6 +303,32 @@ Change the current locale with:
 use Tio\Laravel\Facade as Translation;
 
 Translation::setLocale('fr');
+```
+
+## Advanced Configuration Options
+
+The `config/translation.php` file can take several optional configuration options.
+
+Some options are described below but for an exhaustive list, please refer to
+[translation.php](https://github.com/translation/laravel/blob/master/config/translation.php).
+
+### Ignored PHP keys
+
+If you would like to ignore some PHP keys or even entire PHP files or
+subdirectories, you can use the `ignored_key_prefixes` option.
+
+For example:
+
+```php
+return [
+    ...
+    'ignored_key_prefixes' => [
+        'auth',           // ignore the whole auth.php file.
+        'auth.guards',    // ignore the "guards" subtree in auth.php file.
+        'subfolder/more', // ignore the whole subfolder/more.php file.
+    ],
+    ...
+];
 ```
 
 ## Testing
