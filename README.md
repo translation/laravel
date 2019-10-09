@@ -323,9 +323,9 @@ For example:
 return [
     ...
     'ignored_key_prefixes' => [
-        'auth',           // ignore the whole auth.php file.
-        'auth.guards',    // ignore the "guards" subtree in auth.php file.
-        'subfolder/more', // ignore the whole subfolder/more.php file.
+        'validation',        // ignore the whole validation.php file.
+        'validation.custom', // ignore the "custom" subtree in validation.php file.
+        'subfolder/more',    // ignore the whole subfolder/more.php file.
     ],
     ...
 ];

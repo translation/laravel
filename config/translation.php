@@ -12,9 +12,9 @@ return [
     | # Ignored PHP key prefixes.
     |--------------------------------------------------------------------------
     |
-    | Ex: * 'auth':           ignore the whole auth.php file.
-    |     * 'auth.guards':    ignore the "guards" subtree in auth.php file.
-    |     * 'subfolder/more': ignore the whole subfolder/more.php file.
+    | Ex: * 'validation':        ignore the whole validation.php file.
+    |     * 'validation.custom': ignore the "custom" subtree in validation.php file.
+    |     * 'subfolder/more':    ignore the whole subfolder/more.php file.
     |
     */
     'ignored_key_prefixes' => [],
