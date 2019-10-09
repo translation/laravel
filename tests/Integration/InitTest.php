@@ -326,4 +326,28 @@ EOT;
 
         $this->assertDirectoryNotExists($this->gettextDir());
     }
+
+    public function testItWorksWithIgnoredKeyPrefixes()
+    {
+        app()['config']->set('translation.target_locales', ['fr']);
+        app()['config']->set('translation.key', 'd91bc584bc51421d83fde31de5e5a31e');
+        app()['config']->set('translation.gettext_parse_paths', []);
+        app()['config']->set('translation.ignored_key_prefixes', ['greetings.hello']);
+
+        $this->addTranslationFixture('en', [], 'greetings', [
+            'hello' => 'Hello',
+            'bye'   => 'Good bye'
+        ]);
+
+        $this->addTranslationFixture('fr', [], 'greetings', [
+            'hello' => 'Bonjour',
+            'bye'   => 'Au revoir'
+        ]);
+
+        # only contains "bye" key since "hello" was filtered out
+        $this->cassette('integration/init_for_key_prefixes.yml');
+        $this->artisan('translation:init');
+
+        $this->assertFileExists($this->localePath('fr/greetings.php'));
+    }
 }

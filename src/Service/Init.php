@@ -6,6 +6,7 @@ use Tio\Laravel\TargetPOGenerator;
 use Tio\Laravel\GettextPOGenerator;
 use Tio\Laravel\GettextTranslationSaver;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 use Illuminate\Contracts\Foundation\Application;
 
 class Init
@@ -45,7 +46,7 @@ class Init
         $client = new Client(['base_uri' => $this->url()]);
         $body = $this->createBody();
 
-        $responseData = $this->makeRequest($client, $body);
+        $responseData = $this->makeRequest($client, $body, $command);
 
         # Save new po files created from backend
         foreach ($this->targetLocales() as $locale) {
@@ -88,23 +89,38 @@ class Init
         return $body;
     }
 
-    private function makeRequest($client, $body)
+    private function makeRequest($client, $body, $command)
     {
-        $response = $client->request('POST', '', [
-            'headers' => [
-                'Content-Type' => 'application/x-www-form-urlencoded'
-            ],
-            'body' => $body
-        ]);
+        try {
+            $response = $client->request('POST', '', [
+                'headers' => [
+                    'Content-Type' => 'application/x-www-form-urlencoded'
+                ],
+                'body' => $body
+            ]);
 
-        return json_decode($response->getBody()->getContents(), true);
+            return json_decode($response->getBody()->getContents(), true);
+        } catch (RequestException $e) {
+            $responseData = json_decode($e->getResponse()->getBody()->getContents(), true);
+            $this->displayErrorAndExit($responseData, $command);
+        }
     }
 
-    private function displayInfoProjectUrl($responseData, $command) {
-        $command->line("");
+    private function displayInfoProjectUrl($responseData, $command)
+    {
+        $command->info("Init ended with success");
         $command->line("----------");
         $command->info("Use this URL to translate: {$responseData['project_url']}");
         $command->line("----------");
+    }
+
+    private function displayErrorAndExit($responseData, $command)
+    {
+        $command->line("----------");
+        $command->error("Error: {$responseData['error']}");
+        $command->line("----------");
+
+        exit(1);
     }
 
     private function sourceLocale()

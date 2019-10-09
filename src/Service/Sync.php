@@ -62,7 +62,7 @@ class Sync
         $client = new Client(['base_uri' => $this->url()]);
         $body = $this->createBody($options['purge']);
 
-        $responseData = $this->makeRequest($client, $body);
+        $responseData = $this->makeRequest($client, $body, $command);
 
         # Save new key/values sent from backend
         foreach ($this->targetLocales() as $locale) {
@@ -117,19 +117,25 @@ class Sync
         return $body;
     }
 
-    private function makeRequest($client, $body)
+    private function makeRequest($client, $body, $command)
     {
-        $response = $client->request('POST', '', [
-            'headers' => [
-                'Content-Type' => 'application/x-www-form-urlencoded'
-            ],
-            'body' => $body
-        ]);
+        try {
+            $response = $client->request('POST', '', [
+                'headers' => [
+                    'Content-Type' => 'application/x-www-form-urlencoded'
+                ],
+                'body' => $body
+            ]);
 
-        return json_decode($response->getBody()->getContents(), true);
+            return json_decode($response->getBody()->getContents(), true);
+        } catch (RequestException $e) {
+            $responseData = json_decode($e->getResponse()->getBody()->getContents(), true);
+            $this->displayErrorAndExit($responseData, $command);
+        }
     }
 
-    private function displayUnusedSegments($responseData, $command, $showPurgeable, $purge) {
+    private function displayUnusedSegments($responseData, $command, $showPurgeable, $purge)
+    {
         $unusedSegments = collect($responseData['unused_segments']);
 
         $yamlUnusedSegments = $unusedSegments->filter(function ($unusedSegment) {
@@ -208,11 +214,22 @@ class Sync
         }
     }
 
-    private function displayInfoProjectUrl($responseData, $command) {
-        $command->line("");
+    private function displayInfoProjectUrl($responseData, $command)
+    {
+        $command->info("Sync ended with success");
         $command->line("----------");
         $command->info("Use this URL to translate: {$responseData['project_url']}");
         $command->line("----------");
+    }
+
+
+    private function displayErrorAndExit($responseData, $command)
+    {
+        $command->line("----------");
+        $command->error("Error: {$responseData['error']}");
+        $command->line("----------");
+
+        exit(1);
     }
 
     private function sourceLocale()

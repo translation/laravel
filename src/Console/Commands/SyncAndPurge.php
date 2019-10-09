@@ -34,7 +34,7 @@ class SyncAndPurge extends Command
     public function handle()
     {
         $this->info('SyncAndPurge started');
-        $this->sourceEditSyncService->call();
+        $this->sourceEditSyncService->call($this);
         $this->syncService->call($this, [
             'purge' => true,
             'show_purgeable' => false

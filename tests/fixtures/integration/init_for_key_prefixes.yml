@@ -1,0 +1,37 @@
+
+-
+    request:
+        method: POST
+        url: 'https://translation.io/api/projects/d91bc584bc51421d83fde31de5e5a31e/init'
+        headers:
+            Host: translation.io
+            Expect: null
+            Accept-Encoding: null
+            User-Agent: 'GuzzleHttp/6.3.3 curl/7.66.0 PHP/7.3.9'
+            Content-Type: application/x-www-form-urlencoded
+            Accept: null
+        body: 'client=laravel&version=1.8&source_language=en&yaml_po_data_fr=msgid+%22%22%0Amsgstr+%22%22%0A%0Amsgctxt+%22greetings.bye%22%0Amsgid+%22Good+bye%22%0Amsgstr+%22Au+revoir%22%0A&pot_data=msgid+%22%22%0Amsgstr+%22%22%0A%22Project-Id-Version%3A+Laravel%5Cn%22%0A%22Report-Msgid-Bugs-To%3A+contact%40translation.io%5Cn%22%0A%22Last-Translator%3A+%5Cn%22%0A%22Language-Team%3A+%5Cn%22%0A%22MIME-Version%3A+1.0%5Cn%22%0A%22Content-Type%3A+text%2Fplain%3B+charset%3DUTF-8%5Cn%22%0A%22Content-Transfer-Encoding%3A+8bit%5Cn%22%0A%22POT-Creation-Date%3A+2018-01-01T12%3A00%3A00%2B00%3A00%5Cn%22%0A%22PO-Revision-Date%3A+2018-01-02T12%3A00%3A00%2B00%3A00%5Cn%22%0A%22Language%3A+%5Cn%22%0A%22Plural-Forms%3A+nplurals%3DINTEGER%3B+plural%3DEXPRESSION%3B%5Cn%22%0A&po_data_fr=msgid+%22%22%0Amsgstr+%22%22%0A%22Project-Id-Version%3A+Laravel%5Cn%22%0A%22Report-Msgid-Bugs-To%3A+contact%40translation.io%5Cn%22%0A%22Last-Translator%3A+%5Cn%22%0A%22Language-Team%3A+%5Cn%22%0A%22MIME-Version%3A+1.0%5Cn%22%0A%22Content-Type%3A+text%2Fplain%3B+charset%3DUTF-8%5Cn%22%0A%22Content-Transfer-Encoding%3A+8bit%5Cn%22%0A%22POT-Creation-Date%3A+2018-01-01T12%3A00%3A00%2B00%3A00%5Cn%22%0A%22PO-Revision-Date%3A+2018-01-02T12%3A00%3A00%2B00%3A00%5Cn%22%0A%22Language%3A+fr%5Cn%22%0A%22Plural-Forms%3A+nplurals%3D2%3B+plural%3Dn+%3E+1%3B%5Cn%22%0A&target_languages[]=fr'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Content-Type: 'application/json; charset=utf-8'
+            Transfer-Encoding: chunked
+            Connection: keep-alive
+            Status: '200 OK'
+            Cache-Control: 'max-age=0, private, must-revalidate'
+            Referrer-Policy: strict-origin-when-cross-origin
+            X-Permitted-Cross-Domain-Policies: none
+            X-XSS-Protection: '1; mode=block'
+            X-Request-Id: 99a4a04d-4cd7-4a7d-be6b-4493cf72360a
+            X-Download-Options: noopen
+            ETag: 'W/"285c7a694ff0400ca5ec846af8218f02"'
+            X-Frame-Options: SAMEORIGIN
+            X-Runtime: '0.215877'
+            X-Content-Type-Options: nosniff
+            Date: 'Wed, 09 Oct 2019 13:47:31 GMT'
+            X-Powered-By: 'Phusion Passenger 5.3.3'
+            Server: 'nginx/1.10.3 + Phusion Passenger 5.3.3'
+        body: '{"project_name":"laravel-test","project_url":"https://translation.io/michael-hoste/laravel-test","po_data_fr":"msgid \"\"\nmsgstr \"\"\n\"Project-Id-Version: Laravel\\n\"\n\"Report-Msgid-Bugs-To: contact@translation.io\\n\"\n\"Last-Translator: \\n\"\n\"Language-Team: French\\n\"\n\"MIME-Version: 1.0\\n\"\n\"Content-Type: text/plain; charset=UTF-8\\n\"\n\"Content-Transfer-Encoding: 8bit\\n\"\n\"POT-Creation-Date: 2018-01-01T12:00:00+00:00\\n\"\n\"PO-Revision-Date: 2019-10-09 15:47+0200\\n\"\n\"Language: fr\\n\"\n\"Plural-Forms: nplurals=2; plural=n\u003e1;\\n\"\n\"\\n\"\n","yaml_po_data_fr":"msgctxt \"greetings.bye\"\nmsgid \"Good bye\"\nmsgstr \"Au revoir\"\n"}'

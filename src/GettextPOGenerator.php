@@ -135,12 +135,26 @@ class GettextPOGenerator
 
     private function gettextLocalesPath()
     {
-        return base_path($this->config['gettext_locales_path']);
+        if (array_key_exists('gettext_locales_path', $this->config)) {
+            $gettextLocalesPath = $this->config['gettext_locales_path'];
+        }
+        else {
+            // Default values if not present in config file
+            $gettextLocalesPath = 'resources/lang/gettext';
+        }
+
+        return base_path($gettextLocalesPath);
     }
 
     private function gettextParsePaths()
     {
-        return $this->config['gettext_parse_paths'];
+        if (array_key_exists('gettext_parse_paths', $this->config)) {
+            return $this->config['gettext_parse_paths'];
+        }
+        else {
+            // Default values if not present in config file
+            return ['app', 'resources'];
+        }
     }
 
     private function jsonFiles()
@@ -159,7 +173,8 @@ class GettextPOGenerator
         return $this->application['path.lang'];
     }
 
-    private function addStringsFromJsonFiles($translations) {
+    private function addStringsFromJsonFiles($translations)
+    {
         $sourceStrings = [];
 
         // Load each JSON file to get source strings
@@ -180,7 +195,8 @@ class GettextPOGenerator
         }
     }
 
-    private function setPoHeaders($translations) {
+    private function setPoHeaders($translations)
+    {
         $translations->setHeader('Project-Id-Version', $this->appName());
         $translations->setHeader('Report-Msgid-Bugs-To', 'contact@translation.io');
         $translations->setHeader("Plural-Forms", "nplurals=INTEGER; plural=EXPRESSION;");
@@ -192,7 +208,8 @@ class GettextPOGenerator
         }
     }
 
-    private function mergeWithExistingTargetPoFile($translations, $target) {
+    private function mergeWithExistingTargetPoFile($translations, $target)
+    {
         $gettextPath = $this->gettextLocalesPath();
         $poPath      = $gettextPath . DIRECTORY_SEPARATOR . $target . DIRECTORY_SEPARATOR . 'app.po';
 
@@ -209,7 +226,8 @@ class GettextPOGenerator
         return $translations;
     }
 
-    private function mergeWithExistingStringsFromTargetJsonFile($translations, $target) {
+    private function mergeWithExistingStringsFromTargetJsonFile($translations, $target)
+    {
         $targetTranslations = new Translations();
         $targetTranslations->setLanguage($target);
 
@@ -234,11 +252,13 @@ class GettextPOGenerator
         return $translations;
     }
 
-    private function jsonStringContext() {
+    private function jsonStringContext()
+    {
         return 'Extracted from JSON file';
     }
 
-    private function appName() {
+    private function appName()
+    {
         $appName = 'Laravel';
 
         if (config('app.name') != '') {

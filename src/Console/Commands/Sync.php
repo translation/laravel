@@ -34,7 +34,7 @@ class Sync extends Command
     public function handle()
     {
         $this->info('Sync started');
-        $this->sourceEditSyncService->call();
+        $this->sourceEditSyncService->call($this);
         $this->syncService->call($this, [
             'purge' => false,
             'show_purgeable' => false

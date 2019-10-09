@@ -115,12 +115,20 @@ class GettextTranslationSaver
 
     private function localePath($locale)
     {
-        return $this->gettextPath() . DIRECTORY_SEPARATOR . $locale;
+        return $this->gettextLocalesPath() . DIRECTORY_SEPARATOR . $locale;
     }
 
-    private function gettextPath()
+    private function gettextLocalesPath()
     {
-        return base_path($this->config['gettext_locales_path']);
+        if (array_key_exists('gettext_locales_path', $this->config)) {
+            $gettextLocalesPath = $this->config['gettext_locales_path'];
+        }
+        else {
+            // Default values if not present in config file
+            $gettextLocalesPath = 'resources/lang/gettext';
+        }
+
+        return base_path($gettextLocalesPath);
     }
 
     private function jsonPath($locale)

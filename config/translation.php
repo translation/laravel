@@ -9,6 +9,17 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | # Ignored PHP key prefixes.
+    |--------------------------------------------------------------------------
+    |
+    | Ex:  * 'auth' for the whole auth.php file
+    |      * 'validation.size' for subtree of "size" key in validation.php file
+    |
+    */
+    'ignored_key_prefixes' => [],
+
+    /*
+    |--------------------------------------------------------------------------
     | Directories to scan for Gettext strings
     |--------------------------------------------------------------------------
     |

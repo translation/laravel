@@ -24,6 +24,8 @@ class TranslationExtractor
      */
     private $translator;
 
+    private $config;
+
     public function __construct(
         Application $application,
         FileSystem $fileSystem,
@@ -33,6 +35,7 @@ class TranslationExtractor
         $this->application = $application;
         $this->fileSystem = $fileSystem;
         $this->translator = $translator;
+        $this->config = $application['config']['translation'];
     }
 
     public function call($locale)
@@ -63,6 +66,8 @@ class TranslationExtractor
             return collect($data)->filter();
         })->collapse()->toArray();
 
+        $translations = $this->rejectIgnoredKeyPrefixes($translations);
+
         return $translations;
     }
 
@@ -70,17 +75,53 @@ class TranslationExtractor
     // (https://laravel.io/forum/02-23-2015-localization-load-files-from-subdirectories-at-resourceslanglocale)
     private function addSubfolderToKeys($relativePath, $data)
     {
-      if ($relativePath != '') {
-          $newData = [];
+        if ($relativePath != '') {
+            $newData = [];
 
-          foreach ($data as $key => $value) {
-              $newData[$relativePath . '/' . $key] = $value;
-          }
+            foreach ($data as $key => $value) {
+                $newData[$relativePath . '/' . $key] = $value;
+            }
 
-          return $newData;
+            return $newData;
+        }
+        else {
+            return $data;
+        }
+    }
+
+    public function rejectIgnoredKeyPrefixes($translations)
+    {
+        $newTranslations = [];
+
+        foreach ($translations as $key => $value) {
+            if ( ! $this->ignoredKey($key)) {
+                $newTranslations[$key] = $value;
+            }
+        }
+
+        return $newTranslations;
+    }
+
+    private function ignoredKey($key)
+    {
+        $result = false;
+
+        foreach ($this->ignoredKeyPrefixes() as $ignoredKeyPrefix) {
+            if (preg_match("/^" . preg_quote($ignoredKeyPrefix, '/') . "\b/", $key)) {
+                $result = true;
+                break;
+            }
+        }
+
+        return $result;
+    }
+
+    private function ignoredKeyPrefixes() {
+      if (array_key_exists('ignored_key_prefixes', $this->config)) {
+          return $this->config['ignored_key_prefixes'];
       }
       else {
-          return $data;
+          return [];
       }
     }
 

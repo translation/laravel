@@ -54,8 +54,22 @@ class TranslationIO
     }
 
     # MO file is ~2 times faster than PO and PHP files
-    private function moPath($locale) {
-      return base_path($this->config['gettext_locales_path']) . '/'. $locale .'/LC_MESSAGES/app.mo';
+    private function moPath($locale)
+    {
+        return $this->gettextLocalesPath() . '/'. $locale .'/LC_MESSAGES/app.mo';
+    }
+
+    private function gettextLocalesPath()
+    {
+        if (array_key_exists('gettext_locales_path', $this->config)) {
+            $gettextLocalesPath = $this->config['gettext_locales_path'];
+        }
+        else {
+            // Default values if not present in config file
+            $gettextLocalesPath = 'resources/lang/gettext';
+        }
+
+        return base_path($gettextLocalesPath);
     }
 
     public static function includeFunctions()

@@ -433,4 +433,35 @@ EOT;
             ], $testEn);
     }
 
+    public function testItWorksWithIgnoredKeyPrefixes()
+    {
+        Carbon::setTestNow(Carbon::createFromTimestamp('1520275983'));
+
+        app()['config']->set('translation.target_locales', ['fr']);
+        app()['config']->set('translation.key', 'd91bc584bc51421d83fde31de5e5a31e');
+        app()['config']->set('translation.gettext_parse_paths', []);
+        app()['config']->set('translation.ignored_key_prefixes', ['subfolder/greetings.hello', 'subfolder/greetings.subkey']);
+
+        $this->addTranslationFixture('en', ['subfolder'], 'greetings', [
+            'hello' => 'Hello',
+            'bye'   => 'Good bye',
+            'subkey' => [
+                'other' => "Good everning"
+            ]
+        ]);
+
+        $this->addTranslationFixture('fr', ['subfolder'], 'greetings', [
+            'hello' => 'Bonjour',
+            'bye'   => 'Au revoir',
+            'subkey' => [
+                'other' => "Bonsoir"
+            ]
+        ]);
+
+        # only contains "bye" key since other keys were filtered out
+        $this->cassette('integration/sync_for_key_prefixes.yml');
+        $this->artisan('translation:sync');
+
+        $this->assertFileExists($this->localePath('fr/subfolder/greetings.php'));
+    }
 }

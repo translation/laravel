@@ -9,8 +9,6 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 
-class SourceEditSyncException extends \Exception {};
-
 class SourceEditSync
 {
     private $config;
@@ -40,11 +38,11 @@ class SourceEditSync
         $this->sourceSaver = $sourceSaver;
     }
 
-    public function call()
+    public function call($command)
     {
       $client = new Client(['base_uri' => $this->url() ]);
-      $body = $this->createBody();
-      $responseData = $this->makeRequest($client, $body);
+      $body = $this->createBody($command);
+      $responseData = $this->makeRequest($client, $body, $command);
 
       foreach ($responseData['source_edits'] as $sourceEdit) {
           $this->sourceSaver->call(
@@ -56,14 +54,14 @@ class SourceEditSync
       $this->updateMetadataTimestamp();
     }
 
-    private function createBody()
+    private function createBody($command)
     {
         $locale = $this->sourceLocale();
 
         $formData = [
             'client' => 'laravel',
             'version' => '1.8',
-            'timestamp' => $this->metadataTimestamp(),
+            'timestamp' => $this->metadataTimestamp($command),
             'source_language' => $locale
         ];
 
@@ -76,16 +74,21 @@ class SourceEditSync
         return $body;
     }
 
-    private function makeRequest($client, $body)
+    private function makeRequest($client, $body, $command)
     {
-        $response = $client->request('POST', '', [
-            'headers' => [
-                'Content-Type' => 'application/x-www-form-urlencoded'
-            ],
-            'body' => $body
-        ]);
+        try {
+            $response = $client->request('POST', '', [
+                'headers' => [
+                    'Content-Type' => 'application/x-www-form-urlencoded'
+                ],
+                'body' => $body
+            ]);
 
-        return json_decode($response->getBody()->getContents(), true);
+            return json_decode($response->getBody()->getContents(), true);
+        } catch (RequestException $e) {
+            $responseData = json_decode($e->getResponse()->getBody()->getContents(), true);
+            $this->displayErrorAndExit($responseData, $command);
+        }
     }
 
     private function sourceLocale()
@@ -108,23 +111,23 @@ class SourceEditSync
         return $this->application['path.lang'] . DIRECTORY_SEPARATOR . '.translation_io';
     }
 
-    private function metadataTimestamp()
+    private function metadataTimestamp($command)
     {
         $metadataFilePath = $this->metadataFilePath();
 
         if ($this->filesystem->exists($metadataFilePath)) {
             $metadataContent = $this->filesystem->get($metadataFilePath);
 
-            return $this->timestampFromMetadataContent($metadataContent);
+            return $this->timestampFromMetadataContent($metadataContent, $command);
         }
         else {
             return 0;
         }
     }
 
-    private function timestampFromMetadataContent($metadataContent)
+    private function timestampFromMetadataContent($metadataContent, $command)
     {
-        $this->throwErrorIfConflictInMetadata($metadataContent);
+        $this->displayMetadataErrorAndExit($metadataContent, $command);
 
         $json = json_decode($metadataContent, true);
 
@@ -136,11 +139,16 @@ class SourceEditSync
         }
     }
 
-    private function throwErrorIfConflictInMetadata($metadataContent)
+    private function displayMetadataErrorAndExit($metadataContent, $command)
     {
       if (Str::contains($metadataContent, ['>>>>', '<<<<'])) {
           $metadataFilePath = $this->metadataFilePath();
-          throw new SourceEditSyncException($metadataFilePath . " file is corrupted and seems to have unresolved versioning conflicts. Please resolve them and try again.");
+
+          $command->line("----------");
+          $command->error("Error: " . $metadataFilePath . " file seems to have unresolved versioning conflicts. Please fix them and try again.");
+          $command->line("----------");
+
+          exit(1);
       }
     }
 
@@ -150,5 +158,14 @@ class SourceEditSync
         $metadataFilePath = $this->metadataFilePath();
 
         $this->filesystem->put($metadataFilePath, $data);
+    }
+
+    private function displayErrorAndExit($responseData, $command)
+    {
+        $command->line("----------");
+        $command->error("Error: {$responseData['error']}");
+        $command->line("----------");
+
+        exit(1);
     }
 }
