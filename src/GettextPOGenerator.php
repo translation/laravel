@@ -180,6 +180,9 @@ class GettextPOGenerator
         // Load each JSON file to get source strings
         foreach ($this->JsonFiles() as $jsonFile) {
             $jsonTranslations = json_decode(file_get_contents($jsonFile), true);
+            if (!is_array($jsonTranslations)) {
+                throw new \Exception("The file '$jsonFile' is not valid JSON.'");
+            }
 
             foreach ($jsonTranslations as $key => $value) {
                 $sourceStrings[] = $key;
