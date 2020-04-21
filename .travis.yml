@@ -7,8 +7,11 @@ php:
   - 7.4
 
 env:
-  - COMPOSER_FLAGS=--prefer-lowest
-  - COMPOSER_FLAGS=
+  global:
+    - COMPOSER_MEMORY_LIMIT=-1
+  matrix:
+    - COMPOSER_FLAGS=--prefer-lowest
+    - COMPOSER_FLAGS=
 
 sudo: false
 
@@ -23,7 +26,7 @@ cache:
 
 before_script:
   - travis_retry composer self-update
-  - COMPOSER_MEMORY_LIMIT=-1 travis_wait composer update --no-interaction --prefer-stable $COMPOSER_FLAGS
+  - travis_wait composer update --no-interaction --prefer-stable $COMPOSER_FLAGS
 
 script:
   - vendor/bin/phpunit
