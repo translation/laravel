@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.10](https://github.com/translation/laravel/releases/tag/v1.10) (2020-04-27)
+
+#### New features:
+
+ * Compatibility with Laravel 7 and PHP 7.4
+
 ## [v1.9](https://github.com/translation/laravel/releases/tag/v1.9) (2019-10-09)
 
 #### New features:
