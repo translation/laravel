@@ -13,6 +13,14 @@ env:
     - COMPOSER_FLAGS=--prefer-lowest
     - COMPOSER_FLAGS=
 
+# php-vcr 1.3 (--prefer-lowest) uses Symfony\Components\EventDispatcher\Event and is compatible for Laravel < 7  and PHP < 7.4
+# php-vcr 1.4.4.4 (latest)      uses Symfony\Contracts\EventDispatcher\Event  and is compatible for Laravel >= 7 and PHP >= 7.1
+# => PHP 7.4 cannot work with --prefer-lowest and resolve these contraints (only used for test environment in 'require-dev', no impact in production)
+matrix:
+  exclude:
+    - php: 7.4
+      env: COMPOSER_FLAGS=--prefer-lowest # php-vcr 1.3 is needed for lowest (for Symfony\Component\EventDispatcher\Event), 1.4.4.4 for normal, but 1.3 is incompatible with PHP 7.4
+
 sudo: false
 
 addons:
