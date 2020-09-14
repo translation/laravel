@@ -324,7 +324,14 @@ EOT;
         $this->cassette('integration/init_with_no_gettext.yml');
         $this->artisan('translation:init');
 
-        $this->assertDirectoryNotExists($this->gettextDir());
+        // => for PHPUnit >= 10
+        if(method_exists($this, 'assertDirectoryDoesNotExist')) {
+            $this->assertDirectoryDoesNotExist($this->gettextDir());
+        }
+        // => for PHPUnit < 10
+        else {
+            $this->assertDirectoryNotExists($this->gettextDir());
+        }
     }
 
     public function testItWorksWithIgnoredKeyPrefixes()
@@ -348,6 +355,13 @@ EOT;
         $this->cassette('integration/init_for_key_prefixes.yml');
         $this->artisan('translation:init');
 
-        $this->assertFileExists($this->localePath('fr/greetings.php'));
+        // => for PHPUnit >= 10
+        if(method_exists($this, 'assertDirectoryDoesNotExist')) {
+            $this->assertDirectoryDoesNotExist($this->localePath('fr/greetings.php'));
+        }
+        // => for PHPUnit < 10
+        else {
+            $this->assertDirectoryNotExists($this->localePath('fr/greetings.php'));
+        }
     }
 }

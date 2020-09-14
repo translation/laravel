@@ -68,8 +68,16 @@ class SyncTest extends TestCase
             ], $formsFr);
 
         // empty files are not written on disk
-        $this->assertFileNotExists($this->localePath('lv') . DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'forms.php');
-        $this->assertFileNotExists($this->localePath('ru') . DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'forms.php');
+        // => for PHPUnit >= 10
+        if(method_exists($this, 'assertFileDoesNotExist')) {
+            $this->assertFileDoesNotExist($this->localePath('lv') . DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'forms.php');
+            $this->assertFileDoesNotExist($this->localePath('ru') . DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'forms.php');
+        }
+        // => for PHPUnit < 10
+        else {
+            $this->assertFileNotExists($this->localePath('lv') . DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'forms.php');
+            $this->assertFileNotExists($this->localePath('ru') . DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'forms.php');
+        }
 
         $expectedEnOutput = <<<EOT
 Hello noop 1
