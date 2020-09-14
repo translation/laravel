@@ -35,12 +35,15 @@ cache:
 before_script:
   - travis_retry composer self-update
   - travis_wait composer update --no-interaction --prefer-stable $COMPOSER_FLAGS
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 
 script:
   - vendor/bin/phpunit
 
 after_script:
-  - vendor/bin/test-reporter
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then ./cc-test-reporter after-build  -t clover --exit-code $TRAVIS_TEST_RESULT; fi
 
 notifications:
   email:
