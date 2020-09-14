@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.12](https://github.com/translation/laravel/releases/tag/v1.12) (2020-09-14)
+
+#### Fixes (bugs & defects):
+
+ * Relax Guzzle dependency to work with Laravel 8
+
 ## [v1.11](https://github.com/translation/laravel/releases/tag/v1.11) (2020-09-14)
 
 #### New features:
