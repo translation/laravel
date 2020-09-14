@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.11](https://github.com/translation/laravel/releases/tag/v1.11) (2020-09-14)
+
+#### New features:
+
+ * Compatibility with Laravel 8
+
 ## [v1.10](https://github.com/translation/laravel/releases/tag/v1.10) (2020-04-27)
 
 #### New features:
