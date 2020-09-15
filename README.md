@@ -1,9 +1,11 @@
 # [Translation.io](https://translation.io/laravel) client for Laravel 5/6/7/8
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/translation/laravel/master.svg?style=flat-square)](https://travis-ci.org/translation/laravel)
+[![Build Status](https://travis-ci.org/translation/laravel.svg?branch=master)](https://travis-ci.org/translation/laravel)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/552e1ddc3f3f604d4908/test_coverage)](https://codeclimate.com/github/translation/laravel/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/552e1ddc3f3f604d4908/maintainability)](https://codeclimate.com/github/translation/laravel/maintainability)
+[![Package Version](https://img.shields.io/packagist/v/tio/laravel?style=flat-square)](https://packagist.org/packages/tio/laravel)
+[![Downloads](https://img.shields.io/packagist/dt/tio/laravel.svg?style=flat-square)](https://packagist.org/packages/tio/laravel)
 
 Add this package to localize your Laravel application.
 
