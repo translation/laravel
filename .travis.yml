@@ -6,7 +6,9 @@ php:
   - 7.3
   - 7.4
 
+# "secure:" is for encrypted GITHUB_COMPOSER_AUTH ((o be able to use composer without GitHub API limits)
 env:
+  secure: k0jrQOB4M4BRCgj7y4VlBtVu9SN8SoJPjEucalIhijwLsG4yObPhLlGeyut3NARM1YHnpNS61cGuSZ4IiMDYIcgApimOe1W9tk4HVbkndFfnCT/lWfxV9CQaliP7s9bprbIcYJuJCeVEzblFwkL573A9gBZjNKUIFi7fn1damZWH0VHmRYwi9NnQwr7bSt57StElD+akgSZDbNWjL0fFeHxjHPvoVsw6P2QofTctCbdqwjM29l8sxRcoaNWohAj9gB7dJQDRmpKY0jO4DP+qeYC0wJbPvS0Hd7B7HdoH5LooYOwcnIuof+rysDf5JUXYwuY6WBMV2ZMAdrFXuY5k8P/S/gSIkZRcmJwOPwvNEkF7ne1llhg3+lsMVU17IEL6TCzoDAf5/ulpLsxhm8/wTwezh/cfLBURw0T4h1EBl45bubt5ivLDFSMhAeMBGUSSK9lSP+gcI5xpRokTbkTok019aDgA4b/Wq/S3lu2yV0Um9X9sgxJI1zVu7vfr+9uTZMbsORCAx/H38P0cwpxNg+tCr+uIT6LUEjq1kg81ion95fuGVtdDy/LIfvDXNxcgQCk+pAAY9Mrfx98djdPy5KE5MT8d4xt33TRBUIuZyeU5tK49R8leasSUYE2eOdc70/NdRWR32d2mNW0sDl5MTCUKZrzjljck/4h/nMUlI4U=
   global:
     - COMPOSER_MEMORY_LIMIT=-1
     - CC_TEST_REPORTER_ID=2f4620ac239cc7fdb27b299c24422281b04fd8012820ba173e92c70953385958
@@ -30,6 +32,7 @@ cache:
 
 before_script:
   - travis_retry composer self-update
+  - composer config -g github-oauth.github.com $GITHUB_COMPOSER_AUTH
   - travis_wait composer update --no-interaction --prefer-stable $COMPOSER_FLAGS
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
