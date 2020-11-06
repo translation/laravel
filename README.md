@@ -316,8 +316,8 @@ Some options are described below but for an exhaustive list, please refer to
 
 ### Ignored PHP keys
 
-If you would like to ignore some PHP keys or even entire PHP files or
-subdirectories, you can use the `ignored_key_prefixes` option.
+If you would like to ignore specific PHP keys, or even entire PHP files or
+subdirectories from the source language, you can use the `ignored_key_prefixes` option.
 
 For example:
 
