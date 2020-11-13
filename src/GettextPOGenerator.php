@@ -49,7 +49,7 @@ class GettextPOGenerator
         // Extract GetText strings from project
         foreach ($directories as $dir) {
             if (!is_dir($dir)) {
-                throw new \Exception('Folder "' . $dir . '" doest not exists. Gettext scan aborted.');
+                throw new \Exception('Folder "' . $dir . '" does not exist. Gettext scan aborted.');
             }
 
             foreach ($this->scanDir($dir) as $file) {
