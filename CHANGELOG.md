@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.13](https://github.com/translation/laravel/releases/tag/v1.13) (2020-11-19)
+
+#### Fixes (bugs & defects):
+
+ * Bump `gettext/gettext` dependency to fix GetText parsing with Blade Component Tags (cf. [#17](https://github.com/translation/laravel/issues/17) and [https://github.com/php-gettext/Gettext/pull/261](https://github.com/php-gettext/Gettext/pull/261))
+
 ## [v1.12](https://github.com/translation/laravel/releases/tag/v1.12) (2020-09-14)
 
 #### Fixes (bugs & defects):
