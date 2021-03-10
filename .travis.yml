@@ -5,6 +5,7 @@ php:
   - 7.2
   - 7.3
   - 7.4
+  - 8.0
 
 # "secure:" is for encrypted GITHUB_COMPOSER_AUTH ((o be able to use composer without GitHub API limits)
 env:
