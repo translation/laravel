@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.14](https://github.com/translation/laravel/releases/tag/v1.14) (2021-03-11)
+
+#### Fixes (bugs & defects):
+
+ * Bump `gettext/gettext` dependency to fix PHP 8 compatibility (cf. [#22](https://github.com/translation/laravel/issues/22) and [https://github.com/php-gettext/Gettext/pull/266](https://github.com/php-gettext/Gettext/pull/266))
+
 ## [v1.13](https://github.com/translation/laravel/releases/tag/v1.13) (2020-11-19)
 
 #### Fixes (bugs & defects):

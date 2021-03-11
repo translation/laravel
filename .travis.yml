@@ -7,7 +7,7 @@ php:
   - 7.4
   - 8.0
 
-# "secure:" is for encrypted GITHUB_COMPOSER_AUTH ((o be able to use composer without GitHub API limits)
+# "secure:" is for encrypted GITHUB_COMPOSER_AUTH (to be able to use composer without GitHub API limits)
 env:
   global:
     - COMPOSER_MEMORY_LIMIT=-1
@@ -23,7 +23,10 @@ env:
 matrix:
   exclude:
     - php: 7.4
-      env: COMPOSER_FLAGS=--prefer-lowest # php-vcr 1.3 is needed for lowest (for Symfony\Component\EventDispatcher\Event), 1.4.4.4 for normal, but 1.3 is incompatible with PHP 7.4
+      env: COMPOSER_FLAGS=--prefer-lowest
+  exclude:
+    - php: 8.0
+      env: COMPOSER_FLAGS=--prefer-lowest
 
 sudo: false
 
