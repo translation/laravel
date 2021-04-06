@@ -8,6 +8,28 @@ use Tio\Laravel\Tests\TestCase;
 
 class InitTest extends TestCase
 {
+    public function testItWorksWithError()
+    {
+        app()['config']->set('translation.target_locales', ['fr-BE']);
+        app()['config']->set('translation.key', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+        app()['config']->set('translation.gettext_parse_paths', ['tests/fixtures/gettext']);
+
+        $this->addTranslationFixture('fr-BE', [], 'auth', [
+            'fields' => [
+                'first_name' => 'Prénom'
+            ]
+        ]);
+
+        $this->cassette('integration/init_with_bad_api_key.yml');
+
+        try {
+            $this->artisan('translation:init');
+        }
+        catch(\Throwable $e) {
+            $this->assertEquals("Could not find any *active* project with this API key.", $e->getMessage());
+        }
+    }
+
     public function testItWorks()
     {
         app()['config']->set('translation.target_locales', ['fr-BE', 'lv', 'ru']);

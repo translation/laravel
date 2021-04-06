@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.15](https://github.com/translation/laravel/releases/tag/v1.15) (2021-04-06)
+
+#### Fixes (bugs & defects):
+
+ * Better error management for errors like "SSL certificate problem" that don't have any response body.
+
 ## [v1.14](https://github.com/translation/laravel/releases/tag/v1.14) (2021-03-11)
 
 #### Fixes (bugs & defects):

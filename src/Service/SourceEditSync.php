@@ -60,7 +60,7 @@ class SourceEditSync
 
         $formData = [
             'client' => 'laravel',
-            'version' => '1.14',
+            'version' => '1.15',
             'timestamp' => $this->metadataTimestamp($command),
             'source_language' => $locale
         ];
@@ -86,8 +86,13 @@ class SourceEditSync
 
             return json_decode($response->getBody()->getContents(), true);
         } catch (RequestException $e) {
-            $responseData = json_decode($e->getResponse()->getBody()->getContents(), true);
-            $this->displayErrorAndExit($responseData, $command);
+            if ($e->hasResponse()) {
+                $responseData = json_decode($e->getResponse()->getBody()->getContents(), true);
+                $this->displayErrorAndExit($responseData['error'], $command);
+            }
+            else {
+                $this->displayErrorAndExit($e->getMessage(), $command);
+            }
         }
     }
 
@@ -160,12 +165,12 @@ class SourceEditSync
         $this->filesystem->put($metadataFilePath, $data);
     }
 
-    private function displayErrorAndExit($responseData, $command)
+    private function displayErrorAndExit($error, $command)
     {
         $command->line("----------");
-        $command->error("Error: {$responseData['error']}");
+        $command->error("Error: {$error}");
         $command->line("----------");
 
-        exit(1);
+        throw new \Exception($error);
     }
 }

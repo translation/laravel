@@ -63,7 +63,7 @@ class Init
     {
         $formData = [
             'client' => 'laravel',
-            'version' => '1.14',
+            'version' => '1.15',
             'source_language' => $this->sourceLocale(),
         ];
 
@@ -101,8 +101,13 @@ class Init
 
             return json_decode($response->getBody()->getContents(), true);
         } catch (RequestException $e) {
-            $responseData = json_decode($e->getResponse()->getBody()->getContents(), true);
-            $this->displayErrorAndExit($responseData, $command);
+            if ($e->hasResponse()) {
+                $responseData = json_decode($e->getResponse()->getBody()->getContents(), true);
+                $this->displayErrorAndExit($responseData['error'], $command);
+            }
+            else {
+                $this->displayErrorAndExit($e->getMessage(), $command);
+            }
         }
     }
 
@@ -114,13 +119,13 @@ class Init
         $command->line("----------");
     }
 
-    private function displayErrorAndExit($responseData, $command)
+    private function displayErrorAndExit($error, $command)
     {
         $command->line("----------");
-        $command->error("Error: {$responseData['error']}");
+        $command->error("Error: {$error}");
         $command->line("----------");
 
-        exit(1);
+        throw new \Exception($error);
     }
 
     private function sourceLocale()
