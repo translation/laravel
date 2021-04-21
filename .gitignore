@@ -6,3 +6,4 @@ composer.lock
 copy_to_vendor.sh
 DEVELOPMENT.md
 .phpunit.result.cache
+/.idea/
