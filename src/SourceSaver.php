@@ -40,7 +40,7 @@ class SourceSaver
         $dir = $this->localePath($sourceLocale);
 
         // Adapt $group and $dir if the key contains subfolders:
-        // https://laravel.io/forum/02-23-2015-localization-load-files-from-subdirectories-at-resourceslanglocale)
+        // https://laravel.io/forum/02-23-2015-localization-load-files-from-subdirectories-at-resourceslanglocale
         if (Str::contains($key, '/')) {
             $subFolders = explode('/', $key);
             array_pop($subFolders);

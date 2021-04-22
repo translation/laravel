@@ -85,7 +85,10 @@ return [
 ];
 ```
 
-Note that `trans` can also be used instead of `__`.
+Notes:
+
+ * `trans` can also be used instead of `__`.
+ * You can organize your PHP files with subfolders like `en/subfolder/inbox.php` using keys like `subfolder/inbox.title`.
 
 ### Laravel Localization (JSON source text)
 
