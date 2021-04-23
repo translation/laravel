@@ -163,8 +163,8 @@ class GettextTranslationSaver
     }
 
     # Because "Str::starsWith()" is only Laravel 5.7+
-    # https://stackoverflow.com/a/10473026/1243212
+    # https://stackoverflow.com/a/7168986/1243212
     function startsWith($haystack, $needle) {
-        return substr_compare($haystack, $needle, 0, strlen($needle)) === 0;
+        return substr($haystack, 0, strlen($needle)) === $needle;
     }
 }
