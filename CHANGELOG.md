@@ -1,5 +1,14 @@
 # Changelog
 
+## [v1.16](https://github.com/translation/laravel/releases/tag/v1.16) (2021-04-23)
+
+**This package no longer support Laravel versions smaller than 5.5**
+
+#### New features:
+
+ * Support for multiple JSON paths. See [here](https://github.com/translation/laravel#laravel-localization-json-source-text) to add them (cf. [#24](https://github.com/translation/laravel/issues/24) and [PR #25](https://github.com/translation/laravel/pull/25)), thanks @inxilpro.
+ * Ignore untranslated keys when syncing and creating JSON files on disk (same behavior).
+
 ## [v1.15](https://github.com/translation/laravel/releases/tag/v1.15) (2021-04-06)
 
 #### Fixes (bugs & defects):
