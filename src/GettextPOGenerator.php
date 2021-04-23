@@ -27,10 +27,10 @@ class GettextPOGenerator
      */
     private $filesystem;
 
-  /**
-   * @var TranslatorContract
-   */
-  private $translator;
+    /**
+     * @var TranslatorContract
+     */
+    private $translator;
 
     private $config;
 
@@ -191,7 +191,13 @@ class GettextPOGenerator
             $loader = $this->translator->getLoader();
 
             if ($loader instanceof FileLoader) {
-                foreach ($loader->jsonPaths() as $path) {
+                // $loader->jsonPaths() getter doesn't exist before Laravel 8 so we use this trick to access the protected value.
+                // cf. https://stackoverflow.com/a/3475714/1243212
+                $rp = new \ReflectionProperty('Illuminate\Translation\FileLoader', 'jsonPaths');
+                $rp->setAccessible(true);
+                $jsonPaths = $rp->getValue($loader);
+
+                foreach ($jsonPaths as $path) {
                     $paths[] = $path;
                 }
             }
