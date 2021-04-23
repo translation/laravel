@@ -4,7 +4,6 @@ namespace Tio\Laravel;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Str;
 use Gettext\Translations;
 
 class GettextTranslationSaver
@@ -62,7 +61,7 @@ class GettextTranslationSaver
                 }
                 else {
                     // Custom JSON path (added with `$loader->addJsonPath()`)
-                    $jsonPath = Str::beforeLast(Str::afterLast($jsonTranslation->getContext(), '['), ']');
+                    $jsonPath = explode(']', explode('[', $jsonTranslation->getContext(), 2)[1])[0];
                     $jsonPath = $this->application->basePath($jsonPath);
                 }
 
@@ -97,9 +96,9 @@ class GettextTranslationSaver
 
         // only keep non-JSON translations
         foreach ($gettextTranslations as $key => $gettextTranslation) {
-            $context = Str::of($gettextTranslation->getContext());
+            $context = $gettextTranslation->getContext();
 
-            if ($context->startsWith($this->jsonStringContext())) {
+            if ($this->startsWith($context, $this->jsonStringContext())) {
                 $keysToRemove[] = $key;
             }
         }
@@ -117,9 +116,9 @@ class GettextTranslationSaver
 
         // only keep JSON translations
         foreach ($jsonTranslations as $key => $jsonTranslation) {
-            $context = Str::of($jsonTranslation->getContext());
+            $context = $jsonTranslation->getContext();
 
-            if ( ! $context->startsWith($this->jsonStringContext())) {
+            if ( ! $this->startsWith($context, $this->jsonStringContext())) {
                 $keysToRemove[] = $key;
             }
         }
@@ -161,5 +160,11 @@ class GettextTranslationSaver
 
     private function jsonStringContext() {
         return 'Extracted from JSON file';
+    }
+
+    # Because "Str::starsWith()" is only Laravel 5.7+
+    # https://stackoverflow.com/a/10473026/1243212
+    function startsWith($haystack, $needle) {
+        return substr_compare($haystack, $needle, 0, strlen($needle)) === 0;
     }
 }

@@ -1,4 +1,4 @@
-# [Translation.io](https://translation.io/laravel) client for Laravel 5/6/7/8
+# [Translation.io](https://translation.io/laravel) client for Laravel 5.5+/6/7/8
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 [![Build Status](https://travis-ci.org/translation/laravel.svg?branch=master)](https://travis-ci.org/translation/laravel)
@@ -159,13 +159,6 @@ t(':city1 is bigger than :city2', [ ':city1' => 'NYC', ':city2' => 'BXL' ]);
 
 ```bash
 $ composer require tio/laravel
-```
-
-If you are on a Laravel version lower than 5.5
-(or choose not to use package auto discovery) add this to service providers (`config/app.php`):
-
-```php
-\Tio\Laravel\ServiceProvider::class
 ```
 
  2. Create a new translation project [from the UI](https://translation.io/laravel).

@@ -5,7 +5,6 @@ namespace Tio\Laravel;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Translation\Translator as TranslatorContract;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Str;
 use Illuminate\Translation\FileLoader;
 use Illuminate\Translation\Translator;
 use RecursiveDirectoryIterator;
@@ -242,7 +241,7 @@ class GettextPOGenerator
     private function mergeWithExistingTargetPoFile($translations, $target)
     {
         $gettextPath = $this->gettextLocalesPath();
-        $poPath      = $gettextPath . DIRECTORY_SEPARATOR . $target . DIRECTORY_SEPARATOR . 'app.po';
+        $poPath = $gettextPath . DIRECTORY_SEPARATOR . $target . DIRECTORY_SEPARATOR . 'app.po';
 
         if ($this->filesystem->exists($poPath)) {
             $existingTargetTranslations = Translations::fromPoFile($poPath);
@@ -265,7 +264,7 @@ class GettextPOGenerator
         $jsonFiles = collect($this->jsonFiles());
 
         $targetJsonFiles = $jsonFiles->filter(function ($jsonFile) use ($target) {
-            return Str::of($jsonFile)->endsWith($target . '.json');
+            return $this->endsWith($jsonFile, $target . '.json');
         });
 
         foreach ($targetJsonFiles as $targetJsonFile) {
@@ -292,15 +291,14 @@ class GettextPOGenerator
 
     private function jsonStringContext($path)
     {
-        $path = Str::of($path);
-
         if ($path == $this->application['path.lang']) {
             // Default JSON path
             return 'Extracted from JSON file';
         }
         else {
             // Custom JSON path (added with `$loader->addJsonPath()`)
-            return 'Extracted from JSON file [' . $path->after($this->application->basePath() . '/') . ']';
+            $relativePath = substr($path, strpos($path, $this->application->basePath() . '/') + strlen($this->application->basePath()) + 1 );
+            return 'Extracted from JSON file [' . $relativePath . ']';
         }
     }
 
@@ -313,5 +311,11 @@ class GettextPOGenerator
         }
 
         return $appName;
+    }
+
+    # Because "Str::endsWith()" is only Laravel 5.7+
+    # https://stackoverflow.com/a/10473026/1243212
+    function endsWith($haystack, $needle) {
+        return substr_compare($haystack, $needle, -strlen($needle)) === 0;
     }
 }
