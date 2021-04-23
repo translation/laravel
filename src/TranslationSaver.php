@@ -69,15 +69,20 @@ class TranslationSaver
 
         $this->filesystem->makeDirectory($dir, 0777, true, true);
 
-        $fileContent = <<<'EOT'
+        if (class_exists('Themsaid\Langman\Manager')) {
+            $manager = new \Themsaid\Langman\Manager(new Filesystem, '', [], []);
+            $manager->writeFile($dir . DIRECTORY_SEPARATOR . $group . '.php', $translations);
+        } else {
+            $fileContent = <<<'EOT'
 <?php
 return {{translations}};
 EOT;
 
-        $prettyTranslationsExport = $this->prettyVarExport->call($translations, ['array-align' => true]);
-        $fileContent = str_replace('{{translations}}', $prettyTranslationsExport, $fileContent);
+            $prettyTranslationsExport = $this->prettyVarExport->call($translations, ['array-align' => true]);
+            $fileContent = str_replace('{{translations}}', $prettyTranslationsExport, $fileContent);
 
-        $this->filesystem->put($dir . DIRECTORY_SEPARATOR . $group . '.php', $fileContent);
+            $this->filesystem->put($dir . DIRECTORY_SEPARATOR . $group . '.php', $fileContent);
+        }
     }
 
     private function localePath($locale)
