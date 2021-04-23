@@ -65,7 +65,10 @@ class GettextTranslationSaver
                     $jsonPath = $this->application->basePath($jsonPath);
                 }
 
-                $translationsPerJsonPaths[$jsonPath][$jsonTranslation->getOriginal()] = $jsonTranslation->getTranslation();
+                // Ignore empty translations (empty is like no string)
+                if (strlen($jsonTranslation->getTranslation()) > 0) {
+                    $translationsPerJsonPaths[$jsonPath][$jsonTranslation->getOriginal()] = $jsonTranslation->getTranslation();
+                }
             }
 
             foreach ($translationsPerJsonPaths as $jsonPath => $translations) {

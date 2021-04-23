@@ -92,7 +92,7 @@ Notes:
 
 ### Laravel Localization (JSON source text)
 
-[A new feature](https://laravel.com/docs/5.6/localization#using-translation-strings-as-keys) of Laravel 5.4
+[A new feature](https://laravel.com/docs/5.4/localization#using-translation-strings-as-keys) of Laravel 5.4
 is the possibility to use `__` with the source text (and not only with keys like in the previous section).
 
 These translations are stored into JSON files located in the `resources/lang/` directory.
@@ -124,6 +124,17 @@ translations empty.
 
 During a [sync](#sync), This package will automatically create and fill the JSON files
 of the target languages.
+
+If you want to organize your JSON files by feature, you can register
+new paths in `AppServiceProvider` like this:
+
+```php
+public function boot()
+{
+    $loader = $this->app['translation.loader'];
+    $loader->addJsonPath(base_path('resources/lang/my_feature'));
+}
+```
 
 ### GetText
 
