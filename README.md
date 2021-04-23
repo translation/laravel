@@ -118,14 +118,14 @@ With the JSON file `resources/lang/en.json`:
 }
 ```
 
-To spend less time dealing with multiple JSON files, we advise to only edit
+Notes: 
+
+ * To spend less time dealing with multiple JSON files, we advise to only edit
 the original language (usually `en.json`) to add new strings, and leave the
-translations empty.
+translations empty. During a [sync](#sync), This package will automatically 
+create and fill the JSON files of the target languages.
 
-During a [sync](#sync), This package will automatically create and fill the JSON files
-of the target languages.
-
-If you want to organize your JSON files by feature, you can register
+ * If you want to organize your JSON files by feature, you can register
 new paths in `AppServiceProvider` like this:
 
 ```php
