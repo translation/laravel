@@ -7,7 +7,7 @@
 [![Package Version](https://img.shields.io/packagist/v/tio/laravel?style=flat-square)](https://packagist.org/packages/tio/laravel)
 [![Downloads](https://img.shields.io/packagist/dt/tio/laravel.svg?style=flat-square)](https://packagist.org/packages/tio/laravel)
 
-Add this package to localize your Laravel application.
+Add this package to localize your **Laravel** application.
 
 Use the official Laravel syntax (with [PHP](#laravel-localization-php-keyvalues) or [JSON](#laravel-localization-json-source-text) files),
 or use the [GetText](#gettext) syntax.
