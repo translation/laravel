@@ -10,6 +10,12 @@ class InitTest extends TestCase
 {
     public function testItWorksWithError()
     {
+        // NOTE: we blocked gettext/languages to <=2.6.0 to be able to keep French with 2 plurals (fow now).
+        // It allows us to stay in sync with T.io while being compatible with previous PHP-VCR tests
+        // ---
+        // If one day gettext/languages is updated, please use another more stable language than French
+        // and edit the plural rules in the pre-recorded PHP-VCR YAML files so that both regular composer
+        // and `--prefer-lowest` pass
         app()['config']->set('translation.target_locales', ['fr-BE']);
         app()['config']->set('translation.key', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
         app()['config']->set('translation.gettext_parse_paths', ['tests/fixtures/gettext']);
