@@ -41,6 +41,9 @@ Table of contents
  * [Change the current locale](#change-the-current-locale)
    * [Globally](#globally)
    * [Locally](#locally)
+ * [Frontend Localization](#frontend-localization)
+   * [Using this package](#using-this-package)
+   * [Using our official React & JavaScript package](#using-our-official-react--javascript-package)
  * [Advanced Configuration Options](#advanced-configuration-options)
    * [Ignored PHP keys](#ignored-php-keys)
  * [Testing](#testing)
@@ -48,7 +51,7 @@ Table of contents
  * [List of clients for Translation.io](#list-of-clients-for-translationio)
    * [Ruby on Rails (Ruby)](#ruby-on-rails-ruby)
    * [Laravel (PHP)](#laravel-php)
-   * [React and React-Intl (JavaScript)](#react-and-react-intl-javascript)
+   * [React, React Native and JavaScript](#react-react-native-and-javasript)
    * [Others](#others)
  * [License](#license)
 
@@ -192,7 +195,7 @@ return [
 $ php artisan translation:init
 ```
 
-If you later need to add/remove target languages, please read our
+If you need to add or remove languages in the future, please read
 [this section](#add-or-remove-language) about that.
 
 ## Usage
@@ -225,7 +228,8 @@ $ php artisan translation:sync_and_purge
 
 As the name says, this operation will also perform a sync at the same time.
 
-Warning: all keys that are not present in the current branch will be **permanently deleted from Translation.io**.
+Warning: all keys that are not present in the current local branch
+will be **permanently deleted from Translation.io**.
 
 ## Manage Languages
 
@@ -314,6 +318,35 @@ use Tio\Laravel\Facade as Translation;
 Translation::setLocale('fr');
 ```
 
+## Frontend Localization
+
+### Using this Package
+
+This package is also able to cover frontend localization (React, Vue, ...).
+
+There are several ways to pass the translation strings from the backend
+to the frontend: JavaScript serialization, `data-` HTML attributes, JSON files etc.
+
+The easiest strategy when dealing with React/Vue would be to pass the corresponding
+translations as props when mounting the components.
+
+**Notes:**
+
+ * You can structure the i18n props with multiple levels of depth and pass the subtree as props to each of your sub-components.
+ * It also works great with server-side rendering of your components.
+
+### Using our official React & JavaScript package
+
+As Translation.io is directly integrated in the great
+[Lingui](https://lingui.js.org/) internationalization framework,
+you can also consider frontend localization as a completely different
+localization project.
+
+Please read more about this on:
+
+ * Website: [https://translation.io/lingui](https://translation.io/lingui)
+ * GitHub page: [https://github.com/translation/lingui](https://github.com/translation/lingui)
+
 ## Advanced Configuration Options
 
 The `config/translation.php` file can take several optional configuration options.
@@ -386,12 +419,15 @@ Officially Supported on [https://translation.io/laravel](https://translation.io/
 
 Credits: [@armandsar](https://github.com/armandsar), [@michaelhoste](https://github.com/michaelhoste)
 
-### React and React-Intl (JavaScript)
+### React, React Native and JavaScript
 
- * GitHub: https://github.com/deecewan/translation-io
- * NPM: https://www.npmjs.com/package/translation-io
+Officially Supported on [https://translation.io/lingui](https://translation.io/lingui)
 
-Credits: [@deecewan](https://github.com/deecewan)
+Translation.io is directly integrated in the great
+[Lingui](https://lingui.js.org/) internationalization project.
+
+ * GitHub: https://github.com/translation/lingui
+ * NPM: https://www.npmjs.com/package/@translation/lingui
 
 ### Others
 
