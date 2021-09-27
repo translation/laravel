@@ -51,7 +51,7 @@ Table of contents
  * [List of clients for Translation.io](#list-of-clients-for-translationio)
    * [Ruby on Rails (Ruby)](#ruby-on-rails-ruby)
    * [Laravel (PHP)](#laravel-php)
-   * [React, React Native and JavaScript](#react-react-native-and-javasript)
+   * [React, React Native and JavaScript](#react-react-native-and-javascript)
    * [Others](#others)
  * [License](#license)
 
