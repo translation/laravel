@@ -1,4 +1,4 @@
-# [Translation.io](https://translation.io/laravel) client for Laravel 5.5+/6/7/8
+# [Translation.io](https://translation.io/laravel) client for Laravel 5.5+/6/7/8/9
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 [![Build Status](https://travis-ci.com/translation/laravel.svg?branch=master)](https://travis-ci.com/translation/laravel)
