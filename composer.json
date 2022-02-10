@@ -1,6 +1,6 @@
 {
-  "name": "tio/laravel",
-  "description": "Add this package to localize your Laravel application (PHP, JSON or GetText).",
+  "name": "supsign/laravel-translation",
+  "description": "Fork as long as tio/laravel ist not compatible with laravel 9",
   "keywords": [
     "laravel",
     "translation",
