@@ -26,6 +26,8 @@ jobs:
             composer_flag: --prefer-lowest
           - php: 8.0
             composer_flag: --prefer-lowest
+          - php: 8.1
+            composer_flag: --prefer-lowest
     env:
       COMPOSER_MEMORY_LIMIT: -1
       CC_TEST_REPORTER_ID: 2f4620ac239cc7fdb27b299c24422281b04fd8012820ba173e92c70953385958
