@@ -24,10 +24,6 @@
     {
       "type":"vcs",
       "url":"https://github.com/MichaelHoste/php-vcr.git"
-    },
-    {
-      "type":"vcs",
-      "url":"https://github.com/MichaelHoste/testbench.git"
     }
   ],
   "require": {
