@@ -15,17 +15,17 @@ jobs:
           - 7.4
           - 8.0
           - 8.1
-        composer:
-          - COMPOSER_FLAGS=--prefer-lowest
-          - COMPOSER_FLAGS=
+        composer_flag:
+          - --prefer-lowest
+          -
         # php-vcr 1.3 (--prefer-lowest) uses Symfony\Components\EventDispatcher\Event and is compatible for Laravel < 7  and PHP < 7.4
         # php-vcr 1.4.4.4 (latest)      uses Symfony\Contracts\EventDispatcher\Event  and is compatible for Laravel >= 7 and PHP >= 7.1
         # => PHP 7.4 cannot work with --prefer-lowest and resolve these contraints (only used for test environment in 'require-dev', no impact in production)
         exclude:
           - php: 7.4
-            composer: COMPOSER_FLAGS=--prefer-lowest
+            composer_flag: --prefer-lowest
           - php: 8.0
-            composer: COMPOSER_FLAGS=--prefer-lowest
+            composer_flag: --prefer-lowest
     env:
       COMPOSER_MEMORY_LIMIT: -1
       CC_TEST_REPORTER_ID: 2f4620ac239cc7fdb27b299c24422281b04fd8012820ba173e92c70953385958
@@ -41,14 +41,14 @@ jobs:
         uses: actions/cache@v2
         with:
           path: vendor
-          key: ${{ runner.os }}-php-${{ matrix.php }}-composer-$COMPOSER_FLAGS-${{ hashFiles('**/composer.json') }}
-          restore-keys: ${{ runner.os }}-php-${{ matrix.php }}-composer-$COMPOSER_FLAGS-
+          key: ${{ runner.os }}-php-${{ matrix.php }}-composer-${{ matrix.composer_flag }}-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ runner.os }}-php-${{ matrix.php }}-composer-${{ matrix.composer_flag }}-
       - name: Install dependencies
-        run: composer update --no-interaction --prefer-stable $COMPOSER_FLAGS
+        run: composer update --no-interaction --prefer-stable ${{ matrix.composer_flag }}
       - name: Run Specs
         run: vendor/bin/phpunit
       - name: Publish code coverage
-        if: ${{ matrix.php == '8.1' && matrix.composer == 'COMPOSER_FLAGS=' }} # only one is needed!
+        if: ${{ matrix.php == '8.1' && matrix.composer_flag == '' }} # only one is needed!
         uses: paambaati/codeclimate-action@v3.0.0
         with:
           debug: true
