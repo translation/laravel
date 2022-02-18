@@ -38,7 +38,7 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
         env:
-          COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMPOSER_TOKEN: ${{ secrets.COMPOSER_TOKEN }}
       - name: Cache PHP dependencies
         uses: actions/cache@v2
         with:
