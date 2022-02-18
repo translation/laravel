@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.17](https://github.com/translation/laravel/releases/tag/v1.17) (2022-02-18)
+
+#### New features:
+
+ * Support for Laravel 9
+
 ## [v1.16](https://github.com/translation/laravel/releases/tag/v1.16) (2021-04-23)
 
 **This package no longer support Laravel versions smaller than 5.5**
