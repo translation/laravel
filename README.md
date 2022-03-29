@@ -75,7 +75,7 @@ trans_choice('inbox.message', $number);
 __('inbox.hello', ['name' => $user->name]);
 ```
 
-With the PHP file `resources/lang/en/inbox.php`:
+With the PHP file `lang/en/inbox.php`:
 
 ```php
 return [
@@ -98,7 +98,7 @@ Notes:
 [A new feature](https://laravel.com/docs/5.4/localization#using-translation-strings-as-keys) of Laravel 5.4
 is the possibility to use `__` with the source text (and not only with keys like in the previous section).
 
-These translations are stored into JSON files located in the `resources/lang/` directory.
+These translations are stored into JSON files located in the `lang` directory.
 
 ```php
 // Regular
@@ -111,7 +111,7 @@ trans_choice(__('One message|Many messages'), $number);
 __('Hello :name', ['name' => $user->name]);
 ```
 
-With the JSON file `resources/lang/en.json`:
+With the JSON file `lang/en.json`:
 
 ```json
 {
@@ -135,7 +135,9 @@ new paths in `AppServiceProvider` like this:
 public function boot()
 {
     $loader = $this->app['translation.loader'];
-    $loader->addJsonPath(base_path('resources/lang/my_feature'));
+
+    // or 'lang/my_feature' in Laravel >= 9
+    $loader->addJsonPath(base_path('resources/lang/my_feature')); 
 }
 ```
 
@@ -248,7 +250,7 @@ To edit existing languages while keeping their translations (e.g. changing from 
 
  1. Create a new project on Translation.io with the correct languages.
  2. Adapt `config/translation.php` (new API key and languages)
- 3. Adapt directory language names in `resources/lang` (optional: adapt GetText `.po` headers)
+ 3. Adapt directory language names in `resources/lang` or `lang` (optional: adapt GetText `.po` headers)
  4. Execute `php artisan translation:init` and check that everything went fine.
  5. Invite your collaborators in the new project.
  6. Remove the old project.

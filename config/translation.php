@@ -32,8 +32,10 @@ return [
     | Where the Gettext translations are stored.
     |--------------------------------------------------------------------------
     |
-    \ PO file is here: $gettext_locales_path/xx_XX/app.po
+    | PO file is here: $gettext_locales_path/xx_XX/app.po
     | MO file is here: $gettext_locales_path/xx_XX/LC_MESSAGES/app.mo
+    |
+    | For Laravel >= 9, default path should be changed to 'lang/gettext'.
     |
     */
     'gettext_locales_path' => 'resources/lang/gettext'
