@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.18](https://github.com/translation/laravel/releases/tag/v1.18) (2022-03-29)
+
+#### Fixes (bugs & defects):
+
+ * Better support for Laravel 9 new default `lang` path (instead of previously `resources/lang` path).
+
 ## [v1.17](https://github.com/translation/laravel/releases/tag/v1.17) (2022-02-18)
 
 #### New features:
