@@ -58,9 +58,11 @@ class SourceSaver
 
             $translations = $this->applySourceEditInTranslations($translations, $sourceEdit);
 
+            // Leave the extra newline at the end
             $fileContent = <<<'EOT'
 <?php
 return {{translations}};
+
 EOT;
 
             $prettyTranslationsExport = $this->prettyVarExport->call($translations, ['array-align' => true]);
