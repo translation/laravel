@@ -4,7 +4,7 @@
 
 #### Fixes (bugs & defects):
 
- * Better code standards for generated PHP files [PR #31](https://github.com/translation/laravel/pull/31)
+ * Better code standards for generated PHP files ([#31](https://github.com/translation/laravel/pull/31)).
 
 ## [v1.18](https://github.com/translation/laravel/releases/tag/v1.18) (2022-03-29)
 
