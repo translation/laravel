@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.19](https://github.com/translation/laravel/releases/tag/v1.19) (2022-05-12)
+
+#### Fixes (bugs & defects):
+
+ * Better code standards for generated PHP files [PR #31](https://github.com/translation/laravel/pull/31)
+
 ## [v1.18](https://github.com/translation/laravel/releases/tag/v1.18) (2022-03-29)
 
 #### Fixes (bugs & defects):
