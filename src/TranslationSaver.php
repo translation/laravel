@@ -69,9 +69,11 @@ class TranslationSaver
 
         $this->filesystem->makeDirectory($dir, 0777, true, true);
 
+        // Leave the extra newline at the end
         $fileContent = <<<'EOT'
 <?php
 return {{translations}};
+
 EOT;
 
         $prettyTranslationsExport = $this->prettyVarExport->call($translations, ['array-align' => true]);

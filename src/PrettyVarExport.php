@@ -20,7 +20,7 @@ class PrettyVarExport
                         . ($indexed ? '' : str_pad($key, $maxLength) . ' => ')
                         . $this->call($value, array_merge($opts, ['indent' => $opts['indent'] . $opts['tab']]));
                 }
-                return "[\n" . implode(",\n", $r) . "\n" . $opts['indent'] . "]";
+                return "[\n" . implode(",\n", $r) . ",\n" . $opts['indent'] . "]";
             case 'boolean':
                 return $var ? 'true' : 'false';
             case 'NULL':
