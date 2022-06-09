@@ -39,7 +39,7 @@ class TranslationSaver
     public function call($locale, $translationsDotted)
     {
         # the content of the localePath will be recreated from scratch
-        $this->filesystem->deleteDirectory($this->localePath($locale));
+        //$this->filesystem->deleteDirectory($this->localePath($locale));
 
         $translationsWithGroups = [];
 

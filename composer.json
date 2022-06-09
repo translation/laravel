@@ -1,5 +1,5 @@
 {
-  "name": "tio/laravel",
+  "name": "blendisnl/translationio",
   "description": "Add this package to localize your Laravel application (PHP, JSON or GetText).",
   "keywords": [
     "laravel",

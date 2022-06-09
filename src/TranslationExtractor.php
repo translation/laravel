@@ -40,6 +40,10 @@ class TranslationExtractor
 
     public function call($locale)
     {
+        if (isset($this->config['skip_php_translations']) && $this->config['skip_php_translations']) {
+            return [];
+        }
+
         $path = $this->localePath($locale);
 
         if ( ! $this->fileSystem->exists($path)) {
