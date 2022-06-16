@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.20](https://github.com/translation/laravel/releases/tag/v1.20) (2022-06-16)
+
+#### New features:
+
+ * Add user-friendly warnings when a not-valid JSON file failed to be loaded.
+
 ## [v1.19](https://github.com/translation/laravel/releases/tag/v1.19) (2022-05-12)
 
 #### Fixes (bugs & defects):
