@@ -20,6 +20,12 @@
       "email": "michael.hoste@gmail.com"
     }
   ],
+  "repositories":[
+    {
+      "type":"vcs",
+      "url":"https://github.com/MichaelHoste/php-vcr.git"
+    }
+  ],
   "require": {
     "php": ">=7.0",
     "gettext/gettext": "^4.8.4",
@@ -33,7 +39,7 @@
   },
   "require-dev": {
     "phpunit/phpunit": ">=5.7.27",
-    "covergenius/php-vcr": "^1.3",
+    "php-vcr/php-vcr": "^1.3",
     "squizlabs/php_codesniffer": "~3.0",
     "orchestra/testbench": ">=3.1"
   },
