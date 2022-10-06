@@ -52,6 +52,7 @@ Table of contents
    * [Ruby on Rails (Ruby)](#ruby-on-rails-ruby)
    * [Laravel (PHP)](#laravel-php)
    * [React, React Native and JavaScript](#react-react-native-and-javascript)
+   * [Angular](#angular)
    * [Others](#others)
  * [License](#license)
 
@@ -430,6 +431,13 @@ Translation.io is directly integrated in the great
 
  * GitHub: https://github.com/translation/lingui
  * NPM: https://www.npmjs.com/package/@translation/lingui
+ 
+### Angular
+
+Officially Supported on [https://translation.io/angular](https://translation.io/angular)
+
+ * GitHub: https://github.com/translation/angular
+ * NPM: https://www.npmjs.com/package/@translation/angular
 
 ### Others
 
