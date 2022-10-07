@@ -62,7 +62,7 @@ Table of contents
 
 The [default Laravel method to localize](https://laravel.com/docs/master/localization#using-short-keys).
 
-```php
+~~~php
 // Regular
 __('inbox.title');
 
@@ -74,11 +74,11 @@ trans_choice('inbox.message', $number);
 
 // Interpolation
 __('inbox.hello', ['name' => $user->name]);
-```
+~~~
 
 With the PHP file `lang/en/inbox.php`:
 
-```php
+~~~php
 return [
     'title' => 'Title to be translated',
     'hello' => 'Hello :name',
@@ -87,7 +87,7 @@ return [
         'title' => 'Title of menu'
     ]
 ];
-```
+~~~
 
 Notes:
 
@@ -101,7 +101,7 @@ is the possibility to use `__` with the source text (and not only with keys like
 
 These translations are stored into JSON files located in the `lang` directory.
 
-```php
+~~~php
 // Regular
 __("Text to be translated");
 
@@ -110,17 +110,17 @@ trans_choice(__('One message|Many messages'), $number);
 
 // Interpolation
 __('Hello :name', ['name' => $user->name]);
-```
+~~~
 
 With the JSON file `lang/en.json`:
 
-```json
+~~~json
 {
     "Text to be translated": "",
     "One message|Many messages": "",
     "Hello :name": ""
 }
-```
+~~~
 
 Notes: 
 
@@ -132,7 +132,7 @@ create and fill the JSON files of the target languages.
  * If you want to organize your JSON files by feature, you can register
 new paths in `AppServiceProvider` like this:
 
-```php
+~~~php
 public function boot()
 {
     $loader = $this->app['translation.loader'];
@@ -140,7 +140,7 @@ public function boot()
     // or 'lang/my_feature' in Laravel >= 9
     $loader->addJsonPath(base_path('resources/lang/my_feature')); 
 }
-```
+~~~
 
 ### GetText
 
@@ -150,7 +150,7 @@ that you use GetText to localize your application since it allows an easier and 
 Moreover, you won't need to create and manage any PHP or JSON file since your code will be
 automatically scanned for any string to translate.
 
-```php
+~~~php
 // Regular
 t("Text to be translated");
 
@@ -168,35 +168,35 @@ t('Hello %s', $user->name);
 
 // Complex Interpolations (works with n, p and np too)
 t(':city1 is bigger than :city2', [ ':city1' => 'NYC', ':city2' => 'BXL' ]);
-```
+~~~
 
 ## Installation
 
  1. Add the package via Composer:
 
-```bash
+~~~bash
 $ composer require tio/laravel
-```
+~~~
 
  2. Create a new translation project [from the UI](https://translation.io/laravel).
  3. Copy the initializer into your Laravel app (`config/translation.php`) or execute `php artisan vendor:publish`.
 
 The initializer looks like this:
 
-```php
+~~~php
 return [
     'key' => env('TRANSLATIONIO_KEY'),
     'source_locale' => 'en',
     'target_locales' => ['fr', 'nl', 'de', 'es']
 ];
-```
+~~~
 
  4. Add the API key (`TRANSLATIONIO_KEY`) in your `.env` file.
  5. Initialize your project and push existing translations to Translation.io with:
 
-```bash
+~~~bash
 $ php artisan translation:init
-```
+~~~
 
 If you need to add or remove languages in the future, please read
 [this section](#add-or-remove-language) about that.
@@ -207,17 +207,17 @@ If you need to add or remove languages in the future, please read
 
 To send new translatable keys/strings and get new translations from Translation.io, simply run:
 
-```bash
+~~~bash
 $ php artisan translation:sync
-```
+~~~
 
 ### Sync and Show Purgeable
 
 If you need to find out what are the unused keys/strings from Translation.io, using the current branch as reference:
 
-```bash
+~~~bash
 $ php artisan translation:sync_and_show_purgeable
-```
+~~~
 
 As the name says, this operation will also perform a sync at the same time.
 
@@ -225,9 +225,9 @@ As the name says, this operation will also perform a sync at the same time.
 
 If you need to remove unused keys/strings from Translation.io, using the current branch as reference:
 
-```bash
+~~~bash
 $ php artisan translation:sync_and_purge
-```
+~~~
 
 As the name says, this operation will also perform a sync at the same time.
 
@@ -277,7 +277,7 @@ Custom languages can be added and used like any other language.
 
 The easiest way to change the current locale is with the `set.locale` Middleware.
 
-```php
+~~~php
 // in routes/web.php
 
 // Solution 1: Apply the locale selection to root.
@@ -302,7 +302,7 @@ Route::prefix('{locale?}')->middleware('set.locale')->group(function() {
         return view('welcome');
     });
 });
-```
+~~~
 
 First time the user will connect, it will automatically set the locale extracted
 from the browser `HTTP_ACCEPT_LANGUAGE` value, and keep it in the session between
@@ -315,11 +315,11 @@ feel free to adapt it with your own locale management.
 
 Change the current locale with:
 
-```php
+~~~php
 use Tio\Laravel\Facade as Translation;
 
 Translation::setLocale('fr');
-```
+~~~
 
 ## Frontend Localization
 
@@ -364,7 +364,7 @@ subdirectories from the source language, you can use the `ignored_key_prefixes` 
 
 For example:
 
-```php
+~~~php
 return [
     ...
     'ignored_key_prefixes' => [
@@ -374,23 +374,23 @@ return [
     ],
     ...
 ];
-```
+~~~
 
 ## Testing
 
 To run the specs with oldest dependencies:
 
-```bash
+~~~bash
 $ composer update --no-interaction --prefer-stable --prefer-lowest
 $ ./vendor/bin/phpunit
-```
+~~~
 
 To run the specs with latest dependencies:
 
-```bash
+~~~bash
 $ composer update --no-interaction --prefer-stable
 $ ./vendor/bin/phpunit
-```
+~~~
 
 ## Contributing
 
