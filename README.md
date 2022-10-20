@@ -25,7 +25,7 @@ Need help? [contact@translation.io](mailto:contact@translation.io)
 Table of contents
 =================
 
- * [Translation syntaxes](#translation-syntaxes)
+ * [Localization syntaxes](#localization-syntaxes)
    * [Laravel Localization (PHP key/values)](#laravel-localization-php-keyvalues)
    * [Laravel Localization (JSON source text)](#laravel-localization-json-source-text)
    * [GetText](#gettext)
@@ -56,7 +56,7 @@ Table of contents
    * [Others](#others)
  * [License](#license)
 
-## Translation syntaxes
+## Localization syntaxes
 
 ### Laravel Localization (PHP key/values)
 
