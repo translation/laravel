@@ -398,11 +398,12 @@ Please read the [CONTRIBUTING](CONTRIBUTING.md) file.
 
 ## List of clients for Translation.io
 
-These implementations were usually started by contributors for their own projects.
-Some of them are officially supported by [Translation.io](https://translation.io)
-and some are not yet supported. However, they are quite well documented.
+The following clients are officially supported by [Translation.io](https://translation.io)
+and are well documented.
 
-Thanks a lot to these contributors for their hard work!
+Some of these implementations (and other non-officially supported ones)
+were started by contributors for their own translation projects.
+We are thankful to all contributors for their hard work!
 
 ### Ruby on Rails (Ruby)
 
