@@ -439,7 +439,7 @@ Officially supported on [https://translation.io/angular](https://translation.io/
  * GitHub: https://github.com/translation/angular
  * NPM: https://www.npmjs.com/package/@translation/angular
  
-Credits: [@SimonCorellia](https://github.com/SimonCorellia), [@didier-84](hthttps://github.com/didier-84), [@michaelhoste](https://github.com/michaelhoste)
+Credits: [@SimonCorellia](https://github.com/SimonCorellia), [@didier-84](https://github.com/didier-84), [@michaelhoste](https://github.com/michaelhoste)
 
 ### Others
 
