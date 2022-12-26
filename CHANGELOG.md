@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.21](https://github.com/translation/laravel/releases/tag/v1.21) (2022-12-26)
+
+#### Fixes (bugs & defects):
+
+ * Use the main php-vcr repository again for tests. They now support Symfony 6 and newest Laravel versions: (cf. [php-vcr/php-vcr#361](https://github.com/php-vcr/php-vcr/pull/361)).
+
 ## [v1.20](https://github.com/translation/laravel/releases/tag/v1.20) (2022-06-16)
 
 #### New features:
