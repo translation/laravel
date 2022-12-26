@@ -20,12 +20,7 @@
       "email": "michael.hoste@gmail.com"
     }
   ],
-  "repositories":[
-    {
-      "type":"vcs",
-      "url":"https://github.com/MichaelHoste/php-vcr.git"
-    }
-  ],
+  "repositories": [],
   "require": {
     "php": ">=7.0",
     "gettext/gettext": "^4.8.4",
