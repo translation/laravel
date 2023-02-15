@@ -340,7 +340,7 @@ translations as props when mounting the components.
 ### Using our official React & JavaScript package
 
 As Translation.io is directly integrated in the great
-[Lingui](https://lingui.js.org/) internationalization framework,
+[Lingui](https://lingui.dev/) internationalization framework,
 you can also consider frontend localization as a completely different
 localization project.
 
@@ -427,7 +427,7 @@ Credits: [@armandsar](https://github.com/armandsar), [@michaelhoste](https://git
 Officially supported on [https://translation.io/lingui](https://translation.io/lingui)
 
 Translation.io is directly integrated in the great
-[Lingui](https://lingui.js.org/) internationalization project.
+[Lingui](https://lingui.dev/) internationalization project.
 
  * GitHub: https://github.com/translation/lingui
  * NPM: https://www.npmjs.com/package/@translation/lingui
