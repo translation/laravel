@@ -1,5 +1,15 @@
 # Changelog
 
+## [v1.22](https://github.com/translation/laravel/releases/tag/v1.22) (2023-02-16)
+
+#### New features:
+
+ * Compatible with Laravel 10.
+
+#### Fixes (bugs & defects):
+
+ * Make `gettext_locales_path` optional with fallback to current `path.lang`/gettext directory (better default for Laravel >= 9)
+
 ## [v1.21](https://github.com/translation/laravel/releases/tag/v1.21) (2022-12-26)
 
 #### Fixes (bugs & defects):
