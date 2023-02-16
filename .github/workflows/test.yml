@@ -53,8 +53,6 @@ jobs:
         run: composer update --no-interaction --prefer-stable ${{ matrix.composer_flag }}
       - name: Run Specs
         run: vendor/bin/phpunit
-      - name: Debug
-        run: cat ./build/logs/clover.xml
       - name: Publish code coverage
         if: ${{ matrix.php == '8.1' && matrix.composer_flag == '' }} # only one is needed!
         uses: paambaati/codeclimate-action@v3.2.0
