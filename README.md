@@ -137,8 +137,8 @@ public function boot()
 {
     $loader = $this->app['translation.loader'];
 
-    // or 'lang/my_feature' in Laravel >= 9
-    $loader->addJsonPath(base_path('resources/lang/my_feature')); 
+    // or 'resources/lang/my_feature' in Laravel < 9
+    $loader->addJsonPath(base_path('lang/my_feature')); 
 }
 ~~~
 
