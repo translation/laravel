@@ -1,4 +1,4 @@
-# [Translation.io](https://translation.io/laravel) client for Laravel 5.5+ to 9.x
+# [Translation.io](https://translation.io/laravel) client for Laravel 5.5+ to 10.x
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 [![Build Status](https://github.com/translation/laravel/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/translation/laravel/actions/workflows/test.yml)
@@ -69,7 +69,7 @@ __('inbox.title');
 __('inbox.menu.title');
 
 // Pluralization
-trans_choice('inbox.message', $number);
+trans_choice('inbox.messages', $number);
 
 // Interpolation
 __('inbox.hello', ['name' => $user->name]);
@@ -78,6 +78,7 @@ __('inbox.hello', ['name' => $user->name]);
 With the PHP file `lang/en/inbox.php`:
 
 ~~~php
+<?php
 return [
     'title' => 'Title to be translated',
     'hello' => 'Hello :name',
