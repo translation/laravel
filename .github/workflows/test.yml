@@ -57,5 +57,6 @@ jobs:
         if: ${{ matrix.php == '8.1' && matrix.composer_flag == '' }} # only one is needed!
         uses: paambaati/codeclimate-action@v3.2.0
         with:
+          coverageLocations: './build/logs/clover.xml:clover'
           debug: true
           verifyDownload: true
