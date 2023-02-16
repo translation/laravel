@@ -15,7 +15,7 @@ jobs:
           - 7.4
           - 8.0
           - 8.1
-          - 8.2
+#         - 8.2 # Commented until "segmented fault" is resolved for PHP-VCR: https://github.com/php-vcr/php-vcr/issues/373
         composer_flag:
           - --prefer-lowest
           -
@@ -30,8 +30,8 @@ jobs:
             composer_flag: --prefer-lowest # => PHP >=7.4 cannot work with --prefer-lowest and resolve these contraints (only used for test environment in 'require-dev', no impact in production)
           - php: 8.1                       # /
             composer_flag: --prefer-lowest # /
-          #- php: 8.2                       # / Commented until "segmented fault" is resolved for VCR: https://github.com/php-vcr/php-vcr/issues/373
-          #  composer_flag: --prefer-lowest # /
+          - php: 8.2                       # /
+            composer_flag: --prefer-lowest # /
     env:
       COMPOSER_MEMORY_LIMIT: -1
       CC_TEST_REPORTER_ID: 2f4620ac239cc7fdb27b299c24422281b04fd8012820ba173e92c70953385958
