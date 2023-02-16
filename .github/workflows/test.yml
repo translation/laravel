@@ -36,7 +36,7 @@ jobs:
       COMPOSER_MEMORY_LIMIT: -1
       CC_TEST_REPORTER_ID: 2f4620ac239cc7fdb27b299c24422281b04fd8012820ba173e92c70953385958
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Install PHP
         uses: shivammathur/setup-php@v2
         with:
