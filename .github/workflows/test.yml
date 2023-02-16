@@ -15,6 +15,7 @@ jobs:
           - 7.4
           - 8.0
           - 8.1
+          - 8.2
         composer_flag:
           - --prefer-lowest
           -
@@ -28,6 +29,8 @@ jobs:
           - php: 8.0                       # php-vcr 1.4.4.4 (latest)      uses Symfony\Contracts\EventDispatcher\Event  and is compatible for Laravel >= 7 and PHP >= 7.1
             composer_flag: --prefer-lowest # => PHP >=7.4 cannot work with --prefer-lowest and resolve these contraints (only used for test environment in 'require-dev', no impact in production)
           - php: 8.1                       # /
+            composer_flag: --prefer-lowest # /
+          - php: 8.2                       # /
             composer_flag: --prefer-lowest # /
     env:
       COMPOSER_MEMORY_LIMIT: -1
