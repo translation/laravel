@@ -26,8 +26,7 @@ class SourceSaver
         Application $application,
         FileSystem $fileSystem,
         PrettyVarExport $prettyVarExport
-    )
-    {
+    ) {
         $this->application = $application;
         $this->filesystem = $fileSystem;
         $this->prettyVarExport = $prettyVarExport;

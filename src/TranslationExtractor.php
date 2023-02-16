@@ -30,8 +30,7 @@ class TranslationExtractor
         Application $application,
         FileSystem $fileSystem,
         Translator $translator
-    )
-    {
+    ) {
         $this->application = $application;
         $this->fileSystem = $fileSystem;
         $this->translator = $translator;
@@ -42,7 +41,7 @@ class TranslationExtractor
     {
         $path = $this->localePath($locale);
 
-        if ( ! $this->fileSystem->exists($path)) {
+        if (! $this->fileSystem->exists($path)) {
             return [];
         }
 
@@ -53,18 +52,20 @@ class TranslationExtractor
 
         sort($files);
 
-        $translations = collect($files)->map(function (SplFileInfo $file) use ($locale) {
-            $group = $file->getBasename('.' . $file->getExtension());
-            $relativePath = $file->getRelativePath();
+        $translations = collect($files)->map(
+            function (SplFileInfo $file) use ($locale) {
+                $group = $file->getBasename('.' . $file->getExtension());
+                $relativePath = $file->getRelativePath();
 
-            $data = Arr::dot([
-                $group => $this->translator->getLoader()->load($locale, $relativePath . DIRECTORY_SEPARATOR . $group)
-            ]);
+                $data = Arr::dot([
+                    $group => $this->translator->getLoader()->load($locale, $relativePath . DIRECTORY_SEPARATOR . $group)
+                ]);
 
-            $data = $this->addSubfolderToKeys($relativePath, $data);
+                $data = $this->addSubfolderToKeys($relativePath, $data);
 
-            return collect($data)->filter();
-        })->collapse()->toArray();
+                return collect($data)->filter();
+            }
+        )->collapse()->toArray();
 
         $translations = $this->rejectIgnoredKeyPrefixes($translations);
 
@@ -94,7 +95,7 @@ class TranslationExtractor
         $newTranslations = [];
 
         foreach ($translations as $key => $value) {
-            if ( ! $this->ignoredKey($key)) {
+            if (! $this->ignoredKey($key)) {
                 $newTranslations[$key] = $value;
             }
         }
@@ -116,13 +117,14 @@ class TranslationExtractor
         return $result;
     }
 
-    private function ignoredKeyPrefixes() {
-      if (array_key_exists('ignored_key_prefixes', $this->config)) {
-          return $this->config['ignored_key_prefixes'];
-      }
-      else {
-          return [];
-      }
+    private function ignoredKeyPrefixes()
+    {
+        if (array_key_exists('ignored_key_prefixes', $this->config)) {
+            return $this->config['ignored_key_prefixes'];
+        }
+        else {
+            return [];
+        }
     }
 
     private function localePath($locale)

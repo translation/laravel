@@ -47,8 +47,7 @@ class Sync
         POExtractor $poExtractor,
         TranslationSaver $translationSaver,
         GettextTranslationSaver $gettextTranslationSaver
-    )
-    {
+    ) {
         $this->config = $application['config']['translation'];
         $this->poGenerator = $poGenerator;
         $this->gettextPoGenerator = $gettextPoGenerator;
@@ -64,7 +63,7 @@ class Sync
 
         $responseData = $this->makeRequest($client, $body, $command);
 
-        # Save new key/values sent from backend
+        // Save new key/values sent from backend
         foreach ($this->targetLocales() as $locale) {
             $this->translationSaver->call(
                 $locale,
@@ -72,7 +71,7 @@ class Sync
             );
         }
 
-        # Save new po files created and sent from backend
+        // Save new po files created and sent from backend
         foreach ($this->targetLocales() as $locale) {
             $this->gettextTranslationSaver->call(
                 $locale,
@@ -81,7 +80,7 @@ class Sync
         }
 
         if ($options['show_purgeable']) {
-          $this->displayUnusedSegments($responseData, $command, $options['show_purgeable'], $options['purge']);
+            $this->displayUnusedSegments($responseData, $command, $options['show_purgeable'], $options['purge']);
         }
 
         $this->displayInfoProjectUrl($responseData, $command);
@@ -120,12 +119,14 @@ class Sync
     private function makeRequest($client, $body, $command)
     {
         try {
-            $response = $client->request('POST', '', [
+            $response = $client->request(
+                'POST', '', [
                 'headers' => [
                     'Content-Type' => 'application/x-www-form-urlencoded'
                 ],
                 'body' => $body
-            ]);
+                ]
+            );
 
             return json_decode($response->getBody()->getContents(), true);
         } catch (RequestException $e) {
@@ -143,20 +144,24 @@ class Sync
     {
         $unusedSegments = collect($responseData['unused_segments']);
 
-        $yamlUnusedSegments = $unusedSegments->filter(function ($unusedSegment) {
-            return $unusedSegment['kind'] == 'yaml';
-        });
+        $yamlUnusedSegments = $unusedSegments->filter(
+            function ($unusedSegment) {
+                return $unusedSegment['kind'] == 'yaml';
+            }
+        );
 
-        $gettextUnusedSegments = $unusedSegments->filter(function ($unusedSegment) {
-            return $unusedSegment['kind'] == 'gettext';
-        });
+        $gettextUnusedSegments = $unusedSegments->filter(
+            function ($unusedSegment) {
+                return $unusedSegment['kind'] == 'gettext';
+            }
+        );
 
         $yamlSize    = $yamlUnusedSegments->count();
         $gettextSize = $gettextUnusedSegments->count();
         $totalSize   = $yamlSize + $gettextSize;
 
         // Quick unused segments summary for simple "sync"
-        if ( !$showPurgeable && !$purge) {
+        if (!$showPurgeable && !$purge) {
             if ($totalSize > 0) {
                 $sum = $yamlSize + $gettextSize;
 
@@ -185,9 +190,11 @@ class Sync
                 $command->line("{$yamlSize} YAML {$keysText} {$text}");
                 $command->line("");
 
-                $yamlUnusedSegments->each(function ($yamlUnusedSegment) use ($command) {
-                    $command->line("[{$yamlUnusedSegment['languages']}] [{$yamlUnusedSegment['msgctxt']}] \"{$yamlUnusedSegment['msgid']}\"");
-                });
+                $yamlUnusedSegments->each(
+                    function ($yamlUnusedSegment) use ($command) {
+                        $command->line("[{$yamlUnusedSegment['languages']}] [{$yamlUnusedSegment['msgctxt']}] \"{$yamlUnusedSegment['msgid']}\"");
+                    }
+                );
             }
 
             if ($gettextSize > 0) {
@@ -198,9 +205,11 @@ class Sync
                 $command->line("{$gettextSize} GetText {$stringsText} {$text}");
                 $command->line("");
 
-                $gettextUnusedSegments->each(function ($gettextUnusedSegment) use ($command) {
-                    $command->line("[{$gettextUnusedSegment['languages']}] \"{$gettextUnusedSegment['msgid']}\"");
-                });
+                $gettextUnusedSegments->each(
+                    function ($gettextUnusedSegment) use ($command) {
+                        $command->line("[{$gettextUnusedSegment['languages']}] \"{$gettextUnusedSegment['msgid']}\"");
+                    }
+                );
             }
 
             // Special message for when nothing need to be purged

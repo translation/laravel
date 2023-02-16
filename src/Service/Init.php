@@ -29,12 +29,11 @@ class Init
     private $gettextTranslationSaver;
 
     public function __construct(
-      Application $application,
-      TargetPOGenerator $poGenerator,
-      GettextPOGenerator $gettextPoGenerator,
-      GettextTranslationSaver $gettextTranslationSaver
-    )
-    {
+        Application $application,
+        TargetPOGenerator $poGenerator,
+        GettextPOGenerator $gettextPoGenerator,
+        GettextTranslationSaver $gettextTranslationSaver
+    ) {
         $this->poGenerator = $poGenerator;
         $this->gettextPoGenerator = $gettextPoGenerator;
         $this->gettextTranslationSaver = $gettextTranslationSaver;
@@ -48,7 +47,7 @@ class Init
 
         $responseData = $this->makeRequest($client, $body, $command);
 
-        # Save new po files created from backend
+        // Save new po files created from backend
         foreach ($this->targetLocales() as $locale) {
             $this->gettextTranslationSaver->call(
                 $locale,
@@ -92,12 +91,14 @@ class Init
     private function makeRequest($client, $body, $command)
     {
         try {
-            $response = $client->request('POST', '', [
+            $response = $client->request(
+                'POST', '', [
                 'headers' => [
                     'Content-Type' => 'application/x-www-form-urlencoded'
                 ],
                 'body' => $body
-            ]);
+                ]
+            );
 
             return json_decode($response->getBody()->getContents(), true);
         } catch (RequestException $e) {

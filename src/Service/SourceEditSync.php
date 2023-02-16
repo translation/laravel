@@ -30,8 +30,7 @@ class SourceEditSync
         Application $application,
         Filesystem $filesystem,
         SourceSaver $sourceSaver
-    )
-    {
+    ) {
         $this->config = $application['config']['translation'];
         $this->application = $application;
         $this->filesystem = $filesystem;
@@ -40,18 +39,18 @@ class SourceEditSync
 
     public function call($command)
     {
-      $client = new Client(['base_uri' => $this->url() ]);
-      $body = $this->createBody($command);
-      $responseData = $this->makeRequest($client, $body, $command);
+        $client = new Client(['base_uri' => $this->url() ]);
+        $body = $this->createBody($command);
+        $responseData = $this->makeRequest($client, $body, $command);
 
-      foreach ($responseData['source_edits'] as $sourceEdit) {
-          $this->sourceSaver->call(
-              $sourceEdit,
-              $this->sourceLocale()
-          );
-      }
+        foreach ($responseData['source_edits'] as $sourceEdit) {
+            $this->sourceSaver->call(
+                $sourceEdit,
+                $this->sourceLocale()
+            );
+        }
 
-      $this->updateMetadataTimestamp();
+        $this->updateMetadataTimestamp();
     }
 
     private function createBody($command)
@@ -77,12 +76,14 @@ class SourceEditSync
     private function makeRequest($client, $body, $command)
     {
         try {
-            $response = $client->request('POST', '', [
+            $response = $client->request(
+                'POST', '', [
                 'headers' => [
                     'Content-Type' => 'application/x-www-form-urlencoded'
                 ],
                 'body' => $body
-            ]);
+                ]
+            );
 
             return json_decode($response->getBody()->getContents(), true);
         } catch (RequestException $e) {
@@ -146,15 +147,15 @@ class SourceEditSync
 
     private function displayMetadataErrorAndExit($metadataContent, $command)
     {
-      if (Str::contains($metadataContent, ['>>>>', '<<<<'])) {
-          $metadataFilePath = $this->metadataFilePath();
+        if (Str::contains($metadataContent, ['>>>>', '<<<<'])) {
+            $metadataFilePath = $this->metadataFilePath();
 
-          $command->line("----------");
-          $command->error("Error: " . $metadataFilePath . " file seems to have unresolved versioning conflicts. Please fix them and try again.");
-          $command->line("----------");
+            $command->line("----------");
+            $command->error("Error: " . $metadataFilePath . " file seems to have unresolved versioning conflicts. Please fix them and try again.");
+            $command->line("----------");
 
-          exit(1);
-      }
+            exit(1);
+        }
     }
 
     private function updateMetadataTimestamp()

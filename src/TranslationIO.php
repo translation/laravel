@@ -32,10 +32,10 @@ class TranslationIO
         return $this->locale;
     }
 
-    # Define Laravel locale: __("") with keys
+    // Define Laravel locale: __("") with keys
     private function setLaravelLocale($locale)
     {
-        App::setLocale($locale); # LaravelApp::setLocale(substr($locale, 0, 2));
+        App::setLocale($locale); // LaravelApp::setLocale(substr($locale, 0, 2));
     }
 
     private function loadGettextForLocale($locale)
@@ -53,7 +53,7 @@ class TranslationIO
         static::includeFunctions();
     }
 
-    # MO file is ~2 times faster than PO and PHP files
+    // MO file is ~2 times faster than PO and PHP files
     private function moPath($locale)
     {
         return $this->gettextLocalesPath() . '/'. $locale .'/LC_MESSAGES/app.mo';

@@ -20,8 +20,7 @@ class GettextTranslationSaver
     public function __construct(
         Application $application,
         FileSystem $fileSystem
-    )
-    {
+    ) {
         $this->application = $application;
         $this->filesystem = $fileSystem;
         $this->config = $application['config']['translation'];
@@ -78,7 +77,8 @@ class GettextTranslationSaver
         }
     }
 
-    private function loadTranslationsFromPoContent($poContent) {
+    private function loadTranslationsFromPoContent($poContent)
+    {
         // Create Temporary path (to create po files and be able to load them in memory)
         $tmpDir = $this->tmpPath();
         $tmpFile = $tmpDir . DIRECTORY_SEPARATOR . 'app.po';
@@ -93,7 +93,8 @@ class GettextTranslationSaver
         return $translations;
     }
 
-    private function extractGettextTranslations($translations) {
+    private function extractGettextTranslations($translations)
+    {
         $gettextTranslations = clone $translations;
         $keysToRemove = [];
 
@@ -113,7 +114,8 @@ class GettextTranslationSaver
         return $gettextTranslations;
     }
 
-    private function extractJsonTranslations($translations) {
+    private function extractJsonTranslations($translations)
+    {
         $jsonTranslations = clone $translations;
         $keysToRemove = [];
 
@@ -121,7 +123,7 @@ class GettextTranslationSaver
         foreach ($jsonTranslations as $key => $jsonTranslation) {
             $context = $jsonTranslation->getContext();
 
-            if ( ! $this->startsWith($context, $this->jsonStringContext())) {
+            if (! $this->startsWith($context, $this->jsonStringContext())) {
                 $keysToRemove[] = $key;
             }
         }
@@ -159,13 +161,15 @@ class GettextTranslationSaver
         return $this->application['path.storage'];
     }
 
-    private function jsonStringContext() {
+    private function jsonStringContext()
+    {
         return 'Extracted from JSON file';
     }
 
-    # Because "Str::starsWith()" is only Laravel 5.7+
-    # https://stackoverflow.com/a/7168986/1243212
-    function startsWith($haystack, $needle) {
+    // Because "Str::starsWith()" is only Laravel 5.7+
+    // https://stackoverflow.com/a/7168986/1243212
+    function startsWith($haystack, $needle)
+    {
         return substr($haystack, 0, strlen($needle)) === $needle;
     }
 }

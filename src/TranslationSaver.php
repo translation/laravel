@@ -29,8 +29,7 @@ class TranslationSaver
         Application $application,
         FileSystem $fileSystem,
         PrettyVarExport $prettyVarExport
-    )
-    {
+    ) {
         $this->application = $application;
         $this->filesystem = $fileSystem;
         $this->prettyVarExport = $prettyVarExport;
@@ -38,7 +37,7 @@ class TranslationSaver
 
     public function call($locale, $translationsDotted)
     {
-        # the content of the localePath will be recreated from scratch
+        // the content of the localePath will be recreated from scratch
         $this->filesystem->deleteDirectory($this->localePath($locale));
 
         $translationsWithGroups = [];

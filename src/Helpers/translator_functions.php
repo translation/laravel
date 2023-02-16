@@ -1,8 +1,8 @@
 <?php
 
-###
-# Inspired by https://github.com/oscarotero/Gettext/blob/master/src/translator_functions.php
-###
+//
+// Inspired by https://github.com/oscarotero/Gettext/blob/master/src/translator_functions.php
+//
 
 use Tio\Laravel\TranslationIO;
 

@@ -24,8 +24,7 @@ class Sync extends Command
     public function __construct(
         SourceEditSyncService $sourceEditSyncService,
         SyncService $syncService
-    )
-    {
+    ) {
         $this->sourceEditSyncService = $sourceEditSyncService;
         $this->syncService = $syncService;
         parent::__construct();
@@ -35,9 +34,11 @@ class Sync extends Command
     {
         $this->info('Sync started');
         $this->sourceEditSyncService->call($this);
-        $this->syncService->call($this, [
+        $this->syncService->call(
+            $this, [
             'purge' => false,
             'show_purgeable' => false
-        ]);
+            ]
+        );
     }
 }

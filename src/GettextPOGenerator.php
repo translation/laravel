@@ -58,7 +58,7 @@ class GettextPOGenerator
 
         // Extract GetText strings from project
         foreach ($directories as $dir) {
-            if ( ! is_dir($dir)) {
+            if (! is_dir($dir)) {
                 throw new \Exception('Folder "' . $dir . '" does not exist. Gettext scan aborted.');
             }
 
@@ -125,7 +125,7 @@ class GettextPOGenerator
         foreach ($iterator as $fileinfo) {
             $name = $fileinfo->getPathname();
 
-            if ( ! strpos($name, '/.')) {
+            if (! strpos($name, '/.')) {
                 $files[] = $name;
             }
         }
@@ -170,7 +170,7 @@ class GettextPOGenerator
         $files = [];
 
         foreach ($this->jsonPaths() as $path) {
-            foreach (glob( $path . DIRECTORY_SEPARATOR . '*.json') as $filename) {
+            foreach (glob($path . DIRECTORY_SEPARATOR . '*.json') as $filename) {
                 $files[] = $filename;
             }
         }
@@ -263,9 +263,11 @@ class GettextPOGenerator
 
         $jsonFiles = collect($this->jsonFiles());
 
-        $targetJsonFiles = $jsonFiles->filter(function ($jsonFile) use ($target) {
-            return $this->endsWith($jsonFile, $target . '.json');
-        });
+        $targetJsonFiles = $jsonFiles->filter(
+            function ($jsonFile) use ($target) {
+                return $this->endsWith($jsonFile, $target . '.json');
+            }
+        );
 
         foreach ($targetJsonFiles as $targetJsonFile) {
             if ($this->filesystem->exists($targetJsonFile) && $this->validJsonFile($targetJsonFile)) {
@@ -297,7 +299,7 @@ class GettextPOGenerator
         }
         else {
             // Custom JSON path (added with `$loader->addJsonPath()`)
-            $relativePath = substr($path, strpos($path, $this->application->basePath() . '/') + strlen($this->application->basePath()) + 1 );
+            $relativePath = substr($path, strpos($path, $this->application->basePath() . '/') + strlen($this->application->basePath()) + 1);
             return 'Extracted from JSON file [' . $relativePath . ']';
         }
     }
@@ -313,52 +315,53 @@ class GettextPOGenerator
         return $appName;
     }
 
-    # Because "Str::endsWith()" is only Laravel 5.7+
-    # https://stackoverflow.com/a/10473026/1243212
-    private function endsWith($haystack, $needle) {
+    // Because "Str::endsWith()" is only Laravel 5.7+
+    // https://stackoverflow.com/a/10473026/1243212
+    private function endsWith($haystack, $needle)
+    {
         return substr_compare($haystack, $needle, -strlen($needle)) === 0;
     }
 
-    # To explain to the user why the JSON file is not valid
-    # Based on https://stackoverflow.com/a/15198925/1243212
+    // To explain to the user why the JSON file is not valid
+    // Based on https://stackoverflow.com/a/15198925/1243212
     private function validJsonFile($fileName)
     {
         $result = json_decode(file_get_contents($fileName), true);
 
         switch (json_last_error()) {
-            case JSON_ERROR_NONE:
-                $error = ''; // JSON is valid
-                break;
-            case JSON_ERROR_DEPTH:
-                $error = 'The maximum stack depth has been exceeded.';
-                break;
-            case JSON_ERROR_STATE_MISMATCH:
-                $error = 'Invalid or malformed JSON.';
-                break;
-            case JSON_ERROR_CTRL_CHAR:
-                $error = 'Control character error, possibly incorrectly encoded.';
-                break;
-            case JSON_ERROR_SYNTAX:
-                $error = 'Syntax error, malformed JSON.';
-                break;
+        case JSON_ERROR_NONE:
+            $error = ''; // JSON is valid
+            break;
+        case JSON_ERROR_DEPTH:
+            $error = 'The maximum stack depth has been exceeded.';
+            break;
+        case JSON_ERROR_STATE_MISMATCH:
+            $error = 'Invalid or malformed JSON.';
+            break;
+        case JSON_ERROR_CTRL_CHAR:
+            $error = 'Control character error, possibly incorrectly encoded.';
+            break;
+        case JSON_ERROR_SYNTAX:
+            $error = 'Syntax error, malformed JSON.';
+            break;
             // PHP >= 5.3.3
-            case JSON_ERROR_UTF8:
-                $error = 'Malformed UTF-8 characters, possibly incorrectly encoded.';
-                break;
+        case JSON_ERROR_UTF8:
+            $error = 'Malformed UTF-8 characters, possibly incorrectly encoded.';
+            break;
             // PHP >= 5.5.0
-            case JSON_ERROR_RECURSION:
-                $error = 'One or more recursive references in the value to be encoded.';
-                break;
+        case JSON_ERROR_RECURSION:
+            $error = 'One or more recursive references in the value to be encoded.';
+            break;
             // PHP >= 5.5.0
-            case JSON_ERROR_INF_OR_NAN:
-                $error = 'One or more NAN or INF values in the value to be encoded.';
-                break;
-            case JSON_ERROR_UNSUPPORTED_TYPE:
-                $error = 'A value of a type that cannot be encoded was given.';
-                break;
-            default:
-                $error = 'Unknown JSON error occured.';
-                break;
+        case JSON_ERROR_INF_OR_NAN:
+            $error = 'One or more NAN or INF values in the value to be encoded.';
+            break;
+        case JSON_ERROR_UNSUPPORTED_TYPE:
+            $error = 'A value of a type that cannot be encoded was given.';
+            break;
+        default:
+            $error = 'Unknown JSON error occured.';
+            break;
         }
 
         if ($error !== '') {
