@@ -15,7 +15,7 @@ class SyncTest extends TestCase
         app()['config']->set('translation.key', 'b641be726cfc42a3a0e2daa7f6fdda5c');
         app()['config']->set('translation.gettext_parse_paths', ['tests/fixtures/gettext']);
 
-        $this->addTranslationFixture('en', [], 'auth', [
+        $this->addTranslationFixture('en', [], 'user', [
             'password' => 'Password changed',
             'email' => 'Email changed',
             'fields' => [
@@ -27,9 +27,9 @@ class SyncTest extends TestCase
         $this->cassette('integration/sync.yml');
         $this->artisan('translation:sync');
 
-        $authFr = $this->filesystem->getRequire($this->localePath('fr-BE') . DIRECTORY_SEPARATOR . 'auth.php');
-        $authLv = $this->filesystem->getRequire($this->localePath('lv')    . DIRECTORY_SEPARATOR . 'auth.php');
-        $authRu = $this->filesystem->getRequire($this->localePath('ru')    . DIRECTORY_SEPARATOR . 'auth.php');
+        $userFr = $this->filesystem->getRequire($this->localePath('fr-BE') . DIRECTORY_SEPARATOR . 'user.php');
+        $userLv = $this->filesystem->getRequire($this->localePath('lv')    . DIRECTORY_SEPARATOR . 'user.php');
+        $userRu = $this->filesystem->getRequire($this->localePath('ru')    . DIRECTORY_SEPARATOR . 'user.php');
 
         # last_name and email were not translated in French (so absent from the response)
         $this->assertEquals(
@@ -38,7 +38,7 @@ class SyncTest extends TestCase
                 'fields' => [
                     'first_name' => 'Prénom',
                 ]
-            ], $authFr);
+            ], $userFr);
 
         $this->assertEquals(
             [
@@ -48,7 +48,7 @@ class SyncTest extends TestCase
                     'first_name' => 'Vārds',
                     'last_name' => 'Uzvārds'
                 ]
-            ], $authLv);
+            ], $userLv);
 
         $this->assertEquals(
             [
@@ -58,7 +58,7 @@ class SyncTest extends TestCase
                     'first_name' => 'Имя',
                     'last_name' => 'Фамилия'
                 ]
-            ], $authRu);
+            ], $userRu);
 
         $formsFr = $this->filesystem->getRequire($this->localePath('fr-BE') . DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'forms.php');
 
@@ -211,7 +211,7 @@ EOT;
         app()['config']->set('translation.key', 'b641be726cfc42a3a0e2daa7f6fdda5c');
         app()['config']->set('translation.gettext_parse_paths', ['tests/fixtures/gettext']);
 
-        $this->addTranslationFixture('en', [], 'auth', [
+        $this->addTranslationFixture('en', [], 'user', [
             'password' => 'Password changed',
             'email' => 'Email changed',
             'fields' => [
@@ -223,9 +223,9 @@ EOT;
         $this->cassette('integration/sync_with_source_edits.yml');
         $this->artisan('translation:sync');
 
-        $authFr = $this->filesystem->getRequire($this->localePath('fr-BE') . DIRECTORY_SEPARATOR . 'auth.php');
-        $authLv = $this->filesystem->getRequire($this->localePath('lv') . DIRECTORY_SEPARATOR . 'auth.php');
-        $authRu = $this->filesystem->getRequire($this->localePath('ru') . DIRECTORY_SEPARATOR . 'auth.php');
+        $userFr = $this->filesystem->getRequire($this->localePath('fr-BE') . DIRECTORY_SEPARATOR . 'user.php');
+        $userLv = $this->filesystem->getRequire($this->localePath('lv') . DIRECTORY_SEPARATOR . 'user.php');
+        $userRu = $this->filesystem->getRequire($this->localePath('ru') . DIRECTORY_SEPARATOR . 'user.php');
 
         # last_name and email were not translated in French (so absent from the response)
         $this->assertEquals(
@@ -234,7 +234,7 @@ EOT;
                 'fields' => [
                     'first_name' => 'Prénom',
                 ]
-            ], $authFr);
+            ], $userFr);
 
         $this->assertEquals(
             [
@@ -244,7 +244,7 @@ EOT;
                     'first_name' => 'Vārds',
                     'last_name' => 'Uzvārds'
                 ]
-            ], $authLv);
+            ], $userLv);
 
         $this->assertEquals(
             [
@@ -254,9 +254,9 @@ EOT;
                     'first_name' => 'Имя',
                     'last_name' => 'Фамилия'
                 ]
-            ], $authRu);
+            ], $userRu);
 
-        $authEn = $this->filesystem->getRequire($this->localePath('en') . DIRECTORY_SEPARATOR . 'auth.php');
+        $userEn = $this->filesystem->getRequire($this->localePath('en') . DIRECTORY_SEPARATOR . 'user.php');
 
         $this->assertEquals(
             [
@@ -266,7 +266,7 @@ EOT;
                     'first_name' => 'First name changed',
                     'last_name' => 'Surname changed',     // was modified by source_edits
                 ]
-            ], $authEn);
+            ], $userEn);
     }
 
     // Ignore the Gettext part of the response
@@ -277,7 +277,7 @@ EOT;
         app()['config']->set('translation.key', 'b641be726cfc42a3a0e2daa7f6fdda5c');
         app()['config']->set('translation.gettext_parse_paths', ['tests/fixtures/gettext']);
 
-        $this->addTranslationFixture('en', ['subfolder'], 'auth', [
+        $this->addTranslationFixture('en', ['subfolder'], 'user', [
             'password' => 'Password changed',
             'email' => 'Email changed',
             'fields' => [
@@ -293,9 +293,9 @@ EOT;
         $this->cassette('integration/sync_with_subfolders.yml');
         $this->artisan('translation:sync');
 
-        $authFr = $this->filesystem->getRequire($this->localePath('fr-BE') . DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'auth.php');
-        $authLv = $this->filesystem->getRequire($this->localePath('lv')    . DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'auth.php');
-        $authRu = $this->filesystem->getRequire($this->localePath('ru')    . DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'auth.php');
+        $userFr = $this->filesystem->getRequire($this->localePath('fr-BE') . DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'user.php');
+        $userLv = $this->filesystem->getRequire($this->localePath('lv')    . DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'user.php');
+        $userRu = $this->filesystem->getRequire($this->localePath('ru')    . DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'user.php');
 
         # last_name and email were not translated in French (so absent from the response)
         $this->assertEquals(
@@ -304,7 +304,7 @@ EOT;
                 'fields' => [
                     'first_name' => 'Prénom',
                 ]
-            ], $authFr);
+            ], $userFr);
 
         $this->assertEquals(
             [
@@ -314,7 +314,7 @@ EOT;
                     'first_name' => 'Vārds',
                     'last_name' => 'Uzvārds'
                 ]
-            ], $authLv);
+            ], $userLv);
 
         $this->assertEquals(
             [
@@ -324,7 +324,7 @@ EOT;
                     'first_name' => 'Имя',
                     'last_name' => 'Фамилия'
                 ]
-            ], $authRu);
+            ], $userRu);
 
         $testFr = $this->filesystem->getRequire($this->localePath('fr-BE') . DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'subsubfolder' . DIRECTORY_SEPARATOR . 'test.php');
         $testLv = $this->filesystem->getRequire($this->localePath('lv')    . DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'subsubfolder' . DIRECTORY_SEPARATOR . 'test.php');
@@ -354,7 +354,7 @@ EOT;
         app()['config']->set('translation.key', 'b641be726cfc42a3a0e2daa7f6fdda5c');
         app()['config']->set('translation.gettext_parse_paths', ['tests/fixtures/gettext']);
 
-        $this->addTranslationFixture('en', ['subfolder'], 'auth', [
+        $this->addTranslationFixture('en', ['subfolder'], 'user', [
             'password' => 'Password changed',
             'email' => 'Email changed',
             'fields' => [
@@ -370,9 +370,9 @@ EOT;
         $this->cassette('integration/sync_with_subfolders_and_source_edits.yml');
         $this->artisan('translation:sync');
 
-        $authFr = $this->filesystem->getRequire($this->localePath('fr-BE') . DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'auth.php');
-        $authLv = $this->filesystem->getRequire($this->localePath('lv')    . DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'auth.php');
-        $authRu = $this->filesystem->getRequire($this->localePath('ru')    . DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'auth.php');
+        $userFr = $this->filesystem->getRequire($this->localePath('fr-BE') . DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'user.php');
+        $userLv = $this->filesystem->getRequire($this->localePath('lv')    . DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'user.php');
+        $userRu = $this->filesystem->getRequire($this->localePath('ru')    . DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'user.php');
 
         # last_name and email were not translated in French (so absent from the response)
         $this->assertEquals(
@@ -381,7 +381,7 @@ EOT;
                 'fields' => [
                     'first_name' => 'Prénom',
                 ]
-            ], $authFr);
+            ], $userFr);
 
         $this->assertEquals(
             [
@@ -391,7 +391,7 @@ EOT;
                     'first_name' => 'Vārds',
                     'last_name' => 'Uzvārds'
                 ]
-            ], $authLv);
+            ], $userLv);
 
         $this->assertEquals(
             [
@@ -401,7 +401,7 @@ EOT;
                     'first_name' => 'Имя',
                     'last_name' => 'Фамилия'
                 ]
-            ], $authRu);
+            ], $userRu);
 
         $testFr = $this->filesystem->getRequire($this->localePath('fr-BE') . DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'subsubfolder' . DIRECTORY_SEPARATOR . 'test.php');
         $testLv = $this->filesystem->getRequire($this->localePath('lv')    . DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'subsubfolder' . DIRECTORY_SEPARATOR . 'test.php');
@@ -422,7 +422,7 @@ EOT;
                 'keytest' => 'Это тест'
             ], $testRu);
 
-        $authEn = $this->filesystem->getRequire($this->localePath('en') . DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'auth.php');
+        $userEn = $this->filesystem->getRequire($this->localePath('en') . DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'user.php');
         $testEn = $this->filesystem->getRequire($this->localePath('en') . DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'subsubfolder' . DIRECTORY_SEPARATOR . 'test.php');
 
         $this->assertEquals(
@@ -433,7 +433,7 @@ EOT;
                     'first_name' => 'First name changed',
                     'last_name' => 'Surname changed',     // was modified by source_edits
                 ]
-            ], $authEn);
+            ], $userEn);
 
         $this->assertEquals(
             [

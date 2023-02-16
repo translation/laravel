@@ -88,7 +88,7 @@ class TranslationExtractorTest extends TestCase
             'b' => 'B',
         ]);
 
-        $this->addTranslationFixture('en', ['subfolder'], 'auth', [
+        $this->addTranslationFixture('en', ['subfolder'], 'user', [
             'password' => 'Password changed',
             'email' => 'Email changed',
             'fields' => [
@@ -104,10 +104,10 @@ class TranslationExtractorTest extends TestCase
         $expected = [
             'file.a' => 'A',
             'file.b' => 'B',
-            'subfolder/auth.password' => 'Password changed',
-            'subfolder/auth.email' => 'Email changed',
-            'subfolder/auth.fields.first_name' => 'First name changed',
-            'subfolder/auth.fields.last_name' => 'Last name changed',
+            'subfolder/user.password' => 'Password changed',
+            'subfolder/user.email' => 'Email changed',
+            'subfolder/user.fields.first_name' => 'First name changed',
+            'subfolder/user.fields.last_name' => 'Last name changed',
             'subfolder/subsubfolder/test.keytest' => 'This is a test'
         ];
 

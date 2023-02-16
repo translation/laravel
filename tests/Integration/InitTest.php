@@ -20,7 +20,7 @@ class InitTest extends TestCase
         app()['config']->set('translation.key', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
         app()['config']->set('translation.gettext_parse_paths', ['tests/fixtures/gettext']);
 
-        $this->addTranslationFixture('fr-BE', [], 'auth', [
+        $this->addTranslationFixture('fr-BE', [], 'user', [
             'fields' => [
                 'first_name' => 'Prénom'
             ]
@@ -42,22 +42,7 @@ class InitTest extends TestCase
         app()['config']->set('translation.key', 'b641be726cfc42a3a0e2daa7f6fdda5c');
         app()['config']->set('translation.gettext_parse_paths', ['tests/fixtures/gettext']);
 
-        $this->addTranslationFixture('fr-BE', [], 'auth', [
-            'fields' => [
-                'first_name' => 'Prénom'
-            ]
-        ]);
-
-        $this->addTranslationFixture('lv', [], 'auth', [
-            'password' => 'Parole'
-        ]);
-
-        $this->addTranslationFixture('ru', [], 'auth', [
-            'password' => 'Пароль',
-            'error' => 'Ошибка'
-        ]);
-
-        $this->addTranslationFixture('en', [], 'auth', [
+        $this->addTranslationFixture('en', [], 'user', [
             'password' => 'Password',
             'email' => 'Email',
             'fields' => [
@@ -68,6 +53,22 @@ class InitTest extends TestCase
 
         $this->addTranslationFixture('en', ['subfolder'], 'forms', [
             'title' => 'Title'
+        ]);
+
+
+        $this->addTranslationFixture('fr-BE', [], 'user', [
+            'fields' => [
+                'first_name' => 'Prénom'
+            ]
+        ]);
+
+        $this->addTranslationFixture('lv', [], 'user', [
+            'password' => 'Parole'
+        ]);
+
+        $this->addTranslationFixture('ru', [], 'user', [
+            'password' => 'Пароль',
+            'error' => 'Ошибка'
         ]);
 
         $this->cassette('integration/init.yml');
