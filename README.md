@@ -184,6 +184,7 @@ $ composer require tio/laravel
 The initializer looks like this:
 
 ~~~php
+<?php
 return [
     'key' => env('TRANSLATIONIO_KEY'),
     'source_locale' => 'en',
@@ -365,6 +366,7 @@ subdirectories from the source language, you can use the `ignored_key_prefixes` 
 For example:
 
 ~~~php
+<?php
 return [
     ...
     'ignored_key_prefixes' => [
