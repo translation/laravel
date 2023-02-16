@@ -7,9 +7,9 @@
          stopOnFailure="false"
          cacheDirectory=".phpunit.cache"
          backupStaticProperties="false">
-  <coverage>
+  <coverage processUncoveredFiles="true">
     <include>
-      <directory suffix=".php">./src</directory>
+      <directory suffix=".php">src</directory>
     </include>
     <report>
       <clover outputFile="build/logs/clover.xml"/>
