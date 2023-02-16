@@ -35,8 +35,11 @@ return [
     | PO file is here: $gettext_locales_path/xx_XX/app.po
     | MO file is here: $gettext_locales_path/xx_XX/LC_MESSAGES/app.mo
     |
-    | For Laravel >= 9, default path should be changed to 'lang/gettext'.
+    | If not specified, $this->application['path.lang'] . '/gettext' will be used
+    |
+    | For Laravel < 9,  path.lang is `resources/lang/gettext`
+    | For Laravel >= 9, path.lang is `lang/gettext`.
     |
     */
-    'gettext_locales_path' => 'resources/lang/gettext'
+    // 'gettext_locales_path' => 'lang/gettext'
 ];

@@ -66,7 +66,7 @@ class TranslationIO
         }
         else {
             // Default values if not present in config file
-            return $this->application['path.lang'] . DIRECTORY_SEPARATOR . 'gettext';
+            return app()['path.lang'] . DIRECTORY_SEPARATOR . 'gettext';
         }
     }
 
