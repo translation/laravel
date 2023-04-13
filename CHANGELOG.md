@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.23](https://github.com/translation/laravel/releases/tag/v1.23) (2023-04-13)
+
+#### Fixes (bugs & defects):
+
+ * Remove deprecation warning ([#34](https://github.com/translation/laravel/issues/34)).
+
 ## [v1.22](https://github.com/translation/laravel/releases/tag/v1.22) (2023-02-16)
 
 #### New features:
