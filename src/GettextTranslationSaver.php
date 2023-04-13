@@ -17,6 +17,8 @@ class GettextTranslationSaver
      */
     private $filesystem;
 
+    private $config;
+
     public function __construct(
         Application $application,
         FileSystem $fileSystem
