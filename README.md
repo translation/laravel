@@ -175,7 +175,7 @@ t(':city1 is bigger than :city2', [ ':city1' => 'NYC', ':city2' => 'BXL' ]);
  1. Add the package via Composer:
 
 ~~~bash
-$ composer require tio/laravel
+composer require tio/laravel
 ~~~
 
  2. Create a new translation project [from the UI](https://translation.io/laravel).
@@ -196,7 +196,7 @@ return [
  5. Initialize your project and push existing translations to Translation.io with:
 
 ~~~bash
-$ php artisan translation:init
+php artisan translation:init
 ~~~
 
 If you need to add or remove languages in the future, please read
@@ -209,7 +209,7 @@ If you need to add or remove languages in the future, please read
 To send new translatable keys/strings and get new translations from Translation.io, simply run:
 
 ~~~bash
-$ php artisan translation:sync
+php artisan translation:sync
 ~~~
 
 ### Sync and Show Purgeable
@@ -217,7 +217,7 @@ $ php artisan translation:sync
 If you need to find out what are the unused keys/strings from Translation.io, using the current branch as reference:
 
 ~~~bash
-$ php artisan translation:sync_and_show_purgeable
+php artisan translation:sync_and_show_purgeable
 ~~~
 
 As the name says, this operation will also perform a sync at the same time.
@@ -227,7 +227,7 @@ As the name says, this operation will also perform a sync at the same time.
 If you need to remove unused keys/strings from Translation.io, using the current branch as reference:
 
 ~~~bash
-$ php artisan translation:sync_and_purge
+php artisan translation:sync_and_purge
 ~~~
 
 As the name says, this operation will also perform a sync at the same time.
@@ -383,15 +383,15 @@ return [
 To run the specs with oldest dependencies:
 
 ~~~bash
-$ composer update --no-interaction --prefer-stable --prefer-lowest
-$ ./vendor/bin/phpunit
+composer update --no-interaction --prefer-stable --prefer-lowest
+./vendor/bin/phpunit
 ~~~
 
 To run the specs with latest dependencies:
 
 ~~~bash
-$ composer update --no-interaction --prefer-stable
-$ ./vendor/bin/phpunit
+composer update --no-interaction --prefer-stable
+./vendor/bin/phpunit
 ~~~
 
 ## Contributing
