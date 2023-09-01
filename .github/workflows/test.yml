@@ -15,7 +15,7 @@ jobs:
           - 7.4
           - 8.0
           - 8.1
-#         - 8.2 # Commented until "segmented fault" is resolved for PHP-VCR: https://github.com/php-vcr/php-vcr/issues/373
+          - 8.2
         composer_flag:
           - --prefer-lowest
           -
