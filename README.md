@@ -200,7 +200,7 @@ php artisan translation:init
 Note: since **Laravel 9**, the `lang` directory and the default set of language files
 used by Laravel are **not** included by default in new projects
 (see [official documentation](https://laravel.com/docs/master/localization#publishing-the-language-files)),
-so may need to run the `lang:publish` command to generate them:
+so you may need to run the `lang:publish` command to generate them:
 
 ~~~bash
 php artisan lang:publish
