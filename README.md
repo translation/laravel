@@ -1,4 +1,4 @@
-# [Translation.io](https://translation.io/laravel) client for Laravel 5.5+ to 10.x
+# [Translation.io](https://translation.io/laravel) client for Laravel 5.5+ to 11.x
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 [![Build Status](https://github.com/translation/laravel/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/translation/laravel/actions/workflows/test.yml)
@@ -17,8 +17,6 @@ Write only the source text, and keep it synchronized with your translators on [T
 <a href="https://translation.io/laravel">
   <img width="720px" alt="Translation.io interface" src="https://translation.io/gifs/translation.gif">
 </a>
-
-[Technical Demo](https://translation.io/videos/laravel.mp4) (2.5min)
 
 Need help? [contact@translation.io](mailto:contact@translation.io)
 
@@ -198,6 +196,16 @@ return [
 ~~~bash
 php artisan translation:init
 ~~~
+
+Note: since **Laravel 9**, the `lang` directory and the default set of language files
+used by Laravel are **not** included by default in new projects
+(see [official documentation](https://laravel.com/docs/master/localization#publishing-the-language-files)),
+so you may need to run the `lang:publish` command to generate them:
+
+~~~bash
+php artisan lang:publish
+~~~
+
 
 If you need to add or remove languages in the future, please read
 [this section](#add-or-remove-language) about that.
