@@ -71,6 +71,7 @@ class TranslationSaver
         // Leave the extra newline at the end
         $fileContent = <<<'EOT'
 <?php
+
 return {{translations}};
 
 EOT;
