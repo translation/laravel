@@ -1,4 +1,4 @@
-# [Translation.io](https://translation.io/laravel) client for Laravel 5.5+ to 11.x
+# [Translation.io](https://translation.io/laravel) client for Laravel 5.5+ to 12.x
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 [![Build Status](https://github.com/translation/laravel/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/translation/laravel/actions/workflows/test.yml)
