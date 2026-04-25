@@ -3,7 +3,6 @@
 namespace Tio\Laravel;
 
 use Illuminate\Support\Facades\App;
-use Gettext\Translator;
 use Gettext\Translations;
 use Illuminate\Filesystem\Filesystem;
 
@@ -40,7 +39,7 @@ class TranslationIO
 
     private function loadGettextForLocale($locale)
     {
-        $translator = new Translator();
+        $translator = new GettextTranslator();
         $moPath = $this->moPath($locale);
 
         if (file_exists($moPath)) {
