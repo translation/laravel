@@ -1,5 +1,15 @@
 # Changelog
 
+## [v1.24](https://github.com/translation/laravel/releases/tag/v1.24) (2026-04-29)
+
+#### New features:
+
+ * Compatible with PHP 8.5 and Laravel 13.
+
+#### Fixes (bugs & defects):
+
+ * Fix null offset deprecation in GetText translator on PHP 8.5 ([#40](https://github.com/translation/laravel/issues/40), thanks @armandsar).
+
 ## [v1.23](https://github.com/translation/laravel/releases/tag/v1.23) (2023-04-13)
 
 #### Fixes (bugs & defects):
