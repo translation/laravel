@@ -1,4 +1,4 @@
-# [Translation.io](https://translation.io/laravel) client for Laravel 5.5+ to 12.x
+# [Translation.io](https://translation.io/laravel) client for Laravel 5.5+ to 13.x
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 [![Build Status](https://github.com/translation/laravel/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/translation/laravel/actions/workflows/test.yml)
@@ -401,6 +401,7 @@ To run the specs with latest dependencies:
 ~~~bash
 composer update --no-interaction --prefer-stable
 ./vendor/bin/phpunit
+php bin/coverage-badge # Generate coverage badge (misc/coverage-badge.svg)
 ~~~
 
 ## Contributing
