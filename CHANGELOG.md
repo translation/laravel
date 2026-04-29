@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.25](https://github.com/translation/laravel/releases/tag/v1.25) (2026-04-29)
+
+#### Fixes (bugs & defects):
+
+ * Exclude some files/directories from distributed package.
+
 ## [v1.24](https://github.com/translation/laravel/releases/tag/v1.24) (2026-04-29)
 
 #### New features:

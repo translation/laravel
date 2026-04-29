@@ -62,7 +62,7 @@ class Init
     {
         $formData = [
             'client' => 'laravel',
-            'version' => '1.24',
+            'version' => '1.25',
             'source_language' => $this->sourceLocale(),
         ];
 
