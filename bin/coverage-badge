@@ -1,0 +1,80 @@
+#!/usr/bin/env php
+<?php
+
+// Parse clover.xml and generate an SVG coverage badge
+
+$cloverFile = __DIR__ . '/../build/logs/clover.xml';
+$badgeFile  = __DIR__ . '/../misc/coverage-badge.svg';
+
+if (!file_exists($cloverFile)) {
+    fwrite(STDERR, "Error: $cloverFile not found. Run phpunit first.\n");
+    exit(1);
+}
+
+$xml = simplexml_load_file($cloverFile);
+
+// Use project-level metrics from clover
+$metrics = $xml->xpath('//project/metrics')[0] ?? null;
+
+if (!$metrics || !isset($metrics['statements'])) {
+    fwrite(STDERR, "Error: No coverage metrics found in $cloverFile.\n");
+    exit(1);
+}
+
+// TPC = (coveredconditionals + coveredstatements + coveredmethods) / (conditionals + statements + methods)
+// cf. https://openclover.org/doc/manual/latest/faq--how-are-coverage-percentages-calculated.html
+$total   = (int) $metrics['conditionals'] + (int) $metrics['statements'] + (int) $metrics['methods'];
+$covered = (int) $metrics['coveredconditionals'] + (int) $metrics['coveredstatements'] + (int) $metrics['coveredmethods'];
+
+$percentage = $total > 0 ? round(($covered / $total) * 100, 1) : 0;
+
+// Pick color based on coverage
+if ($percentage >= 90) {
+    $color = '#4c1';     // bright green
+} elseif ($percentage >= 75) {
+    $color = '#a3c51c';  // yellow-green
+} elseif ($percentage >= 60) {
+    $color = '#dfb317';  // yellow
+} elseif ($percentage >= 40) {
+    $color = '#fe7d37';  // orange
+} else {
+    $color = '#e05d44';  // red
+}
+
+$label = 'coverage';
+$value = $percentage . '%';
+
+// Compute text widths (approximate)
+$labelWidth  = strlen($label) * 6.5 + 10;
+$valueWidth  = strlen($value) * 6.5 + 10;
+$totalWidth  = $labelWidth + $valueWidth;
+$labelCenter = $labelWidth / 2;
+$valueCenter = $labelWidth + $valueWidth / 2;
+
+$svg = <<<SVG
+<svg xmlns="http://www.w3.org/2000/svg" width="{$totalWidth}" height="20">
+  <linearGradient id="b" x2="0" y2="100%">
+    <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
+    <stop offset="1" stop-opacity=".1"/>
+  </linearGradient>
+  <clipPath id="a">
+    <rect width="{$totalWidth}" height="20" rx="3" fill="#fff"/>
+  </clipPath>
+  <g clip-path="url(#a)">
+    <rect width="{$labelWidth}" height="20" fill="#555"/>
+    <rect x="{$labelWidth}" width="{$valueWidth}" height="20" fill="{$color}"/>
+    <rect width="{$totalWidth}" height="20" fill="url(#b)"/>
+  </g>
+  <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
+    <text x="{$labelCenter}" y="15" fill="#010101" fill-opacity=".3">{$label}</text>
+    <text x="{$labelCenter}" y="14">{$label}</text>
+    <text x="{$valueCenter}" y="15" fill="#010101" fill-opacity=".3">{$value}</text>
+    <text x="{$valueCenter}" y="14">{$value}</text>
+  </g>
+</svg>
+SVG;
+
+@mkdir(dirname($badgeFile), 0777, true);
+file_put_contents($badgeFile, $svg);
+
+echo "Coverage: {$percentage}% — Badge written to {$badgeFile}\n";

@@ -1,9 +1,8 @@
-# [Translation.io](https://translation.io/laravel) client for Laravel 5.5+ to 12.x
+# [Translation.io](https://translation.io/laravel) client for Laravel 5.5+ to 13.x
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 [![Build Status](https://github.com/translation/laravel/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/translation/laravel/actions/workflows/test.yml)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/552e1ddc3f3f604d4908/test_coverage)](https://codeclimate.com/github/translation/laravel/test_coverage)
-[![Maintainability](https://api.codeclimate.com/v1/badges/552e1ddc3f3f604d4908/maintainability)](https://codeclimate.com/github/translation/laravel/maintainability)
+[![Test Coverage](misc/coverage-badge.svg)](misc/coverage-badge.svg)
 [![Package Version](https://img.shields.io/packagist/v/tio/laravel?style=flat-square)](https://packagist.org/packages/tio/laravel)
 [![Downloads](https://img.shields.io/packagist/dt/tio/laravel.svg?style=flat-square)](https://packagist.org/packages/tio/laravel)
 
@@ -402,6 +401,8 @@ To run the specs with latest dependencies:
 ~~~bash
 composer update --no-interaction --prefer-stable
 ./vendor/bin/phpunit
+
+php bin/coverage-badge # Generate coverage badge (misc/coverage-badge.svg)
 ~~~
 
 ## Contributing
