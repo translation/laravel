@@ -401,6 +401,7 @@ To run the specs with latest dependencies:
 ~~~bash
 composer update --no-interaction --prefer-stable
 ./vendor/bin/phpunit
+
 php bin/coverage-badge # Generate coverage badge (misc/coverage-badge.svg)
 ~~~
 
