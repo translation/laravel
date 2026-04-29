@@ -18,6 +18,7 @@ jobs:
           - 8.2
           - 8.3
           - 8.4
+          - 8.5
         composer_flag:
           - --prefer-lowest
           -
@@ -38,9 +39,10 @@ jobs:
             composer_flag: --prefer-lowest # /
           - php: 8.4                       # /
             composer_flag: --prefer-lowest # /
+          - php: 8.5                       # /
+            composer_flag: --prefer-lowest # /
     env:
       COMPOSER_MEMORY_LIMIT: -1
-      CC_TEST_REPORTER_ID: 2f4620ac239cc7fdb27b299c24422281b04fd8012820ba173e92c70953385958
     steps:
       - uses: actions/checkout@v4
       - name: Install PHP
@@ -59,10 +61,3 @@ jobs:
         run: composer update --no-interaction --prefer-stable ${{ matrix.composer_flag }}
       - name: Run Specs
         run: vendor/bin/phpunit
-      - name: Publish code coverage
-        if: ${{ matrix.php == '8.1' && matrix.composer_flag == '' }} # only one is needed!
-        uses: paambaati/codeclimate-action@v3.2.0
-        with:
-          coverageLocations: './build/logs/clover.xml:clover'
-          debug: true
-          verifyDownload: true
